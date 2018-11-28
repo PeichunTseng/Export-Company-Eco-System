@@ -19,6 +19,7 @@ public class Product {
     private double sellPrice;
     private int num;
     private double size;
+    private String supplierName;
     
     public Product(){
         id=count;
@@ -68,6 +69,15 @@ public class Product {
     public void setSize(double size) {
         this.size = size;
     }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
+    
     @Override
     public String toString(){
         return name;
