@@ -6,8 +6,11 @@
 package Business.helper;
 
 import Business.Airline.AirlineDirectory;
+import Business.Supplier.Product;
 
 import Business.Supplier.ProductDirectory;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -18,12 +21,12 @@ import Business.Supplier.ProductDirectory;
 
 public class DataStore {
     private static DataStore dataStore;
-    private AirlineDirectory alList;
-    private ProductDirectory proList;
+    private List<CtyDetail> countryList;
+    private List<Product> proList;
     
     private DataStore(){
-        alList=new AirlineDirectory();
-        proList=new ProductDirectory();
+        countryList = new ArrayList<>();
+        proList = new ArrayList<>();
     }
     public static DataStore getInstance(){
         if(dataStore==null)
@@ -31,30 +34,19 @@ public class DataStore {
         return dataStore;
     }
 
-    public static DataStore getDataStore() {
-        return dataStore;
+    public List<CtyDetail> getCountryList() {
+        return countryList;
     }
 
-    public static void setDataStore(DataStore dataStore) {
-        DataStore.dataStore = dataStore;
+    public void setCountryList(List<CtyDetail> countryList) {
+        this.countryList = countryList;
     }
 
-    public AirlineDirectory getAlList() {
-        return alList;
-    }
-
-    public void setAlList(AirlineDirectory alList) {
-        this.alList = alList;
-    }
-
-   
-
-    public ProductDirectory getProList() {
+    public List<Product> getProList() {
         return proList;
     }
 
-    public void setProList(ProductDirectory proList) {
+    public void setProList(List<Product> proList) {
         this.proList = proList;
     }
-    
 }
