@@ -6,7 +6,6 @@
 package Business.Department;
 
 import Business.Department.Department.Type;
-import Business.Supplier.WareHouse;
 import java.util.ArrayList;
 
 
@@ -17,11 +16,8 @@ import java.util.ArrayList;
  */
 public class DepartmentDirectory {
     private ArrayList<Department> depList;
-    private WareHouse wareHouse;
     public DepartmentDirectory(){
         depList=new ArrayList();
-        wareHouse=new WareHouse();
-        
     }
 
     public ArrayList<Department> getDepList() {
@@ -34,7 +30,7 @@ public class DepartmentDirectory {
             depList.add(dep);
         }
         if(type.getValue().equals(Type.SellRole.getValue())){
-            dep=new SellDepartment(wareHouse);
+            dep=new SellDepartment();
             depList.add(dep);
         }
         else if(type.getValue().equals(Type.BuyRole.getValue())){

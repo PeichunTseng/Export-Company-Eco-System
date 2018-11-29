@@ -7,6 +7,8 @@ package Business.Enterprise;
 
 import Business.Department.Department;
 import Business.Department.DepartmentDirectory;
+import Business.helper.DataStore;
+import Business.helper.WareHouse;
 
 
 /**
@@ -16,6 +18,8 @@ import Business.Department.DepartmentDirectory;
 public abstract class Enterprise extends Department{
     private EnterpriseType entType;
     private DepartmentDirectory depList;
+    private DataStore datastore;
+    private WareHouse warehouse;
 
     public DepartmentDirectory getDepartmentList() {
         return depList;
@@ -46,6 +50,16 @@ public abstract class Enterprise extends Department{
         super(name);
         this.entType=type;
         depList=new DepartmentDirectory();
+        datastore = new DataStore();
+        warehouse = new WareHouse();
+    }
+
+    public DataStore getDatastore() {
+        return datastore;
+    }
+
+    public WareHouse getWarehouse() {
+        return warehouse;
     }
     
 }
