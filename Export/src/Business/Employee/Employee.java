@@ -5,6 +5,11 @@
  */
 package Business.Employee;
 
+import Business.Supplier.Product;
+import Business.helper.CtyDetail;
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 /**
@@ -15,8 +20,11 @@ public class Employee {
     private String name;
     private int id;
     private static int count=1;
+    private List<Product> products;
+    private CtyDetail country;
     
     public Employee(){
+        products = new ArrayList<>();
         id=count;
         count++;
     }
@@ -35,5 +43,21 @@ public class Employee {
     @Override 
     public String toString(){
         return name;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public CtyDetail getCountry() {
+        return country;
+    }
+
+    public void setCountry(CtyDetail country) {
+        this.country = country;
     }
 }

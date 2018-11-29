@@ -23,7 +23,9 @@ public class CtyDetail {
     private Employee employee;
     //Store the sell price in different coutries
     private CtyProductDirectory ctyProList; 
-    
+    public CtyDetail(String ctyName){
+        this.ctyName = ctyName;
+    }
     public CtyDetail(){
         ctyProList=new CtyProductDirectory();
     }

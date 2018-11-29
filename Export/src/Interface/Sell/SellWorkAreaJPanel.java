@@ -13,6 +13,7 @@ import Business.User.User;
 import Business.helper.CtyDetail;
 import Business.helper.DataStore;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,28 +38,28 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
         this.sellDep = sellDep;
         this.enterprise = enterprise;
         initComponents();
+        valueLabel.setText(enterprise.getName());
+        enterprise.getDatastore().getCountryList().add(new CtyDetail("China"));
+        enterprise.getDatastore().getCountryList().add(new CtyDetail("Japan"));
+        enterprise.getDatastore().getCountryList().add(new CtyDetail("Korea"));
+        enterprise.getWarehouse().getProducts().add(new Product("shoe",100,10,"Nike"));
+        enterprise.getWarehouse().getProducts().add(new Product("shoe",120,12,"Adidas"));
         populateComboBox();
-        populateTable();
     }
     
     public void populateComboBox(){
         countryComboBox.removeAllItems();
-        for(CtyDetail country : enterprise.getDatastore().getCountryList()){
-            countryComboBox.addItem(country);
+        if(user.getEmployee().getCountry() != null){
+            countryComboBox.addItem(user.getEmployee().getCountry());
+            countryComboBox.setEnabled(false);
+        }else{
+            for(CtyDetail country : enterprise.getDatastore().getCountryList()){
+                countryComboBox.addItem(country);
+            }
         }
     }
     
-    public void populateTable(){
-        DefaultTableModel model = (DefaultTableModel) productTable.getModel();
-        model.setRowCount(0);
-        
-        for (Product product : enterprise.getWarehouse().getProducts()){
-            Object[] row = new Object[2];
-            row[0] = product;
-            row[1] = product.getName();
-            model.addRow(row);
-        }
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,8 +74,6 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
         countryComboBox = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        productTable = new javax.swing.JTable();
 
         enterpriseLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel1.setText("SellWork");
@@ -93,27 +92,6 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
 
         countryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        productTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null}
-            },
-            new String [] {
-                "ID", "Name"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(productTable);
-        if (productTable.getColumnModel().getColumnCount() > 0) {
-            productTable.getColumnModel().getColumn(0).setResizable(false);
-        }
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,18 +103,18 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(countryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(39, 39, 39)
+                        .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(231, 231, 231)
-                        .addComponent(requestTestJButton)))
-                .addContainerGap(149, Short.MAX_VALUE))
+                        .addGap(121, 121, 121)
+                        .addComponent(countryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(requestTestJButton)
+                        .addGap(10, 10, 10)))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,21 +124,23 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(64, 64, 64)
                 .addComponent(countryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(111, 111, 111)
                 .addComponent(requestTestJButton)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
-
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        userProcessContainer.add("AirlinePanel", new SetPriceJPanel(userProcessContainer, user, enterprise));
-//        layout.next(userProcessContainer);
+        CtyDetail country = (CtyDetail)countryComboBox.getSelectedItem();
+        if(user.getEmployee().getCountry() == null){
+            user.getEmployee().setCountry(country);
+            country.setEmployee(user.getEmployee());
+        }
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add(new SellProductJPanel(userProcessContainer, user, enterprise));
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
 
@@ -168,8 +148,6 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox countryComboBox;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel enterpriseLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable productTable;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
