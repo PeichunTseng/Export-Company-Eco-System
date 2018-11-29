@@ -53,11 +53,12 @@ public class SellProductJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for (Product product : user.getEmployee().getProducts()){
-            Object[] row = new Object[4];
+            Object[] row = new Object[5];
             row[0] = product;
             row[1] = product.getSupplierName();
             row[2] = product.getOriginPrice();
-            row[3] = product.getNum();
+            row[3] = product.getSellPrice();
+            row[4] = product.getNum();
             model.addRow(row);
         }
     }
@@ -210,18 +211,27 @@ public class SellProductJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "The selling price must be larger than the origin price");
                 return;
             }
-            int leftNumber = selectedProduct.getNum() - quantity;
-            if(leftNumber == 0 ){
-                enterprise.getWarehouse().getProducts().remove(selectedProduct);
-            }else{
-                selectedProduct.setNum(leftNumber);
-            }
-            for(Product pro : user.getEmployee().getProducts()){
-                if(selectedProduct.getName().equals(pro.getName()) && 
-                        selectedProduct.getSupplierName().equals(pro.getSupplierName())){
-                    pro.setNum(pro.getNum()+quantity);
-                    pro.setSellPrice(sellPrice);
-                    alreadyHas = true;
+            
+            //同一种产品可以有不用的sell price
+//            for(Product pro : user.getEmployee().getProducts()){
+//                if(pro.getName().equals(selectedProduct.getName()) && 
+//                        pro.getSupplierName().equals(selectedProduct.getSupplierName()) &&
+//                        pro.getSellPrice() == sellPrice ){
+//                    pro.setNum(pro.getNum()+quantity);
+//                    alreadyHas = true;
+//                }
+//            }
+            //同一种产品只有一个sell price
+             for(Product pro : user.getEmployee().getProducts()){
+                if(pro.getName().equals(selectedProduct.getName()) && 
+                        pro.getSupplierName().equals(selectedProduct.getSupplierName())){
+                    if(pro.getSellPrice() == sellPrice){
+                        pro.setNum(pro.getNum()+quantity);
+                        alreadyHas = true;
+                    }else{
+                        JOptionPane.showMessageDialog(null, "The same product should have the same selling price");
+                        return;
+                    }
                 }
             }
             if(!alreadyHas){
@@ -229,6 +239,12 @@ public class SellProductJPanel extends javax.swing.JPanel {
                 quantity,selectedProduct.getSupplierName());
                 employeeProduct.setSellPrice(sellPrice);
                 user.getEmployee().getProducts().add(employeeProduct);
+            }
+            int leftNumber = selectedProduct.getNum() - quantity;
+            if(leftNumber == 0 ){
+                enterprise.getWarehouse().getProducts().remove(selectedProduct);
+            }else{
+                selectedProduct.setNum(leftNumber);
             }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Please enter right price");
