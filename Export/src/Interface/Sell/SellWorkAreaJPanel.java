@@ -8,10 +8,13 @@ package Interface.Sell;
 import Business.Department.DataDepartment;
 import Business.Department.SellDepartment;
 import Business.Enterprise.Enterprise;
+import Business.Supplier.Product;
 import Business.User.User;
+import Business.helper.CtyDetail;
 import Business.helper.DataStore;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 ;
 
@@ -34,8 +37,28 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
         this.sellDep = sellDep;
         this.enterprise = enterprise;
         initComponents();
+        populateComboBox();
+        populateTable();
     }
-
+    
+    public void populateComboBox(){
+        countryComboBox.removeAllItems();
+        for(CtyDetail country : enterprise.getDatastore().getCountryList()){
+            countryComboBox.addItem(country);
+        }
+    }
+    
+    public void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) productTable.getModel();
+        model.setRowCount(0);
+        
+        for (Product product : enterprise.getWarehouse().getProducts()){
+            Object[] row = new Object[2];
+            row[0] = product;
+            row[1] = product.getName();
+            model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,16 +95,24 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
 
         productTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Name"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(productTable);
+        if (productTable.getColumnModel().getColumnCount() > 0) {
+            productTable.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

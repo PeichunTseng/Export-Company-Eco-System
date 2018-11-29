@@ -20,18 +20,12 @@ import java.util.List;
  */
 
 public class DataStore {
-    private static DataStore dataStore;
     private List<CtyDetail> countryList;
     private List<Product> proList;
     
-    private DataStore(){
+    public DataStore(){
         countryList = new ArrayList<>();
         proList = new ArrayList<>();
-    }
-    public static DataStore getInstance(){
-        if(dataStore==null)
-            dataStore=new DataStore();
-        return dataStore;
     }
 
     public List<CtyDetail> getCountryList() {

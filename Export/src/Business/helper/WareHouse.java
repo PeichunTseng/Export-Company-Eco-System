@@ -13,19 +13,11 @@ import java.util.List;
  *
  * @author Administrator
  */
-public class Warehouse {
+public class WareHouse {
     private List<Product> products;
-    private static Warehouse warehouse;
     
-    private Warehouse(){
+    public WareHouse(){
         products = new ArrayList<>();
-    }
-    
-    public static Warehouse getInstance(){
-        if(warehouse == null){
-            return new Warehouse();
-        }
-        return warehouse;
     }
 
     public List<Product> getProducts() {

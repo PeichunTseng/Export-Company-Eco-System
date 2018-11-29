@@ -22,7 +22,6 @@ import java.util.ArrayList;
  */
 public abstract class Department {
     private String name;
-    private DataStore dataStore;
     private EmployeeDirectory empList;
     private UserDirectory userList;
     private int departmentID;
@@ -43,7 +42,6 @@ public abstract class Department {
     }
      public Department(String name){
          this.name=name;
-         dataStore=DataStore.getInstance();
          empList=new EmployeeDirectory();
          userList=new UserDirectory();
          departmentID=count;

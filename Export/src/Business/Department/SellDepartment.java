@@ -7,7 +7,6 @@ package Business.Department;
 
 import Business.Role.SellRole;
 import Business.Role.Role;
-import Business.Supplier.WareHouse;
 import Business.helper.CtyDetailDirectory;
 import java.util.ArrayList;
 
@@ -17,12 +16,10 @@ import java.util.ArrayList;
  */
 public class SellDepartment extends Department {
     //Warehouse cantains products buyer already bought.
-    private WareHouse wareHouse;
     //ctyDetailList show all countries details which contains product sell price.
     private CtyDetailDirectory ctyDetailList;
-    public SellDepartment(WareHouse wareHouse){
+    public SellDepartment(){
         super(Department.Type.SellRole.getValue());
-        this.wareHouse=wareHouse;
         ctyDetailList=new CtyDetailDirectory();
     }
     @Override 

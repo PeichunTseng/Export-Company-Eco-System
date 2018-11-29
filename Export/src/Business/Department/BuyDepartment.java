@@ -8,18 +8,14 @@ package Business.Department;
 
 import Business.Role.BuyRole;
 import Business.Role.Role;
-import Business.Supplier.WareHouse;
 import java.util.ArrayList;
 /**
  *
  * @author raoyuhuizi
  */
 public class BuyDepartment extends Department {
-    private WareHouse wareHouse;
     public BuyDepartment(){
         super(Department.Type.BuyRole.getValue());
-        wareHouse=new WareHouse();
-        
     }
     @Override 
     public ArrayList<Role> getSupportedRole(){
