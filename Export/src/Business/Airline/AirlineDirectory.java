@@ -16,20 +16,33 @@ import java.util.ArrayList;
 
 public class AirlineDirectory {
     private ArrayList<Airline> alList;
+    
     public AirlineDirectory(){
     alList=new ArrayList();
-}
+    }
 
     public ArrayList<Airline> getAlList() {
         return alList;
     }
-    public Airline createAirline(String alName,int number){
+//    public Airline createAirline(String alName,int number){
+//        Airline al=new Airline();
+//        al.setAlName(alName);
+//        
+//        al.setNum(number);
+//        alList.add(al);
+//        return al;
+//    }
+    
+    public Airline addAirline(){
         Airline al=new Airline();
-        al.setAlName(alName);
-        
-        al.setNum(number);
         alList.add(al);
         return al;
     }
+    
+    public void removeFlight(Airline s) {
+        alList.remove(s);
+    }
+    
+    
 }
 
