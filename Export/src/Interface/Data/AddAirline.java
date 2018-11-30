@@ -112,7 +112,7 @@ public class AddAirline extends javax.swing.JPanel {
         Airline airline = airlineDirectory.addAirline();
         airline.setAlName(namejTextField1.getText());
         
-        JOptionPane.showMessageDialog(null, "Supplier successfully added", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Airline successfully added", "Warning", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_addjButton1ActionPerformed
 
     private void backjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton2ActionPerformed

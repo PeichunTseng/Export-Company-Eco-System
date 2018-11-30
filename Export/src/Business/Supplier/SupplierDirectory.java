@@ -22,13 +22,25 @@ public class SupplierDirectory {
     public ArrayList<Supplier> getSpList() {
         return spList;
     }
-     public Supplier createSupplier(String spName){
+    
+    
+//    public Supplier createSupplier(String spName){
+//        Supplier sp=new Supplier();
+//        sp.setSpName(spName);
+//       
+//        spList.add(sp);
+//        return sp;
+//        
+//    }
+    
+    public Supplier addSupplier(){
         Supplier sp=new Supplier();
-        sp.setSpName(spName);
-       
         spList.add(sp);
         return sp;
-        
+    }
+    
+    public void removeSupplier(Supplier s) {
+        spList.remove(s);
     }
 }
 

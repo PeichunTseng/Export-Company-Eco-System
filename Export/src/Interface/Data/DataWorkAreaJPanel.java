@@ -7,13 +7,16 @@ package Interface.Data;
 
 import Business.Airline.Airline;
 import Business.Airline.AirlineDirectory;
+
+import Business.Supplier.Supplier;
+import Business.Supplier.SupplierDirectory;
+
 import Business.Department.DataDepartment;
 import Business.Enterprise.Enterprise;
 import Business.User.User;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
-import Business.Supplier.Product;
 import Business.helper.CtyDetail;
 import Business.helper.DataStore;
 
@@ -34,6 +37,7 @@ public class DataWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private User user;
     private AirlineDirectory airlineDirectory;
+    private SupplierDirectory supplierDirectory;
     
     public DataWorkAreaJPanel(JPanel userProcessContainer, User user, DataDepartment dataDep, Enterprise enterprise)//, AirlineDirectory ad) 
     {
@@ -42,6 +46,7 @@ public class DataWorkAreaJPanel extends javax.swing.JPanel {
         this.dataDep = dataDep;
         this.enterprise = enterprise;
         airlineDirectory = new AirlineDirectory();
+        supplierDirectory= new SupplierDirectory();
         initComponents();
         valueLabel.setText(enterprise.getName());
         
@@ -131,7 +136,10 @@ public class DataWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnManageNetworkActionPerformed
 
     private void btnManageNetwork1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetwork1ActionPerformed
-        // TODO add your handling code here:
+        SupplierJPanel sjp=new SupplierJPanel(userProcessContainer, supplierDirectory, user, enterprise);
+        userProcessContainer.add("supplierJPanel",sjp);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageNetwork1ActionPerformed
 
 

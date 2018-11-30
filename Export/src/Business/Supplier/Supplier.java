@@ -13,13 +13,13 @@ package Business.Supplier;
  */
 public class Supplier {
     private String spName;
-    private int id;
-    private static int count=1;
+//    private int id;
+//    private static int count=1;
     private ProductDirectory proList;
     
     public Supplier(){
-        id=count;
-        count++;
+//        id=count;
+//        count++;
         proList=new ProductDirectory();
     }
 
@@ -31,9 +31,9 @@ public class Supplier {
         this.proList = proList;
     }
 
-    public int getId() {
-        return id;
-    }
+//    public int getId() {
+//        return id;
+//    }
 
     public String getSpName() {
         return spName;
@@ -43,13 +43,13 @@ public class Supplier {
         this.spName = spName;
     }
 
-    public static int getCount() {
-        return count;
-    }
-
-    public static void setCount(int count) {
-        Supplier.count = count;
-    }
+//    public static int getCount() {
+//        return count;
+//    }
+//
+//    public static void setCount(int count) {
+//        Supplier.count = count;
+//    }
     @Override
     public String toString(){
         return spName;

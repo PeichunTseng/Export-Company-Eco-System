@@ -12,24 +12,25 @@ package Business.Supplier;
  * @author raoyuhuizi
  */
 public class Product {
-    private String name;
+    private String name;//////
     private int id;
     private static int count=1;
-    private double originPrice;
+    private double originPrice;//////
     private double sellPrice;
-    private int num;
-    private double size;
+    private int num;//////
+    private double size;/////
     private String supplierName;
     
     public Product(){
         id=count;
         count++;
     }
-    public Product(String name, double originPrice, int num, String supplierName){
+    public Product(String name, double originPrice, int num,String supplierName){
         id = count++;
         this.name = name;
         this.originPrice = originPrice;
         this.num = num;
+       // this.size=size;
         this.supplierName = supplierName;
     }
     public int getId() {
