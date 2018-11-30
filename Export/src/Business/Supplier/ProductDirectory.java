@@ -20,14 +20,35 @@ public class ProductDirectory {
     public ArrayList<Product> getProList() {
         return proList;
     }
-    public Product createProduct(String name,Double originPrice,int num,double size ){
-        Product pro=new Product();
-        pro.setName(name);
-        pro.setOriginPrice(originPrice);
-        pro.setNum(num);
-        pro.setSize(size);
-        proList.add(pro);
-        return pro;
-        
+    
+    public Product addProduct() {
+        Product f = new Product();
+        proList.add(f);
+        return f;
     }
+   
+     public void removeProduct(Product p) {
+        proList.remove(p);
+    }
+     
+     
+    public Product searchProduct(String sss) {
+        //ArrayList<Product> result = new ArrayList<Product>();
+        for(Product p : proList) {
+             if(p.getName().equals(sss)) 
+                return p;        
+        }
+        return null;
+    }
+     
+//    public Product createProduct(String name,Double originPrice,int num,double size ){
+//        Product pro=new Product();
+//        pro.setName(name);
+//        pro.setOriginPrice(originPrice);
+//        pro.setNum(num);
+//        pro.setSize(size);
+//        proList.add(pro);
+//        return pro;
+//        
+//    }
 }
