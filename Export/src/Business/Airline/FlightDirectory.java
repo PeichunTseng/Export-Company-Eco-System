@@ -22,12 +22,31 @@ public class FlightDirectory {
         return fltList;
     }
     
-    public Flight createFlight(String cty,double time,double capacity){
-        Flight flt=new Flight();
-        flt.setCty(cty);
-        flt.setTime(time);
-        flt.setCapacity(capacity);
-        fltList.add(flt);
-        return flt;
+//    public Flight createFlight(String cty,double time,double capacity){
+//        Flight flt=new Flight();
+//        flt.setCty(cty);
+//        flt.setTime(time);
+//        flt.setCapacity(capacity);
+//        fltList.add(flt);
+//        return flt;
+//    }
+    
+    public Flight addFlight() {
+        Flight f = new Flight();
+        fltList.add(f);
+        return f;
     }
+   
+      public void removeFlight(Flight p) {
+        fltList.remove(p);
+    }
+    public Flight searchFlightString(String sss) {
+        //ArrayList<Product> result = new ArrayList<Product>();
+        for(Flight p : fltList) {
+             if(p.getFlightnumber().equals(sss)||p.getCty().equals(sss)) 
+                return p;        
+        }
+        return null;
+    }
+    
 }

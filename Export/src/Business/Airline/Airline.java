@@ -13,19 +13,19 @@ package Business.Airline;
  */
 public class Airline {
     private String alName;
-    private int id;
-    private int num;
+//    private int id;
+//    private int num;
     private FlightDirectory fltList;
-    private static int count=1;
+//    private static int count=1;
     public Airline(){
-        id=count;
-        count++;
+//        id=count;
+//        count++;
         fltList=new FlightDirectory();
     }
 
-    public int getId() {
-        return id;
-    }
+//    public int getId() {
+//        return id;
+//    }
 
     public String getAlName() {
         return alName;
@@ -35,13 +35,13 @@ public class Airline {
         this.alName = alName;
     }
 
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
-    }
+//    public int getNum() {
+//        return num;
+//    }
+//
+//    public void setNum(int num) {
+//        this.num = num;
+//    }
 
     public FlightDirectory getFltList() {
         return fltList;
@@ -51,13 +51,13 @@ public class Airline {
         this.fltList = fltList;
     }
 
-    public static int getCount() {
-        return count;
-    }
-
-    public static void setCount(int count) {
-        Airline.count = count;
-    }
+//    public static int getCount() {
+//        return count;
+//    }
+//
+//    public static void setCount(int count) {
+//        Airline.count = count;
+//    }
     
     
 }

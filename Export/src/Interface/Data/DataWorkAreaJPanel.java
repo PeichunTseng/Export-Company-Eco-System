@@ -5,11 +5,18 @@
  */
 package Interface.Data;
 
+import Business.Airline.Airline;
+import Business.Airline.AirlineDirectory;
 import Business.Department.DataDepartment;
 import Business.Enterprise.Enterprise;
 import Business.User.User;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+
+import Business.Supplier.Product;
+import Business.helper.CtyDetail;
+import Business.helper.DataStore;
+
 
 ;
 
@@ -26,9 +33,20 @@ public class DataWorkAreaJPanel extends javax.swing.JPanel {
     private DataDepartment dataDep;
     private Enterprise enterprise;
     private User user;
-    public DataWorkAreaJPanel(JPanel userProcessContainer, User user, DataDepartment dataDep, Enterprise enterprise) {
+    private AirlineDirectory airlineDirectory;
+    
+    public DataWorkAreaJPanel(JPanel userProcessContainer, User user, DataDepartment dataDep, Enterprise enterprise)//, AirlineDirectory ad) 
+    {
+        this.userProcessContainer = userProcessContainer;
+        this.user = user;
+        this.dataDep = dataDep;
+        this.enterprise = enterprise;
+        airlineDirectory = new AirlineDirectory();
         initComponents();
+        valueLabel.setText(enterprise.getName());
+        
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,43 +59,53 @@ public class DataWorkAreaJPanel extends javax.swing.JPanel {
 
         valueLabel = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
-        requestTestJButton = new javax.swing.JButton();
         enterpriseLabel1 = new javax.swing.JLabel();
+        btnManageNetwork = new javax.swing.JButton();
+        btnManageNetwork1 = new javax.swing.JButton();
 
         valueLabel.setText("<value>");
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
 
-        requestTestJButton.setText("Next");
-        requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
+        enterpriseLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel1.setText("DataWork");
+
+        btnManageNetwork.setText("Manage Airline");
+        btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                requestTestJButtonActionPerformed(evt);
+                btnManageNetworkActionPerformed(evt);
             }
         });
 
-        enterpriseLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel1.setText("DataWork");
+        btnManageNetwork1.setText("Manage Supplier");
+        btnManageNetwork1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageNetwork1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(enterpriseLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(191, 191, 191))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnManageNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnManageNetwork1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(86, 86, 86))))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(103, 200, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(requestTestJButton)
-                        .addGap(86, 86, 86))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(enterpriseLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(191, 191, 191))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,25 +115,31 @@ public class DataWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(160, 160, 160)
-                .addComponent(requestTestJButton)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(btnManageNetwork)
+                .addGap(18, 18, 18)
+                .addComponent(btnManageNetwork1)
+                .addContainerGap(122, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
+    private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
+        AirlinePanel ap=new AirlinePanel(userProcessContainer, airlineDirectory, user, enterprise);
+        userProcessContainer.add("airlinePanel",ap);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageNetworkActionPerformed
 
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        userProcessContainer.add("AirlinePanel", new AirlinePanel(userProcessContainer, user, enterprise));
-//        layout.next(userProcessContainer);
-
-    }//GEN-LAST:event_requestTestJButtonActionPerformed
+    private void btnManageNetwork1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetwork1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManageNetwork1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnManageNetwork;
+    private javax.swing.JButton btnManageNetwork1;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel enterpriseLabel1;
-    private javax.swing.JButton requestTestJButton;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }
