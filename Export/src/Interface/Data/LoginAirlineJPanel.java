@@ -11,6 +11,7 @@ import Business.Airline.AirlineDirectory;
 import Business.Enterprise.Enterprise;
 import Business.User.User;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
 /**
  *
@@ -52,6 +53,7 @@ public class LoginAirlineJPanel extends javax.swing.JPanel {
         findButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         supplierComboBox1 = new javax.swing.JComboBox();
+        backButton1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Airliner Name");
@@ -73,11 +75,22 @@ public class LoginAirlineJPanel extends javax.swing.JPanel {
             }
         });
 
+        backButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        backButton1.setText("<< Back");
+        backButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(156, Short.MAX_VALUE)
+                .addComponent(backButton1)
+                .addGap(131, 131, 131))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -96,7 +109,10 @@ public class LoginAirlineJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(249, Short.MAX_VALUE)
+                .addComponent(backButton1)
+                .addGap(21, 21, 21))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -124,8 +140,25 @@ public class LoginAirlineJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_supplierComboBox1ActionPerformed
 
+    private void backAction() {
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        AirlinePanel chooseAirplaneModelToSchedule = (AirlinePanel) component;
+        chooseAirplaneModelToSchedule.refreshTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        
+  
+    }
+    private void backButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1ActionPerformed
+        // TODO add your handling code here:
+        backAction();
+    }//GEN-LAST:event_backButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton1;
     private javax.swing.JButton findButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
