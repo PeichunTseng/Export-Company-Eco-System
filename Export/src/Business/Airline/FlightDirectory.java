@@ -36,6 +36,10 @@ public class FlightDirectory {
         fltList.add(f);
         return f;
     }
+    
+    public void addFlight(Flight f) {
+        fltList.add(f);
+    }
    
       public void removeFlight(Flight p) {
         fltList.remove(p);

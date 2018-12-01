@@ -199,7 +199,8 @@ public class CreateNewFlight extends javax.swing.JPanel {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
 
-        Flight flight = airline.getFltList().addFlight();
+        Flight flight = new Flight();
+        //airline.getFltList().addFlight(flight);
         try{
             int price =Integer.parseInt(PriceField.getText());
             flight.setPrice(price);
@@ -223,6 +224,7 @@ public class CreateNewFlight extends javax.swing.JPanel {
         //flight.setCapacity(Capacity.getText());
         flight.setCty(DestinationField.getText());
         flight.setTime(DepartureTimeField.getText());
+        airline.getFltList().addFlight(flight);
 
         JOptionPane.showMessageDialog(null, "Flight successfully added", "Warning", JOptionPane.INFORMATION_MESSAGE);
         
@@ -244,7 +246,20 @@ public class CreateNewFlight extends javax.swing.JPanel {
             enterprise.getDatastore().getCountryList().add(new CtyDetail(DestinationField.getText()));
         }
         
-        enterprise.getDatastore().getAirList().add(airline);
+        
+        
+        List<String> airlineName = new ArrayList<>();
+        
+        for(Airline cty:enterprise.getDatastore().getAirList()){
+            if(!airlineName.contains(cty.getAlName()))
+                airlineName.add(cty.getAlName());
+         }
+         
+        if(!airlineName.contains(airline.getAlName())){
+            enterprise.getDatastore().getAirList().add(airline);
+        }
+        
+        //enterprise.getDatastore().getAirList().add(airline);
         
 
         
