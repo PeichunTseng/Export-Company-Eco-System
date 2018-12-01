@@ -12,13 +12,13 @@ package Business.Supplier;
  * @author raoyuhuizi
  */
 public class Product {
-    private String name;//////
+    private String name;
     private int id;
     private static int count=1;
-    private double originPrice;//////
+    private double originPrice;
     private double sellPrice;
-    private int num;//////
-    private double size;/////
+    private int num;
+    private double size;
     private String supplierName;
     
     public Product(){

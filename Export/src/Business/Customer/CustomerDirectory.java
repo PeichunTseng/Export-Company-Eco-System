@@ -18,12 +18,9 @@ public class CustomerDirectory {
     
     public CustomerDirectory(){
         cusList=new ArrayList();
-        
     }
 
     public ArrayList<Customer> getCusList() {
         return cusList;
     }
-    
-    
 }

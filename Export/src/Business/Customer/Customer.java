@@ -14,11 +14,17 @@ package Business.Customer;
 public class Customer {
     private String name;
     private int id;
+    private String address;
+    private int phoneNumber;
     private String country;
     private static int count=1;
     public Customer(){
         id=count;
         count++;
+    }
+    
+    public Customer(int id, String name, String address, int phoneNumber){
+        
     }
 
     public int getId() {
@@ -47,6 +53,22 @@ public class Customer {
 
     public static void setCount(int count) {
         Customer.count = count;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
     
 }
