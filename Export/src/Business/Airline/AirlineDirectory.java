@@ -6,6 +6,7 @@
 package Business.Airline;
 
 import java.util.ArrayList;
+import java.util.List;
 
 ;
 
@@ -33,10 +34,20 @@ public class AirlineDirectory {
 //        return al;
 //    }
     
+    
+//    public ArrayList<Airline> setAlList(ArrayList<Airline> al) {
+//        alList=al;
+//        return alList;
+//    }
+    
     public Airline addAirline(){
         Airline al=new Airline();
         alList.add(al);
         return al;
+    }
+    
+     public void setAirList(ArrayList<Airline> airList) {
+        alList = airList;
     }
     
     public void removeFlight(Airline s) {
