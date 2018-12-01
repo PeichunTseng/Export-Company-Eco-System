@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Export/src/Interface/Sell/SellProductJPanel.java</file>
-            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Export/src/Business/Configure.java</file>
-            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Export/src/Interface/Sell/SellWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Export/src/Business/Employee/Employee.java</file>
-            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Export/src/Business/helper/CtyDetail.java</file>
-            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Export/src/Business/Supplier/Product.java</file>
+            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Export/src/Interface/SystemAdminWorkArea/ManageStatisticsJPanel.java</file>
+            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Export/src/Interface/SystemAdminWorkArea/SummaryJPanel.java</file>
+            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Export/src/Interface/SystemAdminWorkArea/SysAdmWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Export/src/Interface/SystemAdminWorkArea/ManageEnterpriseJPanel.java</file>
         </group>
     </open-files>
 </project-private>

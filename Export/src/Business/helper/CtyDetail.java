@@ -61,6 +61,11 @@ public class CtyDetail {
     public void setCtyProList(CtyProductDirectory ctyProList) {
         this.ctyProList = ctyProList;
     }
+
+    @Override
+    public String toString() {
+        return ctyName;
+    }
     
     
     
