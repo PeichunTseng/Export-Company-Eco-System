@@ -14,7 +14,7 @@ package Business.Airline;
 public class Flight {
     private String flightnumber;
     private String cty;
-    private String scheduletime;
+   private String scheduletime;
     private double capacity;
     private int price;
 

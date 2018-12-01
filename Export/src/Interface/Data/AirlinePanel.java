@@ -9,6 +9,7 @@ import Business.Airline.AirlineDirectory;
 import Business.Enterprise.Enterprise;
 import Business.User.User;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -32,20 +33,24 @@ public class AirlinePanel extends javax.swing.JPanel {
         initComponents();
         userProcessContainer = upc;
         airlineDirectory = sd;
+        
         this.enterprise = enterprise;
         this.user = user;
         refreshTable();
+        
+        airlineDirectory.setAirList(enterprise.getDatastore().getAirList());
     }
     
     
     public void refreshTable() {
+        
         int rowCount = supplierTable.getRowCount();
         DefaultTableModel model = (DefaultTableModel)supplierTable.getModel();
         for(int i = rowCount - 1; i >=0; i--) {
             model.removeRow(i);
         }
         
-        for(Airline s : airlineDirectory.getAlList()) {
+        for(Airline s : enterprise.getDatastore().getAirList()/*airlineDirectory.getAlList()*/) {
             Object row[] = new Object[1];
             row[0] = s;
             model.addRow(row);

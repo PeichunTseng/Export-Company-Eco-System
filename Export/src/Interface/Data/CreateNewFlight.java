@@ -5,7 +5,8 @@
  */
 package Interface.Data;
 
-
+import Business.Airline.AirlineDirectory;
+import Business.Airline.Airline;
 import Business.Airline.Flight;
 import Business.Airline.Airline;
 import Business.Enterprise.Enterprise;
@@ -234,12 +235,17 @@ public class CreateNewFlight extends javax.swing.JPanel {
 //            enterprise.getDatastore().getCountryList().add(new CtyDetail(DestinationField.getText()));
 //        }
         
-         for(CtyDetail cty:enterprise.getDatastore().getCountryList())
+         for(CtyDetail cty:enterprise.getDatastore().getCountryList()){
             if(!ctyname.contains(cty.getCtyName()))
                 ctyname.add(cty.getCtyName());
+         }
          
-        if(!ctyname.contains(DestinationField.getText()))
+        if(!ctyname.contains(DestinationField.getText())){
             enterprise.getDatastore().getCountryList().add(new CtyDetail(DestinationField.getText()));
+        }
+        
+        enterprise.getDatastore().getAirList().add(airline);
+        
 
         
         
