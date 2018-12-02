@@ -19,6 +19,7 @@ import Business.Role.SysAdmRole;
 public class EcoSystem extends Department{
     private static EcoSystem business;
     private ArrayList<Network> networkList;
+    private AllDataStore datastore;
     public static EcoSystem getInstance(){
         if(business==null){
             business=new EcoSystem();
@@ -40,6 +41,7 @@ public class EcoSystem extends Department{
     private EcoSystem(){
         super(null);
         networkList=new ArrayList<Network>();
+        datastore=new AllDataStore();
         
     }
 
