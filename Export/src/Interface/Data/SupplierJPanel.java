@@ -48,7 +48,7 @@ public class SupplierJPanel extends javax.swing.JPanel {
         
         for(Supplier s : enterprise.getDatastore().getSupList()) {
             Object row[] = new Object[1];
-            row[0] = s.getSpName();
+            row[0] = s;
             model.addRow(row);
         }
         }
@@ -171,7 +171,7 @@ public class SupplierJPanel extends javax.swing.JPanel {
             return;
         }
         Supplier s = (Supplier)supplierTable.getValueAt(row, 0);
-        supplierDirectory.removeSupplier(s);
+        enterprise.getDatastore().getSupList().remove(s);
         refreshTable();
     }//GEN-LAST:event_removejButton1ActionPerformed
 

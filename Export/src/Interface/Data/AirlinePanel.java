@@ -52,7 +52,7 @@ public class AirlinePanel extends javax.swing.JPanel {
         
         for(Airline s : enterprise.getDatastore().getAirList()/*airlineDirectory.getAlList()*/) {
             Object row[] = new Object[1];
-            row[0] = s.getAlName();
+            row[0] = s;
             model.addRow(row);
         }
     }
@@ -176,7 +176,7 @@ public class AirlinePanel extends javax.swing.JPanel {
             return;
         }
         Airline s = (Airline)supplierTable.getValueAt(row, 0);
-        airlineDirectory.removeFlight(s);
+        enterprise.getDatastore().getAirList().remove(s);
         refreshTable();
     }//GEN-LAST:event_removejButton1ActionPerformed
 

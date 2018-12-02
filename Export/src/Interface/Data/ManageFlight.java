@@ -49,7 +49,7 @@ public class ManageFlight extends javax.swing.JPanel {
         
         for(Flight p : airline.getFltList().getFltList()) {
             Object row[] = new Object[5];
-            row[0] = p;
+            row[0] = p.getFlightnumber();
             row[1] = p.getCty();
             row[2] = p.getTime();
             row[3] = p.getPrice();

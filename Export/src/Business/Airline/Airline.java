@@ -50,6 +50,11 @@ public class Airline {
     public void setFltList(FlightDirectory fltList) {
         this.fltList = fltList;
     }
+    
+      @Override
+    public String toString() {
+        return this.alName;
+    }
 
 //    public static int getCount() {
 //        return count;
