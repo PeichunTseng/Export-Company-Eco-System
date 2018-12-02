@@ -10,6 +10,9 @@ import Business.Airline.Airline;
 
 import Business.Supplier.Product;
 import Business.Supplier.ProductDirectory;
+
+import Business.Supplier.Supplier;
+import Business.Supplier.SupplierDirectory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +27,13 @@ public class DataStore {
     private List<CtyDetail> countryList;
     private List<Product> proList;
     private ArrayList<Airline> airList;
+    private ArrayList<Supplier> supList;
     
     public DataStore(){
         countryList = new ArrayList<>();
         proList = new ArrayList<>();
         airList=new ArrayList<>();
+        supList= new ArrayList<>();
     }
 
     public List<CtyDetail> getCountryList() {
@@ -54,5 +59,15 @@ public class DataStore {
     public void setAirList(ArrayList<Airline> airList) {
         this.airList = airList;
     }
+
+    public ArrayList<Supplier> getSupList() {
+        return supList;
+    }
+
+    public void setSupList(ArrayList<Supplier> supList) {
+        this.supList = supList;
+    }
+    
+    
     
 }

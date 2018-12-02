@@ -33,7 +33,9 @@ public class SupplierJPanel extends javax.swing.JPanel {
         supplierDirectory = sd;
         this.enterprise = enterprise;
         this.user = user;
+        
         refreshTable();
+        supplierDirectory.setSpList(enterprise.getDatastore().getSupList());
     }
     
         public void refreshTable() {
@@ -42,13 +44,14 @@ public class SupplierJPanel extends javax.swing.JPanel {
         for(int i = rowCount - 1; i >=0; i--) {
             model.removeRow(i);
         }
+         
         
-        for(Supplier s : supplierDirectory.getSpList()) {
+        for(Supplier s : enterprise.getDatastore().getSupList()) {
             Object row[] = new Object[1];
-            row[0] = s;
+            row[0] = s.getSpName();
             model.addRow(row);
         }
-    }
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.

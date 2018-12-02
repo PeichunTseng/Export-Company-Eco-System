@@ -26,6 +26,10 @@ public class ProductDirectory {
         proList.add(f);
         return f;
     }
+    
+    public void addProduct(Product p) {
+        proList.add(p);
+    }
    
      public void removeProduct(Product p) {
         proList.remove(p);
