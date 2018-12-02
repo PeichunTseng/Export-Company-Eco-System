@@ -38,6 +38,9 @@ public class SupplierDirectory {
         spList.add(sp);
         return sp;
     }
+    public void setSpList(ArrayList<Supplier> spList) {
+        this.spList = spList;
+    }
     
     public void removeSupplier(Supplier s) {
         spList.remove(s);

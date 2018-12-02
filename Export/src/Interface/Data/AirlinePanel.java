@@ -52,7 +52,7 @@ public class AirlinePanel extends javax.swing.JPanel {
         
         for(Airline s : enterprise.getDatastore().getAirList()/*airlineDirectory.getAlList()*/) {
             Object row[] = new Object[1];
-            row[0] = s;
+            row[0] = s.getAlName();
             model.addRow(row);
         }
     }

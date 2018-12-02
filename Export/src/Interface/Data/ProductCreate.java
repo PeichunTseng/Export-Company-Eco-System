@@ -205,7 +205,7 @@ public class ProductCreate extends javax.swing.JPanel {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
 
-        Product product = supplier.getProList().addProduct();
+        Product product =new Product();
         try{
             int price =Integer.parseInt(PriceField.getText());
             product.setOriginPrice(price);
@@ -225,7 +225,7 @@ public class ProductCreate extends javax.swing.JPanel {
             return;
 
         }
-        product.setName(NameField.getText());
+        
 
         try{
             double cap =Double.parseDouble(SizeField.getText());
@@ -236,9 +236,26 @@ public class ProductCreate extends javax.swing.JPanel {
             return;
 
         }
+        product.setName(NameField.getText());
+        product.setSupplierName(supplier.getSpName());
+        
+        
+        supplier.getProList().addProduct(product);
 
         JOptionPane.showMessageDialog(null, "Product successfully added", "Warning", JOptionPane.INFORMATION_MESSAGE);
 
+        
+        
+        List<String> supplierName = new ArrayList<>();
+        
+        for(Supplier sup:enterprise.getDatastore().getSupList()){
+            if(!supplierName.contains(sup.getSpName()))
+                supplierName.add(sup.getSpName());
+         }
+         
+        if(!supplierName.contains(supplier.getSpName())){
+            enterprise.getDatastore().getSupList().add(supplier);
+        }
 
 
         enterprise.getDatastore().getProList().add(new Product(product.getName(),product.getOriginPrice(),product.getNum(),product.getSupplierName()));
