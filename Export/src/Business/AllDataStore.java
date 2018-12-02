@@ -14,16 +14,10 @@ import Business.Customer.CustomerDirectory;
 public class AllDataStore {
     private AllDataStore datastore;
     private CustomerDirectory customerdirectory;
-    private AllDataStore(){
+    public AllDataStore(){
         customerdirectory = new CustomerDirectory();
     }
-    public AllDataStore getInstance(){
-        if(datastore == null){
-            return new AllDataStore();
-        }else{
-            return datastore;
-        }
-    }
+    
 
     public CustomerDirectory getCustomerdirectory() {
         return customerdirectory;
