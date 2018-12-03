@@ -23,7 +23,9 @@ public abstract class Role {
         DataRole("DataRole"),
         BuyRole("BuyRole"),
         SellRole("SellRole"),
-        Customer("Customer");
+        Customer("Customer"),
+        ManufacturingRole("Manufacturing"),
+        TransportRole("TransportRole");
         
         private String value;
         private RoleType(String value){

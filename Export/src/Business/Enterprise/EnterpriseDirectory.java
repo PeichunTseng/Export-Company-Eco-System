@@ -33,6 +33,16 @@ public class EnterpriseDirectory {
             enterpriseList.add(ent);
             
         }
+        if(type==Enterprise.EnterpriseType.Manufacturing){
+            ent=new ManufacturingEnterprise(name);
+            enterpriseList.add(ent);
+            
+        }
+        if(type==Enterprise.EnterpriseType.Transport){
+            ent=new TransportEnterprise(name);
+            enterpriseList.add(ent);
+            
+        }
         return ent;
     }
 }

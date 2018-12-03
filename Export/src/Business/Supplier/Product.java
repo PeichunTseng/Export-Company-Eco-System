@@ -25,14 +25,24 @@ public class Product {
         id=count;
         count++;
     }
+    
     public Product(String name, double originPrice, int num,String supplierName){
         id = count++;
         this.name = name;
         this.originPrice = originPrice;
         this.num = num;
-       // this.size=size;
         this.supplierName = supplierName;
     }
+    
+     public Product(String name, double originPrice, int num,double size,String supplierName){
+        id = count++;
+        this.name = name;
+        this.originPrice = originPrice;
+        this.num = num;
+        this.size=size;
+        this.supplierName = supplierName;
+    }
+     
     public int getId() {
         return id;
     }

@@ -23,7 +23,7 @@ import javax.swing.JPanel;
 public class BuyRole extends Role {
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, User user, Department dep, Enterprise enterprise, EcoSystem business){
-        return new BuyWorkAreaJPanel(userProcessContainer, user, (BuyDepartment)dep, enterprise);
+        return new BuyWorkAreaJPanel(userProcessContainer, enterprise,business);
     }
     
 }

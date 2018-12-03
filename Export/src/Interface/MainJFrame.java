@@ -12,7 +12,11 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Department.Department;
+import Business.Enterprise.Enterprise.EnterpriseType;
+import Business.Enterprise.ManufacturingEnterprise;
+import Business.Supplier.SupplierDirectory;
 import Business.User.User;
+import Interface.Data.SupplierJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -30,6 +34,8 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+//    private SupplierDirectory supplierDirectory;
+//    private JPanel userProcessContainer;
     public MainJFrame() {
         //system = dB4OUtil.retrieveSystem();
         initComponents();
@@ -195,10 +201,24 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         }
 
+
+        
+//        if (inEnterprise!=null && inEnterprise.getEntType().getValue()=="Manufacturing"){
+//            supplierDirectory= new SupplierDirectory();
+//            
+//            SupplierJPanel sjp=new SupplierJPanel(userProcessContainer, supplierDirectory, user, inEnterprise,system);
+//            userProcessContainer.add("supplierJPanel",sjp);
+//            CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+//            layout.next(userProcessContainer);
+//            return;
+//
+//        }
+        
         if(user==null){
             JOptionPane.showMessageDialog(null, "Invalid credentials");
             return;
         }
+        
         else{
             CardLayout layout=(CardLayout)container.getLayout();
             container.add("workArea",user.getRole().createWorkArea(container, user, inDepartment, inEnterprise, system));
