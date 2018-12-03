@@ -45,6 +45,15 @@ public class EcoSystem extends Department{
         
     }
 
+    public AllDataStore getDatastore() {
+        return datastore;
+    }
+
+    public void setDatastore(AllDataStore datastore) {
+        this.datastore = datastore;
+    }
+    
+
     public ArrayList<Network> getNetworkList() {
         return networkList;
     }

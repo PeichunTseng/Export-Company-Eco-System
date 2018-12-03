@@ -8,7 +8,9 @@ package Interface.Data;
 import Business.Airline.Flight;
 import Business.Airline.Airline;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.TransportEnterprise;
 import Business.User.User;
+import Business.helper.CtyDetail;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,20 +24,28 @@ public class ManageFlight extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     Airline airline;  
-    Flight flight;
+    //Flight flight;
     private Enterprise enterprise;
     private User user;
 
     /**
      * Creates new form ManageFlight
      */
-    public ManageFlight(JPanel upc, Airline s, User user, Enterprise enterprise) {
+//    public ManageFlight(JPanel upc, Airline s, User user, Enterprise enterprise) {
+//        initComponents();
+//        userProcessContainer = upc;
+//        airline = s;
+//        this.enterprise = enterprise;
+//        this.user = user;
+//        sNameTextField.setText(airline.getAlName());
+//        refreshTable();
+//    }
+    
+    public ManageFlight(JPanel upc, Enterprise enterprise) {
         initComponents();
-        userProcessContainer = upc;
-        airline = s;
+        userProcessContainer = upc;  
         this.enterprise = enterprise;
-        this.user = user;
-        sNameTextField.setText(airline.getAlName());
+        sNameTextField.setText(enterprise.getName());
         refreshTable();
     }
     
@@ -47,13 +57,13 @@ public class ManageFlight extends javax.swing.JPanel {
             model.removeRow(i);
         }
         
-        for(Flight p : airline.getFltList().getFltList()) {
-            Object row[] = new Object[5];
+        for(Flight p : enterprise.getDatastore().getFliList()) {
+            Object row[] = new Object[4];
             row[0] = p.getFlightnumber();
-            row[1] = p.getCty();
-            row[2] = p.getTime();
-            row[3] = p.getPrice();
-            row[4] = p.getCapacity();
+            row[1] = p;
+            //row[2] = p.getTime();
+            row[2] = p.getPrice();
+            row[3] = p.getCapacity();
             model.addRow(row);
             //flight=p;
             }
@@ -69,35 +79,26 @@ public class ManageFlight extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        createPButton = new javax.swing.JButton();
-        backButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        createPButton = new javax.swing.JButton();
         sNameTextField = new javax.swing.JTextField();
         delButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         productCatalog = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Manage Flight Catalog");
+        jLabel1.setText("Manage Route Catalog");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Transport Company:");
 
         createPButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        createPButton.setText("Create New Flight >>");
+        createPButton.setText("Create New Shipping >>");
         createPButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createPButtonActionPerformed(evt);
             }
         });
-
-        backButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        backButton4.setText("<< Back");
-        backButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButton4ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Airliner:");
 
         sNameTextField.setEditable(false);
         sNameTextField.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
@@ -110,7 +111,7 @@ public class ManageFlight extends javax.swing.JPanel {
         });
 
         delButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        delButton5.setText("Delete Flight");
+        delButton5.setText("Delete shipping");
         delButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delButton5ActionPerformed(evt);
@@ -120,13 +121,13 @@ public class ManageFlight extends javax.swing.JPanel {
         productCatalog.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         productCatalog.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Flight number", "City", "Time", "Price", "Capacity"
+                "Route number", "City", "Price", "Capacity"
             }
         ));
         productCatalog.setPreferredSize(new java.awt.Dimension(525, 100));
@@ -137,71 +138,62 @@ public class ManageFlight extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 770, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
+                .addContainerGap(526, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(30, 30, 30)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(sNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(delButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(80, 80, 80)
-                                    .addComponent(createPButton))
-                                .addComponent(backButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGap(0, 249, Short.MAX_VALUE)))
+                    .addGap(30, 47, Short.MAX_VALUE)
+                    .addComponent(delButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(80, 80, 80)
+                    .addComponent(createPButton)
+                    .addGap(0, 244, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 15, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 16, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(332, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addGap(11, 11, 11)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addComponent(sNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel2))
-                    .addGap(230, 230, 230)
+                    .addGap(0, 349, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(delButton5)
                         .addComponent(createPButton))
-                    .addGap(20, 20, 20)
-                    .addComponent(backButton4)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 74, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 141, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 142, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void createPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPButtonActionPerformed
         //flight = new Flight();
-        CreateNewFlight cnfjp = new CreateNewFlight(userProcessContainer, airline, user, enterprise);
+        CreateNewFlight cnfjp = new CreateNewFlight(userProcessContainer, enterprise);
         userProcessContainer.add("CreateNewFlightJPanel",cnfjp);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_createPButtonActionPerformed
-
-    private void backButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton4ActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_backButton4ActionPerformed
 
     private void sNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sNameTextFieldActionPerformed
         // TODO add your handling code here:
@@ -214,14 +206,14 @@ public class ManageFlight extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        Flight p = (Flight)productCatalog.getValueAt(row, 0);
-        airline.getFltList().removeFlight(p);
+        Flight p = (Flight)productCatalog.getValueAt(row, 1);
+        enterprise.getDatastore().getFliList().remove(p);
+        enterprise.getDatastore().getCountryList().remove(p.getCty());
         refreshTable();
     }//GEN-LAST:event_delButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButton4;
     private javax.swing.JButton createPButton;
     private javax.swing.JButton delButton5;
     private javax.swing.JLabel jLabel1;

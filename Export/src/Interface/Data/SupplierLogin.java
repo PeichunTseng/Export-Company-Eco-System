@@ -130,8 +130,8 @@ public class SupplierLogin extends javax.swing.JPanel {
     private void findButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findButton1ActionPerformed
         // TODO add your handling code here:
         Supplier supplier = (Supplier)supplierComboBox1.getSelectedItem();
-        ProductManage pm = new ProductManage(userProcessContainer, supplier, user, enterprise);
-        userProcessContainer.add("ManageProduct",pm);
+//        ProductManage pm = new ProductManage(userProcessContainer, supplier, user, enterprise);
+//        userProcessContainer.add("ManageProduct",pm);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_findButton1ActionPerformed
