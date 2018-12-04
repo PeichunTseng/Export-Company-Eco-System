@@ -8,6 +8,7 @@ package Business.Role;
 import Business.Department.Department;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.User.User;
 import javax.swing.JPanel;
 
@@ -23,7 +24,9 @@ public abstract class Role {
         DataRole("DataRole"),
         BuyRole("BuyRole"),
         SellRole("SellRole"),
-        Customer("Customer");
+        Customer("Customer"),
+        ManufacturingRole("Manufacturing"),
+        TransportRole("TransportRole");
         
         private String value;
         private RoleType(String value){
@@ -43,7 +46,8 @@ public abstract class Role {
             JPanel userProcessContainer, 
             User account, 
             Department dep, 
-            Enterprise enterprise, 
+            Enterprise enterprise,
+            Network network,
             EcoSystem business);
     
     @Override

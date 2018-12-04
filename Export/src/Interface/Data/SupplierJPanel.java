@@ -5,6 +5,7 @@
  */
 package Interface.Data;
 
+import Business.EcoSystem;
 import Business.Supplier.Supplier;
 import Business.Supplier.SupplierDirectory;
 import Business.Enterprise.Enterprise;
@@ -20,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SupplierJPanel extends javax.swing.JPanel {
 
+    private EcoSystem system;
     private JPanel userProcessContainer;
     private SupplierDirectory supplierDirectory;
     private Enterprise enterprise;
@@ -27,28 +29,38 @@ public class SupplierJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SupplierJPanel
      */
-    public SupplierJPanel (JPanel upc, SupplierDirectory sd, User user, Enterprise enterprise) {
+//    public SupplierJPanel (JPanel upc, SupplierDirectory sd, User user, Enterprise enterprise,EcoSystem system) {
+//        initComponents();
+//        userProcessContainer = upc;
+//        supplierDirectory = sd;
+//        this.enterprise = enterprise;
+//        this.user = user;
+//        this.system=system;
+//        
+//        refreshTable();
+//        supplierDirectory.setSpList(enterprise.getDatastore().getSupList());
+//    }
+        public SupplierJPanel (JPanel upc, Enterprise enterprise) {
         initComponents();
-        userProcessContainer = upc;
-        supplierDirectory = sd;
+        userProcessContainer = upc;  
         this.enterprise = enterprise;
-        this.user = user;
         refreshTable();
     }
-    
+        
         public void refreshTable() {
         int rowCount = supplierTable.getRowCount();
         DefaultTableModel model = (DefaultTableModel)supplierTable.getModel();
         for(int i = rowCount - 1; i >=0; i--) {
             model.removeRow(i);
         }
+         
         
-        for(Supplier s : supplierDirectory.getSpList()) {
-            Object row[] = new Object[1];
-            row[0] = s;
-            model.addRow(row);
+//        for(Supplier s : enterprise.getDatastore().getSupList()) {
+//            Object row[] = new Object[1];
+//            row[0] = s;
+//            model.addRow(row);
+//為了不顯示出錯        }
         }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -168,7 +180,7 @@ public class SupplierJPanel extends javax.swing.JPanel {
             return;
         }
         Supplier s = (Supplier)supplierTable.getValueAt(row, 0);
-        supplierDirectory.removeSupplier(s);
+//        enterprise.getDatastore().getSupList().remove(s);
         refreshTable();
     }//GEN-LAST:event_removejButton1ActionPerformed
 

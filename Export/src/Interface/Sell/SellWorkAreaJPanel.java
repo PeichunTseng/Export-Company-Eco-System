@@ -8,6 +8,7 @@ package Interface.Sell;
 import Business.Department.DataDepartment;
 import Business.Department.SellDepartment;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Supplier.Product;
 import Business.User.User;
 import Business.helper.CtyDetail;
@@ -32,18 +33,16 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
     private SellDepartment sellDep;
     private Enterprise enterprise;
     private User user;
+    private Network network;
     public SellWorkAreaJPanel(JPanel userProcessContainer, User user,SellDepartment sellDep, Enterprise enterprise) {
         this.userProcessContainer = userProcessContainer;
         this.user = user;
         this.sellDep = sellDep;
         this.enterprise = enterprise;
+        this.network = network;
         initComponents();
         valueLabel.setText(enterprise.getName());
-        enterprise.getDatastore().getCountryList().add(new CtyDetail("China"));
-        enterprise.getDatastore().getCountryList().add(new CtyDetail("Japan"));
-        enterprise.getDatastore().getCountryList().add(new CtyDetail("Korea"));
-        enterprise.getWarehouse().getProducts().add(new Product("shoe",100,10,"Nike"));
-        enterprise.getWarehouse().getProducts().add(new Product("shoe",120,12,"Adidas"));
+        enterprise.getDatastore().getCountryList().add(new CtyDetail());
         populateComboBox();
     }
     

@@ -9,6 +9,8 @@ import Business.Department.Department;
 import Business.Department.SellDepartment;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.ExportEnterprise;
+import Business.Network.Network;
 import Business.User.User;
 import Interface.AdminRole.AdminWorkAreaJPanel;
 import Interface.Sell.SellWorkAreaJPanel;
@@ -20,7 +22,7 @@ import javax.swing.JPanel;
  */
 public class AdminRole extends Role {
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, User user, Department dep, Enterprise enterprise, EcoSystem business) {
-        return new AdminWorkAreaJPanel(userProcessContainer, enterprise);
+    public JPanel createWorkArea(JPanel userProcessContainer, User user, Department dep, Enterprise enterprise, Network network, EcoSystem business) {
+        return new AdminWorkAreaJPanel(userProcessContainer, (ExportEnterprise)enterprise);
     }
 }

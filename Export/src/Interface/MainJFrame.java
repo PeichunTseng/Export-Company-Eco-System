@@ -6,12 +6,17 @@
 package Interface;
 
 import Business.Configure;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Department.Department;
+import Business.Enterprise.Enterprise.EnterpriseType;
+import Business.Enterprise.ManufacturingEnterprise;
+import Business.Supplier.SupplierDirectory;
 import Business.User.User;
+import Interface.Data.SupplierJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,11 +33,13 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     private EcoSystem system;
-   
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+//    private SupplierDirectory supplierDirectory;
+//    private JPanel userProcessContainer;
     public MainJFrame() {
-        system=Configure.configure();
+        //system = dB4OUtil.retrieveSystem();
         initComponents();
-        
+        system= Configure.configure();
     }
 
     /**
@@ -161,7 +168,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
         Enterprise inEnterprise=null;
         Department inDepartment=null;
-
+        Network inNetwork = null;
+        
         if(user==null){
             //Step 2: Go inside each network and check each enterprise
             for(Network network:system.getNetworkList()){
@@ -175,12 +183,14 @@ public class MainJFrame extends javax.swing.JFrame {
                             if(user!=null){
                                 inEnterprise=enterprise;
                                 inDepartment=organization;
+                                inNetwork = network;
                                 break;
                             }
                         }
 
                     }
                     else{
+                        inNetwork = network;
                         inEnterprise=enterprise;
                         break;
                     }
@@ -194,13 +204,27 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         }
 
+
+        
+//        if (inEnterprise!=null && inEnterprise.getEntType().getValue()=="Manufacturing"){
+//            supplierDirectory= new SupplierDirectory();
+//            
+//            SupplierJPanel sjp=new SupplierJPanel(userProcessContainer, supplierDirectory, user, inEnterprise,system);
+//            userProcessContainer.add("supplierJPanel",sjp);
+//            CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+//            layout.next(userProcessContainer);
+//            return;
+//
+//        }
+        
         if(user==null){
             JOptionPane.showMessageDialog(null, "Invalid credentials");
             return;
         }
+        
         else{
             CardLayout layout=(CardLayout)container.getLayout();
-            container.add("workArea",user.getRole().createWorkArea(container, user, inDepartment, inEnterprise, system));
+            container.add("workArea",user.getRole().createWorkArea(container, user, inDepartment, inEnterprise, inNetwork, system));
             layout.next(container);
         }
 
@@ -224,7 +248,7 @@ public class MainJFrame extends javax.swing.JFrame {
         container.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
-        
+        dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_logoutJButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

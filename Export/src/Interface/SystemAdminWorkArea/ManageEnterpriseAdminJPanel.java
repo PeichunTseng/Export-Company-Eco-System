@@ -8,7 +8,9 @@ import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Role.ManufacturingRole;
 import Business.Role.AdminRole;
+import Business.Role.TransportRole;
 import Business.User.User;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -248,9 +250,12 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
         
-        Employee employee = enterprise.getEmpList().createEmployee(name);
-        
-        enterprise.getUserList().createUser(username, password, employee, new AdminRole());
+        if (enterprise.getEntType().getValue()=="Manufacturing")
+            enterprise.getUserList().createUser(username, password, null, new ManufacturingRole());
+        if (enterprise.getEntType().getValue()=="Transport")
+            enterprise.getUserList().createUser(username, password, null, new TransportRole());
+        if (enterprise.getEntType().getValue()=="Export")
+            enterprise.getUserList().createUser(username, password, null, new AdminRole());
         populateTable();
         
     }//GEN-LAST:event_submitJButtonActionPerformed

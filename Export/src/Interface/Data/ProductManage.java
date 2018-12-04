@@ -13,6 +13,8 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.EcoSystem;
+import Business.Network.Network;
 
 /**
  *
@@ -25,17 +27,27 @@ public class ProductManage extends javax.swing.JPanel {
     Product product;
     private Enterprise enterprise;
     private User user;
+    private Network network;
 
     /**
      * Creates new form ProductManage
      */
-    public ProductManage(JPanel upc, Supplier s, User user, Enterprise enterprise) {
+//    public ProductManage(JPanel upc, Supplier s, User user, Enterprise enterprise) {
+//        initComponents();
+//        userProcessContainer = upc;
+//        supplier = s;
+//        this.enterprise = enterprise;
+//        this.user = user;
+//        sNameTextField.setText(supplier.getSpName());
+//        refreshTable();
+//    }
+    
+    public ProductManage(JPanel upc, Enterprise enterprise,Network network) {
         initComponents();
-        userProcessContainer = upc;
-        supplier = s;
+        userProcessContainer = upc;   
         this.enterprise = enterprise;
-        this.user = user;
-        sNameTextField.setText(supplier.getSpName());
+        this.network=network;
+        sNameTextField.setText(enterprise.getName());
         refreshTable();
     }
     
@@ -46,7 +58,7 @@ public class ProductManage extends javax.swing.JPanel {
             model.removeRow(i);
         }
         
-        for(Product p : supplier.getProList().getProList()) {
+        for(Product p : enterprise.getDatastore().getProList()) {
             Object row[] = new Object[4];
             row[0] = p;
             row[1] = p.getOriginPrice();
@@ -210,7 +222,7 @@ public class ProductManage extends javax.swing.JPanel {
 
     private void createPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPButtonActionPerformed
         //flight = new Flight();
-        ProductCreate cnfjp = new ProductCreate(userProcessContainer, supplier, user, enterprise);
+        ProductCreate cnfjp = new ProductCreate(userProcessContainer, enterprise, network);
         userProcessContainer.add("CreateNewFlightJPanel",cnfjp);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -235,7 +247,8 @@ public class ProductManage extends javax.swing.JPanel {
             return;
         }
         Product p = (Product)productCatalog.getValueAt(row, 0);
-        supplier.getProList().removeProduct(p);
+        enterprise.getDatastore().getProList().remove(p);
+        network.getNetworkDataStore().getProList().remove(p);
         refreshTable();
     }//GEN-LAST:event_delButton5ActionPerformed
 
