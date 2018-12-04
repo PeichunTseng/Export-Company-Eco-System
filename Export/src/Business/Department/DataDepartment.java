@@ -8,7 +8,7 @@ package Business.Department;
 
 import Business.Role.Role;
 import java.util.ArrayList;
-import Business.Role.DataRole;
+import Business.Role.ShippingRole;
 
 
 
@@ -24,7 +24,7 @@ public class DataDepartment extends Department {
     @Override
     public ArrayList <Role> getSupportedRole(){
         ArrayList<Role> roles=new ArrayList();
-        roles.add(new DataRole());
+        roles.add(new ShippingRole());
         return roles;
     }
 }

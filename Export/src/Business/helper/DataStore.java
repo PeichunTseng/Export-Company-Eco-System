@@ -9,25 +9,16 @@ package Business.helper;
 //import Business.Airline.Airline;
 
 import Business.Supplier.Product;
-import Business.Supplier.ProductDirectory;
-
 import Business.Airline.Flight;
-import Business.Airline.FlightDirectory;
-
-//import Business.Supplier.Supplier;
-//import Business.Supplier.SupplierDirectory;
 import java.util.ArrayList;
 import java.util.List;
-
-
-
 /**
  *
  * @author raoyuhuizi
  */
 
 public class DataStore {
-    private List<CtyDetail> countryList;
+    private List<String> countryList;
     private List<Product> proList;
     private List<Flight> fliList;
 //    private ArrayList<Airline> airList;
@@ -41,14 +32,13 @@ public class DataStore {
 //        supList= new ArrayList<>();
     }
 
-    public List<CtyDetail> getCountryList() {
+    public List<String> getCountryList() {
         return countryList;
     }
 
-    public void setCountryList(List<CtyDetail> countryList) {
+    public void setCountryList(List<String> countryList) {
         this.countryList = countryList;
     }
-
     public List<Product> getProList() {
         return proList;
     }

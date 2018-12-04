@@ -14,25 +14,18 @@ package Business.Airline;
 public class Flight {
     private String flightnumber;
     private String cty;
-   private String scheduletime;
+    private String enterpriseName;
     private double capacity;
     private int price;
-
-    private int id;
-//    private double time;
-    private static int count=1;
     
-    public Flight(){
-        id=count;
-        count++;
-    }
+    public Flight(){}
     
-    public Flight(String name, String cty, double capacity,int price){
-        id = count++;
+    public Flight(String name, String cty, double capacity,int price, String enterpriseName){
         flightnumber = name;
         this.cty = cty;
         this.capacity = capacity;
         this.price = price;
+        this.enterpriseName = enterpriseName;
     }
 
     public String getFlightnumber() {
@@ -43,11 +36,6 @@ public class Flight {
         this.flightnumber = flightnumber;
     }
 
-    
-    public int getId() {
-        return id;
-    }
-
     public String getCty() {
         return cty;
     }
@@ -56,14 +44,14 @@ public class Flight {
         this.cty = cty;
     }
 
-    public String getTime() {
-        return scheduletime;
+    public String getEnterpriseName() {
+        return enterpriseName;
     }
 
-    public void setTime(String time) {
-        this.scheduletime = time;
+    public void setEnterpriseName(String enterpriseName) {
+        this.enterpriseName = enterpriseName;
     }
-
+    
     public double getCapacity() {
         return capacity;
     }

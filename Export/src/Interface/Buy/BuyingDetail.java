@@ -7,10 +7,11 @@ package Interface.Buy;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Supplier.Product;
 import Business.Supplier.Supplier;
 import Business.User.User;
-import Interface.Data.ProductManage;
+import Interface.Manufacture.ProductManage;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -26,16 +27,15 @@ public class BuyingDetail extends javax.swing.JPanel {
     Supplier supplier;  
     Product product;
     private Enterprise enterprise;
-    private User user;
-    private EcoSystem business;
+    private Network network;
     /**
      * Creates new form BuyingDetail
      */
-    public BuyingDetail(JPanel upc, Enterprise enterprise,EcoSystem business,Product p) {
+    public BuyingDetail(JPanel upc, Enterprise enterprise,Network network,Product p) {
         initComponents();
         userProcessContainer = upc;   
         this.enterprise = enterprise;
-        this.business=business;
+        this.network=network;
         product=p;
         supplierLabel.setText(product.getSupplierName());
         nameLabel.setText(product.getName());
@@ -222,15 +222,19 @@ public class BuyingDetail extends javax.swing.JPanel {
     }//GEN-LAST:event_backButton1ActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-
+        boolean alreadyHas = false;
         int num = (Integer)supplierComboBox1.getSelectedItem();
-        
         product.setNum(product.getNum()-num);
-        
-
-        //business.getInstance().getDatastore().getProductDirectory().addProduct(product);
-        enterprise.getDatastore().getProList().add(new Product(product.getName(),product.getOriginPrice(),num,product.getSize(),product.getSupplierName()));
-        //enterprise.getDatastore().getProList().add(new Product(product.getName(),product.getOriginPrice(),product.getNum(),product.getSize(),product.getSupplierName()));
+        for(Product p : enterprise.getDatastore().getProList()){
+            if(p.getName().equals(product.getName()) && p.getSupplierName().equals(product.getSupplierName())){
+                alreadyHas = true;
+                p.setNum(p.getNum() + num);
+                break;
+            }
+        }
+        if(!alreadyHas){
+            enterprise.getDatastore().getProList().add(new Product(product.getName(),product.getOriginPrice(),num,product.getSize(),product.getSupplierName()));
+        }
         JOptionPane.showMessageDialog(null, "Buy Product successfully added", "Warning", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_createButtonActionPerformed
 

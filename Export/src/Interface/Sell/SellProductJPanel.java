@@ -5,7 +5,6 @@
  */
 package Interface.Sell;
 
-import Business.Department.SellDepartment;
 import Business.Enterprise.Enterprise;
 import Business.Supplier.Product;
 import Business.User.User;
@@ -38,7 +37,7 @@ public class SellProductJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) productTable.getModel();
         model.setRowCount(0);
         
-        for (Product product : enterprise.getWarehouse().getProducts()){
+        for (Product product : enterprise.getDatastore().getProList()){
             Object[] row = new Object[4];
             row[0] = product;
             row[1] = product.getSupplierName();
@@ -80,6 +79,9 @@ public class SellProductJPanel extends javax.swing.JPanel {
         sellPriceText = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        returnQuantitySpinner = new javax.swing.JSpinner();
 
         productTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,12 +143,28 @@ public class SellProductJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Quantity");
 
+        jButton2.setText("Return");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Quantity");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabel3)
+                        .addGap(22, 22, 22)
+                        .addComponent(returnQuantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -180,7 +198,12 @@ public class SellProductJPanel extends javax.swing.JPanel {
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(returnQuantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -242,7 +265,7 @@ public class SellProductJPanel extends javax.swing.JPanel {
             }
             int leftNumber = selectedProduct.getNum() - quantity;
             if(leftNumber == 0 ){
-                enterprise.getWarehouse().getProducts().remove(selectedProduct);
+                enterprise.getDatastore().getProList().remove(selectedProduct);
             }else{
                 selectedProduct.setNum(leftNumber);
             }
@@ -252,17 +275,60 @@ public class SellProductJPanel extends javax.swing.JPanel {
         populateTable();
         populateSelectedTable();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        boolean alreadyHas = false;
+        int selectedRow = employeeProductTable.getSelectedRow();
+        if(selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please Select a Row");
+            return;
+        }
+        Product selectedProduct = (Product)employeeProductTable.getValueAt(selectedRow, 0);
+        int quantity = (Integer) returnQuantitySpinner.getValue();
+        if(quantity <= 0){
+            JOptionPane.showMessageDialog(null, "Quantity can not be less than 1");
+            return;
+        }else if(quantity > selectedProduct.getNum()){
+            JOptionPane.showMessageDialog(null, "There are not enough products");
+            return;
+        }
+        for(Product pro : enterprise.getDatastore().getProList()){
+            if(pro.getName().equals(selectedProduct.getName()) && 
+                    pro.getSupplierName().equals(selectedProduct.getSupplierName())){
+                    pro.setNum(pro.getNum()+quantity);
+                    alreadyHas = true;
+            }
+        }
+        if(!alreadyHas){
+            Product employeeProduct = new Product(selectedProduct.getName(),selectedProduct.getOriginPrice(),
+            quantity,selectedProduct.getSupplierName());
+            enterprise.getDatastore().getProList().add(employeeProduct);
+        }
+        int leftNumber = selectedProduct.getNum() - quantity;
+        if(leftNumber == 0 ){
+            user.getEmployee().getProducts().remove(selectedProduct);
+        }else{
+            selectedProduct.setNum(leftNumber);
+        }
+        
+        populateTable();
+        populateSelectedTable();
+    }//GEN-LAST:event_jButton2ActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable employeeProductTable;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable productTable;
     private javax.swing.JSpinner quantitySpinner;
+    private javax.swing.JSpinner returnQuantitySpinner;
     private javax.swing.JTextField sellPriceText;
     // End of variables declaration//GEN-END:variables
 }

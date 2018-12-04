@@ -6,6 +6,7 @@
 package Business.Network;
 
 import Business.Enterprise.EnterpriseDirectory;
+import Business.NetworkDataStore;
 
 
 /**
@@ -15,10 +16,10 @@ import Business.Enterprise.EnterpriseDirectory;
 public class Network {
     private String name;
     private EnterpriseDirectory entList;
-    
+    private NetworkDataStore networkDataStore;
     public Network(){
         entList=new EnterpriseDirectory();
-        
+        networkDataStore = new NetworkDataStore();
     }
 
     public String getName() {
@@ -31,6 +32,10 @@ public class Network {
 
     public EnterpriseDirectory getEntList() {
         return entList;
+    }
+
+    public NetworkDataStore getNetworkDataStore() {
+        return networkDataStore;
     }
 
    @Override

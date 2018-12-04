@@ -70,5 +70,9 @@ public class Customer {
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
 }

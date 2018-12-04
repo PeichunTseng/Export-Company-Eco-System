@@ -5,13 +5,9 @@
  */
 package Business.Department;
 
-import Business.Airline.Flight;
-import Business.Airline.FlightDirectory;
 import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
-import Business.Supplier.ProductDirectory;
 import Business.User.UserDirectory;
-import Business.helper.DataStore;
 import java.util.ArrayList;
 
 
@@ -26,6 +22,7 @@ public abstract class Department {
     private UserDirectory userList;
     private int departmentID;
     private static int count=1;
+    private Type type;
     
     public enum Type{
         Admin("Admin Department"),
@@ -67,6 +64,14 @@ public abstract class Department {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     

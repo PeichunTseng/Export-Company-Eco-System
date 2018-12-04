@@ -5,17 +5,12 @@
  */
 package Interface.Sell;
 
-import Business.Department.DataDepartment;
+import Business.Airline.Flight;
 import Business.Department.SellDepartment;
 import Business.Enterprise.Enterprise;
-import Business.Supplier.Product;
 import Business.User.User;
-import Business.helper.CtyDetail;
-import Business.helper.DataStore;
 import java.awt.CardLayout;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 
 ;
 
@@ -39,26 +34,15 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         initComponents();
         valueLabel.setText(enterprise.getName());
-        enterprise.getDatastore().getCountryList().add(new CtyDetail("China"));
-        enterprise.getDatastore().getCountryList().add(new CtyDetail("Japan"));
-        enterprise.getDatastore().getCountryList().add(new CtyDetail("Korea"));
-        enterprise.getWarehouse().getProducts().add(new Product("shoe",100,10,"Nike"));
-        enterprise.getWarehouse().getProducts().add(new Product("shoe",120,12,"Adidas"));
         populateComboBox();
     }
     
     public void populateComboBox(){
         countryComboBox.removeAllItems();
-        if(user.getEmployee().getCountry() != null){
-            countryComboBox.addItem(user.getEmployee().getCountry());
-            countryComboBox.setEnabled(false);
-        }else{
-            for(CtyDetail country : enterprise.getDatastore().getCountryList()){
-                countryComboBox.addItem(country);
-            }
+        for(Flight flight : enterprise.getDatastore().getFliList()){
+            countryComboBox.addItem(flight);
         }
     }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,10 +80,6 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(enterpriseLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(191, 191, 191))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -109,12 +89,17 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(121, 121, 121)
-                        .addComponent(countryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(requestTestJButton)
-                        .addGap(10, 10, 10)))
+                        .addComponent(countryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(241, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(enterpriseLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(191, 191, 191))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(requestTestJButton)
+                        .addGap(219, 219, 219))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,18 +110,17 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64)
-                .addComponent(countryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111)
+                .addComponent(countryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103)
                 .addComponent(requestTestJButton)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
-        CtyDetail country = (CtyDetail)countryComboBox.getSelectedItem();
-        if(user.getEmployee().getCountry() == null){
-            user.getEmployee().setCountry(country);
-            country.setEmployee(user.getEmployee());
+        Flight flight = (Flight)countryComboBox.getSelectedItem();
+        if(user.getEmployee().getFlight() == null){
+            user.getEmployee().setFlight(flight);
         }
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add(new SellProductJPanel(userProcessContainer, user, enterprise));

@@ -5,8 +5,8 @@
  */
 package Business.Employee;
 
+import Business.Airline.Flight;
 import Business.Supplier.Product;
-import Business.helper.CtyDetail;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class Employee {
     private int id;
     private static int count=1;
     private List<Product> products;
-    private CtyDetail country;
+    private Flight flight;
     
     public Employee(){
         products = new ArrayList<>();
@@ -53,11 +53,11 @@ public class Employee {
         this.products = products;
     }
 
-    public CtyDetail getCountry() {
-        return country;
+    public Flight getFlight() {
+        return flight;
     }
 
-    public void setCountry(CtyDetail country) {
-        this.country = country;
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
 }

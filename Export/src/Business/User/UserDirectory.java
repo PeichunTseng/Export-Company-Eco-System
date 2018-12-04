@@ -5,6 +5,7 @@
  */
 package Business.User;
 
+import Business.Customer.Customer;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import java.util.ArrayList;
@@ -38,6 +39,16 @@ public class UserDirectory {
         user.setPassword(password);
         user.setEmployee(employee);
         user.setRole(role);
+        userList.add(user);
+        return user;
+    }
+    
+    public User createUser(String username,String password,Role role, Customer customer){
+        User user=new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setRole(role);
+        user.setEmployee(null);
         userList.add(user);
         return user;
     }
