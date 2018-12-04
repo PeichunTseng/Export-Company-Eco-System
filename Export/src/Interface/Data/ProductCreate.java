@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.util.ArrayList;
 import java.util.List;
+import Business.EcoSystem;
 /**
  *
  * @author peichun
@@ -32,15 +33,23 @@ public class ProductCreate extends javax.swing.JPanel {
     JPanel userProcessContainer;
     private Enterprise enterprise;
     private User user;
+    private EcoSystem business;
     /**
      * Creates new form ProductCreate
      */
-    public ProductCreate(JPanel userProcessContainer, Supplier sup, User user, Enterprise enterprise){
+//    public ProductCreate(JPanel userProcessContainer, Supplier sup, User user, Enterprise enterprise){
+//        initComponents();
+//        supplier = sup;
+//        this.userProcessContainer = userProcessContainer;
+//        this.enterprise = enterprise;
+//        this.user = user;
+//    }
+    
+    public ProductCreate(JPanel userProcessContainer, Enterprise enterprise,EcoSystem business){
         initComponents();
-        supplier = sup;
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
-        this.user = user;
+        this.business=business;
     }
 
     /**
@@ -237,27 +246,27 @@ public class ProductCreate extends javax.swing.JPanel {
 
         }
         product.setName(NameField.getText());
-        product.setSupplierName(supplier.getSpName());
+        product.setSupplierName(enterprise.getName());
         
         
-        supplier.getProList().addProduct(product);
+        //enterprise.getProList().addProduct(product);
 
         JOptionPane.showMessageDialog(null, "Product successfully added", "Warning", JOptionPane.INFORMATION_MESSAGE);
 
         
-        
-        List<String> supplierName = new ArrayList<>();
-        
-        for(Supplier sup:enterprise.getDatastore().getSupList()){
-            if(!supplierName.contains(sup.getSpName()))
-                supplierName.add(sup.getSpName());
-         }
-         
-        if(!supplierName.contains(supplier.getSpName())){
-            enterprise.getDatastore().getSupList().add(supplier);
-        }
+//        
+//        List<String> supplierName = new ArrayList<>();
+//        
+//        for(Supplier sup:enterprise.getDatastore().getSupList()){
+//            if(!supplierName.contains(sup.getSpName()))
+//                supplierName.add(sup.getSpName());
+//         }
+//         
+//        if(!supplierName.contains(supplier.getSpName())){
+//            enterprise.getDatastore().getSupList().add(supplier);
+//        }
 
-
+        business.getInstance().getDatastore().getProductDirectory().addProduct(product);
         enterprise.getDatastore().getProList().add(new Product(product.getName(),product.getOriginPrice(),product.getNum(),product.getSupplierName()));
         //enterprise.getDatastore().getProList().add(new Product(product.getName(),product.getOriginPrice(),product.getNum(),product.getSize(),product.getSupplierName()));
 

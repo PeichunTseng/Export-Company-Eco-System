@@ -29,18 +29,23 @@ public class AirlinePanel extends javax.swing.JPanel {
     /**
      * Creates new form AirlinePanel
      */
-    public AirlinePanel(JPanel upc, AirlineDirectory sd, User user, Enterprise enterprise) {
+//    public AirlinePanel(JPanel upc, AirlineDirectory sd, User user, Enterprise enterprise) {
+//        initComponents();
+//        userProcessContainer = upc;
+//        airlineDirectory = sd;
+//        
+//        this.enterprise = enterprise;
+//        this.user = user;
+//        refreshTable();
+//        
+//        airlineDirectory.setAirList(enterprise.getDatastore().getAirList());
+//    }
+    public AirlinePanel(JPanel upc, Enterprise enterprise) {
         initComponents();
         userProcessContainer = upc;
-        airlineDirectory = sd;
-        
         this.enterprise = enterprise;
-        this.user = user;
         refreshTable();
-        
-        airlineDirectory.setAirList(enterprise.getDatastore().getAirList());
     }
-    
     
     public void refreshTable() {
         
@@ -50,11 +55,11 @@ public class AirlinePanel extends javax.swing.JPanel {
             model.removeRow(i);
         }
         
-        for(Airline s : enterprise.getDatastore().getAirList()/*airlineDirectory.getAlList()*/) {
-            Object row[] = new Object[1];
-            row[0] = s.getAlName();
-            model.addRow(row);
-        }
+//        for(Airline s : enterprise.getDatastore().getAirList()/*airlineDirectory.getAlList()*/) {
+//            Object row[] = new Object[1];
+//            row[0] = s;
+//            model.addRow(row);
+// 為了不顯示出錯       }
     }
   
 
@@ -176,7 +181,7 @@ public class AirlinePanel extends javax.swing.JPanel {
             return;
         }
         Airline s = (Airline)supplierTable.getValueAt(row, 0);
-        airlineDirectory.removeFlight(s);
+ // 為了不顯示出錯      enterprise.getDatastore().getAirList().remove(s);
         refreshTable();
     }//GEN-LAST:event_removejButton1ActionPerformed
 
