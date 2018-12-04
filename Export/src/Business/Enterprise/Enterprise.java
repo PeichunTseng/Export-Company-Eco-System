@@ -5,12 +5,10 @@
  */
 package Business.Enterprise;
 
-import Business.Airline.FlightDirectory;
 import Business.Department.Department;
 import Business.Department.DepartmentDirectory;
-import Business.Supplier.ProductDirectory;
+import Business.Network.Network;
 import Business.helper.DataStore;
-import Business.helper.WareHouse;
 
 //import Business.Role.Role;
 
@@ -24,9 +22,7 @@ public abstract class Enterprise extends Department{
     private EnterpriseType entType;
     private DepartmentDirectory depList;
     private DataStore datastore;
-    private WareHouse warehouse;
-    private FlightDirectory fltList;
-    private ProductDirectory proList;
+    private String networkName;
    // private Role role;
 
     public DepartmentDirectory getDepartmentList() {
@@ -48,9 +44,6 @@ public abstract class Enterprise extends Department{
             return value;
         }
     }
-
-    
-
     public EnterpriseType getEntType() {
         return entType;
     }
@@ -63,19 +56,12 @@ public abstract class Enterprise extends Department{
         this.entType=type;
         depList=new DepartmentDirectory();
         datastore = new DataStore();
-        warehouse = new WareHouse();
-        fltList= new FlightDirectory();
-        proList= new ProductDirectory() ;
     }
 
     public DataStore getDatastore() {
         return datastore;
     }
-
-    public WareHouse getWarehouse() {
-        return warehouse;
-    }
-       
+    
 //    public FlightDirectory getFltList() {
 //        return fltList;
 //    }
@@ -98,5 +84,13 @@ public abstract class Enterprise extends Department{
 //    public void setRole(Role role) {
 //        this.role = role;
 //    }
+
+    public String getNetworkName() {
+        return networkName;
+    }
+
+    public void setNetworkName(String networkName) {
+        this.networkName = networkName;
+    }
     
 }

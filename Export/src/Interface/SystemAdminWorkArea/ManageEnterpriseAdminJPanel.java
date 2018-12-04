@@ -250,14 +250,13 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
         
-        Employee employee = enterprise.getEmpList().createEmployee(name);
         
         if (enterprise.getEntType().getValue()=="Manufacturing")
-            enterprise.getUserList().createUser(username, password, employee, new ManufacturingRole());
+            enterprise.getUserList().createUser(username, password, null, new ManufacturingRole());
         if (enterprise.getEntType().getValue()=="Transport")
-            enterprise.getUserList().createUser(username, password, employee, new TransportRole());
+            enterprise.getUserList().createUser(username, password, null, new TransportRole());
         if (enterprise.getEntType().getValue()=="Export")
-            enterprise.getUserList().createUser(username, password, employee, new AdminRole());
+            enterprise.getUserList().createUser(username, password, null, new AdminRole());
         populateTable();
         
     }//GEN-LAST:event_submitJButtonActionPerformed

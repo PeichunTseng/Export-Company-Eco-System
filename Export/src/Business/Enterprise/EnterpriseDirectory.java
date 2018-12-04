@@ -5,6 +5,7 @@
  */
 package Business.Enterprise;
 
+import Business.Network.Network;
 import java.util.ArrayList;
 
 /**
@@ -26,20 +27,23 @@ public class EnterpriseDirectory {
     public EnterpriseDirectory(){
         enterpriseList=new ArrayList<Enterprise>();
     }
-    public Enterprise createEnterprise(String name,Enterprise.EnterpriseType type){
+    public Enterprise createEnterprise(String name,Enterprise.EnterpriseType type, String networkName){
         Enterprise ent=null;
         if(type==Enterprise.EnterpriseType.Export){
             ent=new ExportEnterprise(name);
+            ent.setNetworkName(networkName);
             enterpriseList.add(ent);
             
         }
         if(type==Enterprise.EnterpriseType.Manufacturing){
             ent=new ManufacturingEnterprise(name);
+            ent.setNetworkName(networkName);
             enterpriseList.add(ent);
             
         }
         if(type==Enterprise.EnterpriseType.Transport){
             ent=new TransportEnterprise(name);
+            ent.setNetworkName(networkName);
             enterpriseList.add(ent);
             
         }

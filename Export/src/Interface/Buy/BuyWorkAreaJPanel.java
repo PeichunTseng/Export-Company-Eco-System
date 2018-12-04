@@ -6,17 +6,13 @@
 package Interface.Buy;
 
 import Business.Department.BuyDepartment;
-import Business.Department.DataDepartment;
 import Business.Enterprise.Enterprise;
 import Business.Supplier.Product;
 import Business.User.User;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-
-import Business.EcoSystem;
 import Business.Network.Network;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 ;
 
@@ -33,13 +29,14 @@ public class BuyWorkAreaJPanel extends javax.swing.JPanel {
     private BuyDepartment buyDep;
     private Enterprise enterprise;
     private User user;
-    private EcoSystem business;
-    public BuyWorkAreaJPanel(JPanel upc, Enterprise enterprise,EcoSystem business) {
+    private Network network;
+    public BuyWorkAreaJPanel(JPanel upc, Enterprise enterprise,Network network) {
         initComponents();
         userProcessContainer = upc;   
         this.enterprise = enterprise;
-        this.business=business;
+        this.network=network;
         valueLabel.setText(enterprise.getName());
+        networkLabel.setText(network.getName());
         refreshTable();
         
     }
@@ -56,7 +53,7 @@ public class BuyWorkAreaJPanel extends javax.swing.JPanel {
             model.removeRow(i);
         }
         
-        for(Product p : business.getDatastore().getProductDirectory().getProList()/*enterprise.getDatastore().getProList()*/) {
+        for(Product p : network.getNetworkDataStore().getProList()/*enterprise.getDatastore().getProList()*/) {
             Object row[] = new Object[5];
             row[0] = p.getSupplierName();
             row[1] = p;
@@ -84,6 +81,8 @@ public class BuyWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         productCatalog = new javax.swing.JTable();
+        enterpriseLabel2 = new javax.swing.JLabel();
+        networkLabel = new javax.swing.JLabel();
 
         enterpriseLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel1.setText("BuyWork");
@@ -116,25 +115,33 @@ public class BuyWorkAreaJPanel extends javax.swing.JPanel {
         productCatalog.setRowHeight(25);
         jScrollPane1.setViewportView(productCatalog);
 
+        enterpriseLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel2.setText("Network:");
+
+        networkLabel.setText("<value>");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 446, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(requestTestJButton)
+                .addGap(36, 36, 36))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(enterpriseLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(networkLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(enterpriseLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(191, 191, 191))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(requestTestJButton)
-                        .addGap(36, 36, 36))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(enterpriseLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(76, 76, 76))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -147,9 +154,11 @@ public class BuyWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(enterpriseLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(networkLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterpriseLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
                 .addComponent(requestTestJButton)
                 .addGap(21, 21, 21))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +177,7 @@ public class BuyWorkAreaJPanel extends javax.swing.JPanel {
         }
         Product p = (Product)productCatalog.getValueAt(row, 1);
         
-        BuyingDetail cnfjp = new BuyingDetail(userProcessContainer, enterprise,business,p);
+        BuyingDetail cnfjp = new BuyingDetail(userProcessContainer, enterprise,network,p);
         userProcessContainer.add("CreateNewFlightJPanel",cnfjp);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -184,7 +193,9 @@ public class BuyWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel enterpriseLabel1;
+    private javax.swing.JLabel enterpriseLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel networkLabel;
     private javax.swing.JTable productCatalog;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JLabel valueLabel;
