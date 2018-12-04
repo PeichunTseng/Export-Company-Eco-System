@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import Business.Airline.Flight;
 import Business.Airline.FlightDirectory;
-import Business.helper.CtyDetail;
 import Business.helper.DataStore;
 /**
  *
@@ -23,9 +22,6 @@ public class TransportEnterprise extends Enterprise{
         super(name,EnterpriseType.Transport);
         fltList=new FlightDirectory();
     }
-    
-    
-    
     
     public FlightDirectory getFltList() {
         return fltList;

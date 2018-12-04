@@ -6,6 +6,7 @@
 package Interface;
 
 import Business.Configure;
+import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 
@@ -16,7 +17,7 @@ import Business.Enterprise.Enterprise.EnterpriseType;
 import Business.Enterprise.ManufacturingEnterprise;
 import Business.Supplier.SupplierDirectory;
 import Business.User.User;
-import Interface.Data.SupplierJPanel;
+import Interface.Customer.CreateCustomerJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -164,8 +165,11 @@ public class MainJFrame extends javax.swing.JFrame {
         //system= EcoSystem.getInstance();
         //System.out.print(system);
         //Step1: Check in the system admin user account directory if you have the user
+        Customer customer = null;
         User user=system.getUserList().authenticateUser(userName, password);
-
+        if(user != null && user.getCustomer()!=null){
+            customer = user.getCustomer();
+        }
         Enterprise inEnterprise=null;
         Department inDepartment=null;
         Network inNetwork = null;
@@ -224,7 +228,7 @@ public class MainJFrame extends javax.swing.JFrame {
         
         else{
             CardLayout layout=(CardLayout)container.getLayout();
-            container.add("workArea",user.getRole().createWorkArea(container, user, inDepartment, inEnterprise, inNetwork, system));
+            container.add("workArea",user.getRole().createWorkArea(container, customer, user, inDepartment, inEnterprise, inNetwork, system));
             layout.next(container);
         }
 
@@ -254,7 +258,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         CardLayout layout=(CardLayout)container.getLayout();
-        container.add("workArea",new ManageCustomerJPanel());
+        container.add("workArea",new CreateCustomerJPanel(system));
         layout.next(container);
     }//GEN-LAST:event_jButton1ActionPerformed
 

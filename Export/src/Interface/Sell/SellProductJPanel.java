@@ -5,7 +5,6 @@
  */
 package Interface.Sell;
 
-import Business.Department.SellDepartment;
 import Business.Enterprise.Enterprise;
 import Business.Supplier.Product;
 import Business.User.User;

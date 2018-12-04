@@ -8,8 +8,6 @@ package Business;
 import Business.Airline.Flight;
 import Business.Customer.CustomerDirectory;
 import Business.Supplier.Product;
-import Business.Supplier.ProductDirectory;
-import Business.helper.CtyDetail;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +16,7 @@ import java.util.List;
  * @author Administrator
  */
 public class NetworkDataStore {
-    private List<CtyDetail> countryList;
+    private List<String> countryList;
     private List<Flight> fliList;
     private CustomerDirectory customerdirectory;
     private List<Product> proList;
@@ -30,13 +28,14 @@ public class NetworkDataStore {
         proList = new ArrayList<>();
     }
 
-    public List<CtyDetail> getCountryList() {
+    public List<String> getCountryList() {
         return countryList;
     }
 
-    public void setCountryList(List<CtyDetail> countryList) {
+    public void setCountryList(List<String> countryList) {
         this.countryList = countryList;
     }
+
     
     public List<Flight> getFliList() {
         return fliList;

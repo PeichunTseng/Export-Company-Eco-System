@@ -5,9 +5,8 @@
  */
 package Business;
 
-import Business.Customer.CustomerDirectory;
 import Business.Supplier.ProductDirectory;
-import Business.Supplier.Product;
+import Business.User.UserDirectory;
 
 /**
  *
@@ -15,16 +14,11 @@ import Business.Supplier.Product;
  */
 public class AllDataStore {
     private AllDataStore datastore;
-    private CustomerDirectory customerdirectory;
     private ProductDirectory productDirectory;
+    private UserDirectory userDirectory;
     public AllDataStore(){
-        customerdirectory = new CustomerDirectory();
         productDirectory = new ProductDirectory();
-    }
-    
-
-    public CustomerDirectory getCustomerdirectory() {
-        return customerdirectory;
+        userDirectory = new UserDirectory();
     }
 
     public ProductDirectory getProductDirectory() {
@@ -41,6 +35,14 @@ public class AllDataStore {
 
     public void setDatastore(AllDataStore datastore) {
         this.datastore = datastore;
+    }
+
+    public UserDirectory getUserDirectory() {
+        return userDirectory;
+    }
+
+    public void setUserDirectory(UserDirectory userDirectory) {
+        this.userDirectory = userDirectory;
     }
     
     

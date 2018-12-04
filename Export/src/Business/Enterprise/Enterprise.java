@@ -5,10 +5,8 @@
  */
 package Business.Enterprise;
 
-import Business.Airline.FlightDirectory;
 import Business.Department.Department;
 import Business.Department.DepartmentDirectory;
-import Business.Supplier.ProductDirectory;
 import Business.helper.DataStore;
 
 //import Business.Role.Role;
@@ -23,8 +21,6 @@ public abstract class Enterprise extends Department{
     private EnterpriseType entType;
     private DepartmentDirectory depList;
     private DataStore datastore;
-    private FlightDirectory fltList;
-    private ProductDirectory proList;
    // private Role role;
 
     public DepartmentDirectory getDepartmentList() {
@@ -61,8 +57,6 @@ public abstract class Enterprise extends Department{
         this.entType=type;
         depList=new DepartmentDirectory();
         datastore = new DataStore();
-        fltList= new FlightDirectory();
-        proList= new ProductDirectory() ;
     }
 
     public DataStore getDatastore() {

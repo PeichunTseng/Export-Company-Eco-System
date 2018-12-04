@@ -5,6 +5,7 @@
  */
 package Business.User;
 
+import Business.Customer.Customer;
 import Business.Employee.Employee;
 import Business.Role.Role;
 
@@ -18,8 +19,10 @@ public class User {
     private String username;
     private String password;
     private Employee employee;
+    private Customer customer;
     private Role role;
 
+    
     public String getUsername() {
         return username;
     }
@@ -51,6 +54,15 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    
     
     @Override
     public String toString(){
