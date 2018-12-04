@@ -26,6 +26,14 @@ public class Flight {
         id=count;
         count++;
     }
+    
+    public Flight(String name, String cty, double capacity,int price){
+        id = count++;
+        flightnumber = name;
+        this.cty = cty;
+        this.capacity = capacity;
+        this.price = price;
+    }
 
     public String getFlightnumber() {
         return flightnumber;

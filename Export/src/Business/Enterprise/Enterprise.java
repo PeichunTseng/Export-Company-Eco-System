@@ -5,10 +5,15 @@
  */
 package Business.Enterprise;
 
+import Business.Airline.FlightDirectory;
 import Business.Department.Department;
 import Business.Department.DepartmentDirectory;
+import Business.Supplier.ProductDirectory;
 import Business.helper.DataStore;
 import Business.helper.WareHouse;
+
+//import Business.Role.Role;
+
 
 
 /**
@@ -20,12 +25,17 @@ public abstract class Enterprise extends Department{
     private DepartmentDirectory depList;
     private DataStore datastore;
     private WareHouse warehouse;
+    private FlightDirectory fltList;
+    private ProductDirectory proList;
+   // private Role role;
 
     public DepartmentDirectory getDepartmentList() {
         return depList;
     }
     public enum EnterpriseType{
-        Export("Export");
+        Export("Export"),
+        Manufacturing("Manufacturing"),
+        Transport("Transport");
         private String value;
         private EnterpriseType(String value){
             this.value=value;
@@ -38,6 +48,8 @@ public abstract class Enterprise extends Department{
             return value;
         }
     }
+
+    
 
     public EnterpriseType getEntType() {
         return entType;
@@ -52,6 +64,8 @@ public abstract class Enterprise extends Department{
         depList=new DepartmentDirectory();
         datastore = new DataStore();
         warehouse = new WareHouse();
+        fltList= new FlightDirectory();
+        proList= new ProductDirectory() ;
     }
 
     public DataStore getDatastore() {
@@ -61,5 +75,28 @@ public abstract class Enterprise extends Department{
     public WareHouse getWarehouse() {
         return warehouse;
     }
+       
+//    public FlightDirectory getFltList() {
+//        return fltList;
+//    }
+//
+//    public void setFltList(FlightDirectory fltList) {
+//        this.fltList = fltList;
+//    }
+//    
+//    public ProductDirectory getProList() {
+//        return proList;
+//    }
+//
+//    public void setProList(ProductDirectory proList) {
+//        this.proList = proList;
+//    }
+//    public Role getRole() {
+//        return role;
+//    }
+//
+//    public void setRole(Role role) {
+//        this.role = role;
+//    }
     
 }

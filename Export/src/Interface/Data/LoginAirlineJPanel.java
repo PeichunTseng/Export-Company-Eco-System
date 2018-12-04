@@ -130,8 +130,8 @@ public class LoginAirlineJPanel extends javax.swing.JPanel {
     private void findButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findButton1ActionPerformed
         // TODO add your handling code here:
         Airline airline = (Airline)supplierComboBox1.getSelectedItem();
-        ManageFlight mfjp = new ManageFlight(userProcessContainer, airline, user, enterprise);
-        userProcessContainer.add("ManageFlight",mfjp);
+ //       ManageFlight mfjp = new ManageFlight(userProcessContainer, airline, user, enterprise);
+ //       userProcessContainer.add("ManageFlight",mfjp);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_findButton1ActionPerformed
