@@ -7,6 +7,7 @@ package Business.Enterprise;
 
 import Business.Department.Department;
 import Business.Department.DepartmentDirectory;
+import Business.Network.Network;
 import Business.helper.DataStore;
 
 //import Business.Role.Role;
@@ -21,6 +22,7 @@ public abstract class Enterprise extends Department{
     private EnterpriseType entType;
     private DepartmentDirectory depList;
     private DataStore datastore;
+    private String networkName;
    // private Role role;
 
     public DepartmentDirectory getDepartmentList() {
@@ -42,9 +44,6 @@ public abstract class Enterprise extends Department{
             return value;
         }
     }
-
-    
-
     public EnterpriseType getEntType() {
         return entType;
     }
@@ -62,7 +61,7 @@ public abstract class Enterprise extends Department{
     public DataStore getDatastore() {
         return datastore;
     }
-
+    
 //    public FlightDirectory getFltList() {
 //        return fltList;
 //    }
@@ -85,5 +84,13 @@ public abstract class Enterprise extends Department{
 //    public void setRole(Role role) {
 //        this.role = role;
 //    }
+
+    public String getNetworkName() {
+        return networkName;
+    }
+
+    public void setNetworkName(String networkName) {
+        this.networkName = networkName;
+    }
     
 }

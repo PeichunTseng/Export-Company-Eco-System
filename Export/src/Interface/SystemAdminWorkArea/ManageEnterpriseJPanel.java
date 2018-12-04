@@ -199,7 +199,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         String name = nameJTextField.getText();
 
-        network.getEntList().createEnterprise(name, type);
+        network.getEntList().createEnterprise(name, type, network.getName());
 
         populateTable();
 

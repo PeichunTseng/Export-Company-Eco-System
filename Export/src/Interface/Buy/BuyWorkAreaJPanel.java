@@ -6,17 +6,13 @@
 package Interface.Buy;
 
 import Business.Department.BuyDepartment;
-import Business.Department.DataDepartment;
 import Business.Enterprise.Enterprise;
 import Business.Supplier.Product;
 import Business.User.User;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-
-import Business.EcoSystem;
 import Business.Network.Network;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 ;
 
