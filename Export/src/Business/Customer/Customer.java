@@ -5,6 +5,8 @@
  */
 package Business.Customer;
 
+import Business.Order.Order;
+
 ;
 
 /**
@@ -16,15 +18,14 @@ public class Customer {
     private int id;
     private String address;
     private int phoneNumber;
-    private String country;
-    private static int count=1;
-    public Customer(){
-        id=count;
-        count++;
-    }
+    private Order order;
     
+    public Customer(){}
     public Customer(int id, String name, String address, int phoneNumber){
-        
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
     public int getId() {
@@ -38,23 +39,7 @@ public class Customer {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public static int getCount() {
-        return count;
-    }
-
-    public static void setCount(int count) {
-        Customer.count = count;
-    }
-
+    
     public String getAddress() {
         return address;
     }

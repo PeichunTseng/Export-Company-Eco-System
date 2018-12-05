@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.helper;
+package Business;
 
 //import Business.Airline.AirlineDirectory;
 //import Business.Airline.Airline;
@@ -17,14 +17,14 @@ import java.util.List;
  * @author raoyuhuizi
  */
 
-public class DataStore {
+public class EnterpriseDataStore {
     private List<String> countryList;
     private List<Product> proList;
     private List<Flight> fliList;
 //    private ArrayList<Airline> airList;
 //    private ArrayList<Supplier> supList;
     
-    public DataStore(){
+    public EnterpriseDataStore(){
         countryList = new ArrayList<>();
         proList = new ArrayList<>();
         fliList=new ArrayList<>();

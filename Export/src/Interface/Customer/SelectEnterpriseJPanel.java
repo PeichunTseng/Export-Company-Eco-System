@@ -12,8 +12,10 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.User.User;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,15 +28,17 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
     private Customer customer;
     private EcoSystem business;
     private Flight flight;
+    private User user;
     /**
      * Creates new form SelectEnterpriseJPanel
      */
-    public SelectEnterpriseJPanel(JPanel upc, Flight flight, Customer customer, EcoSystem business) {
+    public SelectEnterpriseJPanel(JPanel upc, User user, Customer customer, EcoSystem business) {
         initComponents();
         this.upc = upc;
+        this.user = user;
         this.customer = customer;
         this.business = business;
-        this.flight = flight;
+        this.flight = user.getEmployee().getFlight();
         countryLabel.setText(flight.getCty());
         populate();
     }
@@ -111,6 +115,11 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
         countryLabel.setText("jLabel2");
 
         jButton1.setText("Select Products >>");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -145,6 +154,21 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
                 .addGap(46, 46, 46))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int row = enterpriseTable.getSelectedRow();
+        if(row<0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Enterprise enterprise = (Enterprise)enterpriseTable.getValueAt(row, 1);
+        SelectProductsJPanel spjp = new SelectProductsJPanel(upc, user, customer, enterprise, business);
+        upc.add("CreateNewFlightJPanel",spjp);
+        CardLayout layout = (CardLayout)upc.getLayout();
+        layout.next(upc);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
