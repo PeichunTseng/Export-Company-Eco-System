@@ -112,6 +112,12 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Name");
 
+        nameJTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameJTextFieldActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Enterprise Type");
 
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -204,16 +210,15 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         Network network = (Network) networkJComboBox.getSelectedItem();
         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeJComboBox.getSelectedItem();
 
-        if (network == null || type == null) {
-            JOptionPane.showMessageDialog(null, "Please choose the network and type!");
-            return;
-        }
-
         String name = nameJTextField.getText();
-
-        network.getEntList().createEnterprise(name, type, network.getName());
-
-        populateTable();
+        boolean IsUniqueName = network.getEntList().checkEntName(name);
+        if(IsUniqueName){
+             network.getEntList().createEnterprise(name, type, network.getName());
+             populateTable();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Name has existed");
+        }
 
     }//GEN-LAST:event_submitJButtonActionPerformed
 
@@ -246,6 +251,10 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         
         populateTable();        // TODO add your handling code here:
     }//GEN-LAST:event_delButtonActionPerformed
+
+    private void nameJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameJTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameJTextFieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
