@@ -67,6 +67,7 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
         selectEnterprise = new javax.swing.JButton();
         enterpriseComboBox = new javax.swing.JComboBox();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
         jLabel1.setText("Enterprises' Top 5 Profitable Products");
@@ -110,7 +111,7 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
             jTable1.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jButton2.setText("Summary");
+        jButton2.setText("Product Summary");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -130,6 +131,13 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Revenue Summary");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -165,8 +173,10 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
                                     .addComponent(jLabel1)))
                             .addComponent(jButton3)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addComponent(jButton2)))
+                        .addGap(65, 65, 65)
+                        .addComponent(jButton2)
+                        .addGap(67, 67, 67)
+                        .addComponent(jButton4)))
                 .addContainerGap(90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -189,7 +199,9 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton4))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -223,12 +235,21 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        RevenueJPanel rjp = new RevenueJPanel(userProcessContainer, system);
+        userProcessContainer.add("Summary",rjp);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox enterpriseComboBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

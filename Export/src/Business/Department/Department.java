@@ -21,7 +21,7 @@ public abstract class Department {
     private EmployeeDirectory empList;
     private UserDirectory userList;
     private int departmentID;
-    private static int count=1;
+    private static int count=-1;
     private Type type;
     
     public enum Type{
@@ -42,7 +42,7 @@ public abstract class Department {
          empList=new EmployeeDirectory();
          userList=new UserDirectory();
          departmentID=count;
-         count++;
+         ++count;
      }
      public abstract ArrayList<Role> getSupportedRole();
 

@@ -166,7 +166,6 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
             for(User user : department.getUserList().getUserList()){
                 if(user != null && user.getEmployee().getFlight()!= null && user.getEmployee().getFlight().equals(flight)){
                     selectedUser = user;
-                    System.out.println("Success");
                 }
             }
         }

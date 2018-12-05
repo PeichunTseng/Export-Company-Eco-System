@@ -215,7 +215,7 @@ public class MainJFrame extends javax.swing.JFrame {
 //        }
         
         if(user==null){
-            JOptionPane.showMessageDialog(null, "Username is incorrect");
+           // JOptionPane.showMessageDialog(null, "Username is incorrect");
             return;
         }
         

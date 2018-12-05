@@ -26,4 +26,14 @@ public class EmployeeDirectory {
         empList.add(emp);
         return emp;
     }
+    
+    public boolean checkEmpName(String name){
+        
+        for(Employee employee:empList){
+           if(employee.getName().equals(name)){
+            return false;
+        } 
+        }
+        return true;
+    }
 }

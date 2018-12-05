@@ -27,6 +27,16 @@ public class EnterpriseDirectory {
     public EnterpriseDirectory(){
         enterpriseList=new ArrayList<Enterprise>();
     }
+    
+    public boolean checkEntName(String name){
+        
+        for(Enterprise enterprise:enterpriseList){
+           if(enterprise.getName().equals(name)){
+            return false;
+        } 
+        }
+        return true;
+    }
     public void deleteEnterprise(Enterprise en){
         
         enterpriseList.remove(en);
