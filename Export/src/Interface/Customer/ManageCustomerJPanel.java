@@ -29,13 +29,15 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageCustomer
      */
-    public ManageCustomerJPanel(JPanel upc, Customer customer, EcoSystem business) {
+    public ManageCustomerJPanel(JPanel upc, User user, EcoSystem business) {
         initComponents();
         this.upc = upc;
-        this.customer = customer;
+        this.customer = user.getCustomer();
         this.business = business;
         this.users = new ArrayList<>();
         populate();
+        //System.out.println("Customer" + customer.getName());
+        //System.out.println("Customeru" + user.getCustomer().getName());
     }
 
     
@@ -119,13 +121,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Flight flight = (Flight)countryComboBox.getSelectedItem();
-        User selectedUser = null;
-        for(User user : users){
-            if(user.getEmployee().getFlight().equals(flight)){
-                selectedUser = user;
-            }
-        }
-        SelectEnterpriseJPanel sejp = new SelectEnterpriseJPanel(upc, selectedUser, customer, business);
+        SelectEnterpriseJPanel sejp = new SelectEnterpriseJPanel(upc, flight, customer, business);
         upc.add("manageOrganizationJPanel", sejp);
         CardLayout layout = (CardLayout) upc.getLayout();
         layout.next(upc);

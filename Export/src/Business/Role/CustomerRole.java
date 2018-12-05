@@ -9,10 +9,8 @@ import Business.Customer.Customer;
 import Business.Department.Department;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Enterprise.ExportEnterprise;
 import Business.Network.Network;
 import Business.User.User;
-import Interface.AdminRole.AdminWorkAreaJPanel;
 import Interface.Customer.ManageCustomerJPanel;
 import javax.swing.JPanel;
 
@@ -22,7 +20,7 @@ import javax.swing.JPanel;
  */
 public class CustomerRole extends Role{
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, Customer customer, User user, Department dep, Enterprise enterprise, Network network, EcoSystem business) {
-        return new ManageCustomerJPanel(userProcessContainer, customer, business);
+    public JPanel createWorkArea(JPanel userProcessContainer, User user, Department dep, Enterprise enterprise, Network network, EcoSystem business) {
+        return new ManageCustomerJPanel(userProcessContainer, user, business);
     }
 }

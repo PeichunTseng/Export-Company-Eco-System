@@ -28,17 +28,15 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
     private Customer customer;
     private EcoSystem business;
     private Flight flight;
-    private User user;
     /**
      * Creates new form SelectEnterpriseJPanel
      */
-    public SelectEnterpriseJPanel(JPanel upc, User user, Customer customer, EcoSystem business) {
+    public SelectEnterpriseJPanel(JPanel upc, Flight flight, Customer customer, EcoSystem business) {
         initComponents();
         this.upc = upc;
-        this.user = user;
         this.customer = customer;
         this.business = business;
-        this.flight = user.getEmployee().getFlight();
+        this.flight = flight;
         countryLabel.setText(flight.getCty());
         populate();
     }
@@ -163,7 +161,17 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
             return;
         }
         Enterprise enterprise = (Enterprise)enterpriseTable.getValueAt(row, 1);
-        SelectProductsJPanel spjp = new SelectProductsJPanel(upc, user, customer, enterprise, business);
+        User selectedUser = null;
+        for(Department department : enterprise.getDepartmentList().getDepList()){
+            for(User user : department.getUserList().getUserList()){
+                if(user != null && user.getEmployee().getFlight()!= null && user.getEmployee().getFlight().equals(flight)){
+                    selectedUser = user;
+                    System.out.println("Success");
+                }
+            }
+        }
+
+        SelectProductsJPanel spjp = new SelectProductsJPanel(upc, selectedUser, customer, enterprise, business);
         upc.add("CreateNewFlightJPanel",spjp);
         CardLayout layout = (CardLayout)upc.getLayout();
         layout.next(upc);

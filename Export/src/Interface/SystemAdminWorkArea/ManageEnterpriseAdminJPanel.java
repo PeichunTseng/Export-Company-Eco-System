@@ -5,7 +5,6 @@
 package Interface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
-import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Role.ManufacturingRole;
@@ -14,6 +13,9 @@ import Business.Role.TransportRole;
 import Business.User.User;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -88,15 +90,15 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         networkJComboBox = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        usernameJTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         enterpriseJComboBox = new javax.swing.JComboBox();
         submitJButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         nameJTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        passwordJPasswordField = new javax.swing.JPasswordField();
         backJButton = new javax.swing.JButton();
+        txtUser = new javax.swing.JTextField();
+        txtPword = new javax.swing.JTextField();
 
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,6 +154,28 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             }
         });
 
+        txtUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUserActionPerformed(evt);
+            }
+        });
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUserKeyTyped(evt);
+            }
+        });
+
+        txtPword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPwordActionPerformed(evt);
+            }
+        });
+        txtPword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPwordKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,22 +196,19 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(networkJComboBox, 0, 136, Short.MAX_VALUE)
                                     .addComponent(enterpriseJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel4))
                                     .addGap(52, 52, 52)
-                                    .addComponent(usernameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtPword, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel5))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(52, 52, 52)
-                                            .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addGap(54, 54, 54)
-                                            .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -209,19 +230,19 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(usernameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(submitJButton)
@@ -246,18 +267,42 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         
         Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
         
-        String username = usernameJTextField.getText();
-        String password = String.valueOf(passwordJPasswordField.getPassword());
+        String username = txtUser.getText();
+        String password = txtPword.getText();;
         String name = nameJTextField.getText();
-        
-        
-        if (enterprise.getEntType().getValue()=="Manufacturing")
-            enterprise.getUserList().createUser(username, password, null, new ManufacturingRole());
-        if (enterprise.getEntType().getValue()=="Transport")
-            enterprise.getUserList().createUser(username, password, null, new TransportRole());
-        if (enterprise.getEntType().getValue()=="Export")
-            enterprise.getUserList().createUser(username, password, null, new AdminRole());
-        populateTable();
+        if(username.isEmpty()||password.isEmpty()||name.isEmpty()){
+             JOptionPane.showMessageDialog(this,"Input area can't be empty");
+        }
+//        if(!userNamePatternCorrect()){
+//            return;
+//        }
+//        if(!passwordPatternCorrect()){
+//            return;
+//        }
+        boolean IsUniqueUser=false;
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise ent: network.getEntList().getEnterpriseList()) {
+                IsUniqueUser=ent.getUserList().checkUsername(username);
+            }
+        }
+        if(IsUniqueUser==true){
+            if (enterprise.getEntType().getValue()=="Manufacturing"){
+                enterprise.getUserList().createUser(username, password, null, new ManufacturingRole());
+                JOptionPane.showMessageDialog(this,"Manufacture created successfully");
+            }
+            if (enterprise.getEntType().getValue()=="Transport"){
+                enterprise.getUserList().createUser(username, password, null, new TransportRole());
+                JOptionPane.showMessageDialog(this,"Transport created successfully");
+            }
+            if (enterprise.getEntType().getValue()=="Export"){
+                enterprise.getUserList().createUser(username, password, null, new AdminRole());
+                JOptionPane.showMessageDialog(this,"Export created successfully");
+            }
+            populateTable();
+            }
+        else{
+            JOptionPane.showMessageDialog(this,"Username has existed");
+        }
         
     }//GEN-LAST:event_submitJButtonActionPerformed
 
@@ -271,6 +316,72 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUserActionPerformed
+
+    private void txtUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyTyped
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_txtUserKeyTyped
+
+    private void txtPwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPwordActionPerformed
+
+    private void txtPwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwordKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtPwordKeyTyped
+ private boolean userNamePatternCorrect(){
+        Pattern p = Pattern.compile("^[a-zA-Z0-9_]+@([a-zA-z0-9]{1,}\\.){1,}[a-zA-z]{1,}$");
+        Matcher m = p.matcher(txtUser.getText());
+        boolean b = m.matches();
+        Pattern p1 = Pattern.compile("^[_][a-zA-Z0-9_]+@([a-zA-z0-9]{1,}\\.){1,}[a-zA-z]{1,}$");
+        Matcher m1 = p1.matcher(txtUser.getText());
+        boolean b1 = m1.matches();
+        if(b == true){
+            if (b1 == false){
+                return true;
+            }else{
+                JOptionPane.showMessageDialog(this,"Username should not start with _");
+                return false;
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Username should be a valid email-ID with _ and @ as the only allowed special characters");
+            return false;
+        }  
+    }
+ 
+ private boolean passwordPatternCorrect(){
+        
+        Pattern p = Pattern.compile("^[A-Za-z0-9+_$]+$");
+        Matcher m = p.matcher(txtPword.getText());
+        Pattern p1 = Pattern.compile(".*[+_$].*");
+        Matcher m1 = p1.matcher(txtPword.getText());
+        Pattern p2 = Pattern.compile(".*[A-Za-z0-9].*");
+        Matcher m2 = p2.matcher(txtPword.getText());
+        boolean b = m.matches();
+        boolean b1 = m1.matches();
+        boolean b2 = m2.matches();
+        
+        if(b == true){
+            if(b1 == true){
+                if (b2 == true){
+                    return true;
+                }else{
+                    JOptionPane.showMessageDialog(this,"Password must contain alphanumeric values");
+                    return false;
+                }
+            }else{
+                JOptionPane.showMessageDialog(this,"Password must contain + _ or $");
+                return false;
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Password must contain alphanumeric values and + _ or $ only");
+             return false;           
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JComboBox enterpriseJComboBox;
@@ -283,8 +394,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox networkJComboBox;
-    private javax.swing.JPasswordField passwordJPasswordField;
     private javax.swing.JButton submitJButton;
-    private javax.swing.JTextField usernameJTextField;
+    private javax.swing.JTextField txtPword;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

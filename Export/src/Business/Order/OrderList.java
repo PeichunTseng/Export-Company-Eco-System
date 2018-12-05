@@ -13,18 +13,19 @@ import java.util.List;
  * @author Administrator
  */
 public class OrderList {
-    private List<Order> orderList;
+    private List<Order> orders;
     
     public OrderList(){
-        orderList = new ArrayList<>();
+        orders = new ArrayList<>();
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
-    
+
+
 }

@@ -16,30 +16,19 @@ import java.util.List;
  * @author Administrator
  */
 public class Order {
-    private List<Product> order;
-    private Customer customer;
+    private List<Product> products;
     private Employee employee;
-    
-    public Order(){
-        order = new ArrayList<>();
-        customer = new Customer();
-        employee = new Employee();
+    private Customer customer;
+    public Order(List<Product> products){
+        this.products = products;
     }
 
-    public List<Product> getOrder() {
-        return order;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setOrder(List<Product> order) {
-        this.order = order;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public Employee getEmployee() {
@@ -48,5 +37,13 @@ public class Order {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

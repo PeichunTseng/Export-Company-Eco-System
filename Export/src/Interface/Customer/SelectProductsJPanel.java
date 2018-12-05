@@ -8,8 +8,11 @@ import Business.Airline.Flight;
 import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Order.Order;
 import Business.Supplier.Product;
 import Business.User.User;
+import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -40,6 +43,8 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
         this.flight = user.getEmployee().getFlight();
         this.enterprise = enterprise;
         products = new ArrayList<>();
+        populateTable();
+        populateSelectedTable();
     }
 
     public void populateTable(){
@@ -79,20 +84,22 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        add = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         customerProductTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        undo = new javax.swing.JButton();
         quantitySpinner = new javax.swing.JSpinner();
+        order = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         jLabel2.setText("Quantity");
 
-        jButton2.setText("Return");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        add.setText("Add");
+        add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                addActionPerformed(evt);
             }
         });
 
@@ -132,10 +139,24 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(customerProductTable);
 
-        jButton1.setText("Add");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        undo.setText("Undo");
+        undo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                undoActionPerformed(evt);
+            }
+        });
+
+        order.setText("Order");
+        order.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderActionPerformed(evt);
+            }
+        });
+
+        back.setText("<<  Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
             }
         });
 
@@ -156,29 +177,39 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
                         .addGap(22, 22, 22)
                         .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(undo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                        .addComponent(add))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(213, 213, 213)
+                        .addComponent(order))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(back)))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addContainerGap()
+                .addComponent(back)
+                .addGap(24, 24, 24)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(undo)
+                    .addComponent(add))
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(order)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
         boolean alreadyHas = false;
         int selectedRow = productTable.getSelectedRow();
@@ -213,20 +244,20 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
         }else{
             selectedProduct.setNum(leftNumber);
         }
-
+        
         populateTable();
         populateSelectedTable();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_addActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void undoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoActionPerformed
         // TODO add your handling code here:
         boolean alreadyHas = false;
-        int selectedRow = productTable.getSelectedRow();
+        int selectedRow = customerProductTable.getSelectedRow();
         if(selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please Select a Row");
             return;
         }
-        Product selectedProduct = (Product)productTable.getValueAt(selectedRow, 0);
+        Product selectedProduct = (Product)customerProductTable.getValueAt(selectedRow, 0);
         int quantity = (Integer) quantitySpinner.getValue();
         if(quantity <= 0){
             JOptionPane.showMessageDialog(null, "Quantity can not be less than 1");
@@ -235,7 +266,7 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "There are not enough products");
             return;
         }
-        for(Product pro : products){
+        for(Product pro : user.getEmployee().getProducts()){
             if(pro.getName().equals(selectedProduct.getName()) &&
                 pro.getSupplierName().equals(selectedProduct.getSupplierName())){
                 pro.setNum(pro.getNum()+quantity);
@@ -243,30 +274,72 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
             }
         }
         if(!alreadyHas){
-            Product customerProduct = new Product(selectedProduct.getName(),selectedProduct.getOriginPrice(), selectedProduct.getSellPrice(), 
+            Product employeeProduct = new Product(selectedProduct.getName(),selectedProduct.getOriginPrice(), selectedProduct.getSellPrice(), 
                     quantity,selectedProduct.getSize(),selectedProduct.getSupplierName());
-            products.add(customerProduct);
+            user.getEmployee().getProducts().add(employeeProduct);
         }
         int leftNumber = selectedProduct.getNum() - quantity;
         if(leftNumber == 0 ){
-            user.getEmployee().getProducts().remove(selectedProduct);
+            products.remove(selectedProduct);
         }else{
             selectedProduct.setNum(leftNumber);
         }
 
         populateTable();
         populateSelectedTable();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_undoActionPerformed
+
+    private void orderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderActionPerformed
+        // TODO add your handling code here:
+        Order order = new Order(products);
+        order.setCustomer(customer);
+        order.setEmployee(user.getEmployee());
+        customer.getOrderList().getOrders().add(order);
+        user.getEmployee().getOrderList().getOrders().add(order);
+        enterprise.getDatastore().getOrderList().getOrders().add(order);
+        products.clear();
+        populateTable();
+        populateSelectedTable();
+    }//GEN-LAST:event_orderActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        for(Product selectedPro : products){
+            boolean alreadyHas = false;
+            for(Product pro : user.getEmployee().getProducts()){
+                if(pro.getName().equals(selectedPro.getName()) &&
+                pro.getSupplierName().equals(selectedPro.getSupplierName())){
+                    pro.setNum(pro.getNum()+selectedPro.getNum());
+                    alreadyHas = true;
+                }
+            }
+            if(!alreadyHas){
+                Product employeeProduct = new Product(selectedPro.getName(),selectedPro.getOriginPrice(), selectedPro.getSellPrice(), 
+                    selectedPro.getNum(),selectedPro.getSize(),selectedPro.getSupplierName());
+            user.getEmployee().getProducts().add(employeeProduct);
+            }
+        }
+        products.clear();
+        upc.remove(this);
+        Component[] componentArray = upc.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        SelectEnterpriseJPanel selectEnterpriseJPanel = (SelectEnterpriseJPanel) component;
+        selectEnterpriseJPanel.populate();
+        CardLayout layout = (CardLayout) upc.getLayout();
+        layout.previous(upc);
+    }//GEN-LAST:event_backActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add;
+    private javax.swing.JButton back;
     private javax.swing.JTable customerProductTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton order;
     private javax.swing.JTable productTable;
     private javax.swing.JSpinner quantitySpinner;
+    private javax.swing.JButton undo;
     // End of variables declaration//GEN-END:variables
 }

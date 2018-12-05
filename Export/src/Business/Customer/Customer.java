@@ -6,6 +6,9 @@
 package Business.Customer;
 
 import Business.Order.Order;
+import Business.Order.OrderList;
+import java.util.ArrayList;
+import java.util.List;
 
 ;
 
@@ -18,14 +21,17 @@ public class Customer {
     private int id;
     private String address;
     private int phoneNumber;
-    private Order order;
+    private OrderList orderList;
     
-    public Customer(){}
+    public Customer(){
+        orderList = new OrderList();
+    }
     public Customer(int id, String name, String address, int phoneNumber){
         this.id = id;
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        orderList = new OrderList();
     }
 
     public int getId() {
@@ -59,5 +65,14 @@ public class Customer {
     public void setId(int id) {
         this.id = id;
     }
-    
+
+    public OrderList getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(OrderList orderList) {
+        this.orderList = orderList;
+    }
+
+
 }
