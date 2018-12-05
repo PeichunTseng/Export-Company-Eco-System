@@ -9,6 +9,7 @@ import Business.Customer.Customer;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,8 +28,9 @@ public class UserDirectory {
     
     public User authenticateUser(String username,String password){
         for(User u:userList){
-            if(u.getUsername().equals(username))
+            if(u.getUsername().equals(username)&&u.getPassword().equals(password))
                 return u;
+           
         }
         return null;
     }
