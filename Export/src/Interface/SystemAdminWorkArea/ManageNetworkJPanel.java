@@ -159,11 +159,17 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
 
         String name = nameJTextField.getText();
+        boolean IsUniqueName = system.checkNetName(name);
+        if(IsUniqueName){
+            Network network = system.createNetwork();
+            network.setName(name);
+            populateNetworkTable();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Name has existed");
+        }
 
-        Network network = system.createNetwork();
-        network.setName(name);
-
-        populateNetworkTable();
+        
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

@@ -9,6 +9,7 @@ import Business.Department.Department;
 import Business.Department.DepartmentDirectory;
 import Business.Employee.Employee;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -135,6 +136,12 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
 
+        nameJTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameJTextFieldActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Name");
 
         backJButton.setText("<< Back");
@@ -211,9 +218,16 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         Department organization = (Department) organizationEmpJComboBox.getSelectedItem();
         String name = nameJTextField.getText();
+        boolean IsUniqueName=organization.getEmpList().checkEmpName(name);
+        if(IsUniqueName){
+             organization.getEmpList().createEmployee(name);
+             populateTable(organization);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Name has existed");
+        }
 
-        organization.getEmpList().createEmployee(name);
-       populateTable(organization);
+      
 
     }//GEN-LAST:event_addJButtonActionPerformed
 
@@ -227,6 +241,10 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private void organizationEmpJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationEmpJComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_organizationEmpJComboBoxActionPerformed
+
+    private void nameJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameJTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameJTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
