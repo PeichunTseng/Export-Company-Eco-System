@@ -27,6 +27,11 @@ public class EnterpriseDirectory {
     public EnterpriseDirectory(){
         enterpriseList=new ArrayList<Enterprise>();
     }
+    public void deleteEnterprise(Enterprise en){
+        
+        enterpriseList.remove(en);
+        
+    }
     public Enterprise createEnterprise(String name,Enterprise.EnterpriseType type, String networkName){
         Enterprise ent=null;
         if(type==Enterprise.EnterpriseType.Export){

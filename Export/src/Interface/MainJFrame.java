@@ -162,6 +162,9 @@ public class MainJFrame extends javax.swing.JFrame {
         // Get Password
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
+        if(userName.isEmpty()||password.isEmpty()){
+             JOptionPane.showMessageDialog(this,"Input area can't be empty");
+        }
         //system= EcoSystem.getInstance();
         //System.out.print(system);
         //Step1: Check in the system admin user account directory if you have the user
@@ -190,6 +193,7 @@ public class MainJFrame extends javax.swing.JFrame {
                                 inNetwork = network;
                                 break;
                             }
+                            
                         }
 
                     }
@@ -222,7 +226,7 @@ public class MainJFrame extends javax.swing.JFrame {
 //        }
         
         if(user==null){
-            JOptionPane.showMessageDialog(null, "Invalid credentials");
+            JOptionPane.showMessageDialog(null, "Username is incorrect");
             return;
         }
         
