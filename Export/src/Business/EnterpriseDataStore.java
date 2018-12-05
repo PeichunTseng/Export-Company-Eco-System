@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.helper;
-
-//import Business.Airline.AirlineDirectory;
-//import Business.Airline.Airline;
-
+package Business;
 import Business.Supplier.Product;
 import Business.Airline.Flight;
+import Business.Order.OrderList;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -17,17 +14,19 @@ import java.util.List;
  * @author raoyuhuizi
  */
 
-public class DataStore {
+public class EnterpriseDataStore {
     private List<String> countryList;
     private List<Product> proList;
     private List<Flight> fliList;
+    private OrderList orderList;
 //    private ArrayList<Airline> airList;
 //    private ArrayList<Supplier> supList;
     
-    public DataStore(){
+    public EnterpriseDataStore(){
         countryList = new ArrayList<>();
         proList = new ArrayList<>();
         fliList=new ArrayList<>();
+        orderList  = new OrderList();
 //        airList=new ArrayList<>();
 //        supList= new ArrayList<>();
     }
@@ -47,24 +46,6 @@ public class DataStore {
         this.proList = proList;
     }
     
-    
-
-//    public ArrayList<Airline> getAirList() {
-//        return airList;
-//    }
-//
-//    public void setAirList(ArrayList<Airline> airList) {
-//        this.airList = airList;
-//    }
-
-//    public ArrayList<Supplier> getSupList() {
-//        return supList;
-//    }
-//
-//    public void setSupList(ArrayList<Supplier> supList) {
-//        this.supList = supList;
-//    }
-
     public List<Flight> getFliList() {
         return fliList;
     }
@@ -72,7 +53,12 @@ public class DataStore {
     public void setFliList(List<Flight> fliList) {
         this.fliList = fliList;
     }
-    
-    
-    
+
+    public OrderList getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(OrderList orderList) {
+        this.orderList = orderList;
+    }
 }

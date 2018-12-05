@@ -27,8 +27,9 @@ public class UserDirectory {
     
     public User authenticateUser(String username,String password){
         for(User u:userList){
-            if(u.getUsername().equals(username))
+            if(u.getUsername().equals(username)&&u.getPassword().equals(password))
                 return u;
+           
         }
         return null;
     }
@@ -48,7 +49,7 @@ public class UserDirectory {
         user.setUsername(username);
         user.setPassword(password);
         user.setRole(role);
-        user.setEmployee(null);
+        user.setCustomer(customer);
         userList.add(user);
         return user;
     }

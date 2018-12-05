@@ -6,6 +6,7 @@
 package Business.Employee;
 
 import Business.Airline.Flight;
+import Business.Order.OrderList;
 import Business.Supplier.Product;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +23,11 @@ public class Employee {
     private static int count=1;
     private List<Product> products;
     private Flight flight;
+    private OrderList orderList;
     
     public Employee(){
         products = new ArrayList<>();
+        orderList = new OrderList();
         id=count;
         count++;
     }
@@ -60,4 +63,13 @@ public class Employee {
     public void setFlight(Flight flight) {
         this.flight = flight;
     }
+
+    public OrderList getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(OrderList orderList) {
+        this.orderList = orderList;
+    }
+    
 }

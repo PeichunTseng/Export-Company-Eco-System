@@ -5,6 +5,11 @@
  */
 package Business.Customer;
 
+import Business.Order.Order;
+import Business.Order.OrderList;
+import java.util.ArrayList;
+import java.util.List;
+
 ;
 
 /**
@@ -16,15 +21,17 @@ public class Customer {
     private int id;
     private String address;
     private int phoneNumber;
-    private String country;
-    private static int count=1;
-    public Customer(){
-        id=count;
-        count++;
-    }
+    private OrderList orderList;
     
+    public Customer(){
+        orderList = new OrderList();
+    }
     public Customer(int id, String name, String address, int phoneNumber){
-        
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        orderList = new OrderList();
     }
 
     public int getId() {
@@ -38,23 +45,7 @@ public class Customer {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public static int getCount() {
-        return count;
-    }
-
-    public static void setCount(int count) {
-        Customer.count = count;
-    }
-
+    
     public String getAddress() {
         return address;
     }
@@ -74,5 +65,14 @@ public class Customer {
     public void setId(int id) {
         this.id = id;
     }
-    
+
+    public OrderList getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(OrderList orderList) {
+        this.orderList = orderList;
+    }
+
+
 }

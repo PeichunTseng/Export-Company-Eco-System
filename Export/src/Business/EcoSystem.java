@@ -32,6 +32,12 @@ public class EcoSystem extends Department{
         return network;
     }
     
+     public void deleteNetwork(Network n){
+        
+        networkList.remove(n);
+        
+    }
+    
     @Override 
     public ArrayList<Role> getSupportedRole(){
         ArrayList<Role> roleList =new ArrayList<Role>();
@@ -62,9 +68,18 @@ public class EcoSystem extends Department{
         this.networkList = networkList;
     }
     public boolean checkUser(String userName){
-        
         for(Network network:networkList){
            if(!this.getUserList().checkUsername(userName)){
+            return false;
+        } 
+        }
+        return true;
+    }
+    
+    public boolean checkNetName(String name){
+        
+        for(Network network:networkList){
+           if(network.getName().equals(name)){
             return false;
         } 
         }

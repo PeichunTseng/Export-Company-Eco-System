@@ -5,17 +5,11 @@
  */
 package Interface;
 
-import Business.Configure;
-import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
-
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Department.Department;
-import Business.Enterprise.Enterprise.EnterpriseType;
-import Business.Enterprise.ManufacturingEnterprise;
-import Business.Supplier.SupplierDirectory;
 import Business.User.User;
 import Interface.Customer.CreateCustomerJPanel;
 import java.awt.CardLayout;
@@ -38,9 +32,9 @@ public class MainJFrame extends javax.swing.JFrame {
 //    private SupplierDirectory supplierDirectory;
 //    private JPanel userProcessContainer;
     public MainJFrame() {
-        //system = dB4OUtil.retrieveSystem();
+        system = dB4OUtil.retrieveSystem();
         initComponents();
-        system= Configure.configure();
+        //system= Configure.configure();
     }
 
     /**
@@ -162,14 +156,14 @@ public class MainJFrame extends javax.swing.JFrame {
         // Get Password
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
+        if(userName.isEmpty()||password.isEmpty()){
+             JOptionPane.showMessageDialog(this,"Input area can't be empty");
+        }
         //system= EcoSystem.getInstance();
         //System.out.print(system);
         //Step1: Check in the system admin user account directory if you have the user
-        Customer customer = null;
+        
         User user=system.getUserList().authenticateUser(userName, password);
-        if(user != null && user.getCustomer()!=null){
-            customer = user.getCustomer();
-        }
         Enterprise inEnterprise=null;
         Department inDepartment=null;
         Network inNetwork = null;
@@ -190,6 +184,7 @@ public class MainJFrame extends javax.swing.JFrame {
                                 inNetwork = network;
                                 break;
                             }
+                            
                         }
 
                     }
@@ -207,8 +202,6 @@ public class MainJFrame extends javax.swing.JFrame {
                 }
             }
         }
-
-
         
 //        if (inEnterprise!=null && inEnterprise.getEntType().getValue()=="Manufacturing"){
 //            supplierDirectory= new SupplierDirectory();
@@ -222,13 +215,13 @@ public class MainJFrame extends javax.swing.JFrame {
 //        }
         
         if(user==null){
-            JOptionPane.showMessageDialog(null, "Invalid credentials");
+           // JOptionPane.showMessageDialog(null, "Username is incorrect");
             return;
         }
         
         else{
             CardLayout layout=(CardLayout)container.getLayout();
-            container.add("workArea",user.getRole().createWorkArea(container, customer, user, inDepartment, inEnterprise, inNetwork, system));
+            container.add("workArea",user.getRole().createWorkArea(container, user, inDepartment, inEnterprise, inNetwork, system));
             layout.next(container);
         }
 
@@ -252,7 +245,7 @@ public class MainJFrame extends javax.swing.JFrame {
         container.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
-        //dB4OUtil.storeSystem(system);
+        dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_logoutJButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -25,15 +25,19 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     private JPanel upc;
     private Customer customer;
     private EcoSystem business;
+    private List<User> users;
     /**
      * Creates new form ManageCustomer
      */
-    public ManageCustomerJPanel(JPanel upc, Customer customer, EcoSystem business) {
+    public ManageCustomerJPanel(JPanel upc, User user, EcoSystem business) {
         initComponents();
         this.upc = upc;
-        this.customer = customer;
+        this.customer = user.getCustomer();
         this.business = business;
+        this.users = new ArrayList<>();
         populate();
+        //System.out.println("Customer" + customer.getName());
+        //System.out.println("Customeru" + user.getCustomer().getName());
     }
 
     
@@ -52,6 +56,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 for(User user : department.getUserList().getUserList()){
                     if(user.getEmployee().getFlight() != null){
                         countryComboBox.addItem(user.getEmployee().getFlight());
+                        users.add(user);
                     }
                 }
             }

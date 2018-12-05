@@ -12,7 +12,7 @@ import Business.Airline.Flight;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.User.User;
-import Business.helper.DataStore;
+import Business.EnterpriseDataStore;
 
 //import UserInterface.AdminstrativeRole.ManageSuppliers;
 import java.awt.CardLayout;

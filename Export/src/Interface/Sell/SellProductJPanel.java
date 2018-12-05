@@ -74,12 +74,12 @@ public class SellProductJPanel extends javax.swing.JPanel {
         productTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         employeeProductTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        add = new javax.swing.JButton();
         quantitySpinner = new javax.swing.JSpinner();
         sellPriceText = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        undo = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         returnQuantitySpinner = new javax.swing.JSpinner();
 
@@ -132,10 +132,10 @@ public class SellProductJPanel extends javax.swing.JPanel {
             employeeProductTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        jButton1.setText("Add");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        add.setText("Add");
+        add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addActionPerformed(evt);
             }
         });
 
@@ -143,10 +143,10 @@ public class SellProductJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Quantity");
 
-        jButton2.setText("Return");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        undo.setText("Undo");
+        undo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                undoActionPerformed(evt);
             }
         });
 
@@ -164,7 +164,7 @@ public class SellProductJPanel extends javax.swing.JPanel {
                         .addGap(22, 22, 22)
                         .addComponent(returnQuantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(57, 57, 57)
-                        .addComponent(jButton2))
+                        .addComponent(undo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -180,7 +180,7 @@ public class SellProductJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(sellPriceText, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
@@ -195,19 +195,19 @@ public class SellProductJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(sellPriceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1))
+                    .addComponent(add))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(undo)
                     .addComponent(returnQuantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
         boolean alreadyHas = false;
         int selectedRow = productTable.getSelectedRow();
@@ -274,9 +274,9 @@ public class SellProductJPanel extends javax.swing.JPanel {
         }
         populateTable();
         populateSelectedTable();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void undoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoActionPerformed
         // TODO add your handling code here:
         boolean alreadyHas = false;
         int selectedRow = employeeProductTable.getSelectedRow();
@@ -314,13 +314,12 @@ public class SellProductJPanel extends javax.swing.JPanel {
         
         populateTable();
         populateSelectedTable();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_undoActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add;
     private javax.swing.JTable employeeProductTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -330,5 +329,6 @@ public class SellProductJPanel extends javax.swing.JPanel {
     private javax.swing.JSpinner quantitySpinner;
     private javax.swing.JSpinner returnQuantitySpinner;
     private javax.swing.JTextField sellPriceText;
+    private javax.swing.JButton undo;
     // End of variables declaration//GEN-END:variables
 }
