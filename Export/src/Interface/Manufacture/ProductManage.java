@@ -13,7 +13,6 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import Business.EcoSystem;
 import Business.Network.Network;
 
 /**
@@ -65,7 +64,6 @@ public class ProductManage extends javax.swing.JPanel {
             row[2] = p.getNum();
             row[3] = p.getSize();
             model.addRow(row);
-            //flight=p;
             }
         }
 

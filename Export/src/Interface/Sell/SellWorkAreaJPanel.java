@@ -35,6 +35,9 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         valueLabel.setText(enterprise.getName());
         populateComboBox();
+        if(user.getEmployee().getFlight() != null){
+            countryComboBox.enable(false);
+        }
     }
     
     public void populateComboBox(){

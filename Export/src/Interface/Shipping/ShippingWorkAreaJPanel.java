@@ -61,7 +61,7 @@ public class ShippingWorkAreaJPanel extends javax.swing.JPanel {
             row[1] = f.getEnterpriseName();
             row[2] = f;
             row[3] = f.getPrice();
-            row[4] = f.getCapacity();
+            row[4] = f.getShippingFee();
             model.addRow(row);
             }
         }
@@ -78,7 +78,7 @@ public class ShippingWorkAreaJPanel extends javax.swing.JPanel {
             row[1] = f.getEnterpriseName();
             row[2] = f;
             row[3] = f.getPrice();
-            row[4] = f.getCapacity();
+            row[4] = f.getShippingFee();
             model.addRow(row);
             }
         }
@@ -96,7 +96,7 @@ public class ShippingWorkAreaJPanel extends javax.swing.JPanel {
             row[1] = f.getEnterpriseName();
             row[2] = f;
             row[3] = f.getPrice();
-            row[4] = f.getCapacity();
+            row[4] = f.getShippingFee();
             model.addRow(row);
             }
         }
@@ -296,9 +296,20 @@ public class ShippingWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please Select a Row");
             return;
         }
-        Flight flight = (Flight)shippingTable.getValueAt(selectedRow,2);
-        enterprise.getDatastore().getFliList().add(flight);
-        refreshEnterpriseTable();
+        Flight selectedFlight = (Flight)shippingTable.getValueAt(selectedRow,2);
+        boolean alreadyHas = false;
+        for(Flight flight : enterprise.getDatastore().getFliList()){
+            if(flight.getCty().equals(selectedFlight.getCty())){
+                alreadyHas = true;
+            }
+        }
+        if(alreadyHas){
+            JOptionPane.showMessageDialog(null, "You can only select one route for each country");
+        }else{
+            enterprise.getDatastore().getFliList().add(selectedFlight);
+            refreshEnterpriseTable();
+        }
+        
     }//GEN-LAST:event_AddActionPerformed
 
     private void UndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UndoActionPerformed

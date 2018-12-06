@@ -5,14 +5,10 @@
  */
 package Interface.Trasport;
 
-import Interface.Trasport.ManageRoute;
-import Business.Airline.AirlineDirectory;
 import Business.Airline.Airline;
 import Business.Airline.Flight;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
-import Business.User.User;
-import Business.EnterpriseDataStore;
 
 //import UserInterface.AdminstrativeRole.ManageSuppliers;
 import java.awt.CardLayout;
@@ -205,7 +201,7 @@ public class CreateNewRoute extends javax.swing.JPanel {
 
         try{
             double cap =Double.parseDouble(Capacity.getText());
-            flight.setCapacity(cap);
+            flight.setShippingFee(cap);
         }catch(NumberFormatException e){
 
             JOptionPane.showMessageDialog(null, "number only");
@@ -216,10 +212,11 @@ public class CreateNewRoute extends javax.swing.JPanel {
         //flight.setCapacity(Capacity.getText());
         flight.setCty(DestinationField.getText());
         //flight.setTime(DepartureTimeField.getText());
+        flight.setEnterpriseName(enterprise.getName());
         
         //enterprise.getFltList().addFlight(flight);
-        enterprise.getDatastore().getFliList().add(new Flight(flight.getFlightnumber(),flight.getCty(),flight.getCapacity(),flight.getPrice(),enterprise.getName()));
-        network.getNetworkDataStore().getFliList().add(new Flight(flight.getFlightnumber(),flight.getCty(),flight.getCapacity(),flight.getPrice(),enterprise.getName()));
+        enterprise.getDatastore().getFliList().add(flight);
+        network.getNetworkDataStore().getFliList().add(flight);
 
         JOptionPane.showMessageDialog(null, "New Shipping successfully added", "Warning", JOptionPane.INFORMATION_MESSAGE);
         

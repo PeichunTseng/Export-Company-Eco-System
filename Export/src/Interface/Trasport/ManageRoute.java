@@ -8,7 +8,6 @@ package Interface.Trasport;
 import Business.Airline.Flight;
 import Business.Airline.Airline;
 import Business.Enterprise.Enterprise;
-import Business.Enterprise.TransportEnterprise;
 import Business.Network.Network;
 import Business.User.User;
 import java.awt.CardLayout;
@@ -64,7 +63,7 @@ public class ManageRoute extends javax.swing.JPanel {
             row[1] = p;
             //row[2] = p.getTime();
             row[2] = p.getPrice();
-            row[3] = p.getCapacity();
+            row[3] = p.getShippingFee();
             model.addRow(row);
             //flight=p;
             }
@@ -128,7 +127,7 @@ public class ManageRoute extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Route number", "City", "Price", "Capacity"
+                "Route number", "City", "Price", "Shipping Fee"
             }
         ));
         productCatalog.setPreferredSize(new java.awt.Dimension(525, 100));

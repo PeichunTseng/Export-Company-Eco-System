@@ -15,15 +15,15 @@ public class Flight {
     private String flightnumber;
     private String cty;
     private String enterpriseName;
-    private double capacity;
+    private double shippingFee;
     private int price;
     
     public Flight(){}
     
-    public Flight(String name, String cty, double capacity,int price, String enterpriseName){
+    public Flight(String name, String cty, double shippingFee,int price, String enterpriseName){
         flightnumber = name;
         this.cty = cty;
-        this.capacity = capacity;
+        this.shippingFee = shippingFee;
         this.price = price;
         this.enterpriseName = enterpriseName;
     }
@@ -51,13 +51,13 @@ public class Flight {
     public void setEnterpriseName(String enterpriseName) {
         this.enterpriseName = enterpriseName;
     }
-    
-    public double getCapacity() {
-        return capacity;
+
+    public double getShippingFee() {
+        return shippingFee;
     }
 
-    public void setCapacity(double capacity) {
-        this.capacity = capacity;
+    public void setShippingFee(double shippingFee) {
+        this.shippingFee = shippingFee;
     }
     
     public int getPrice() {
