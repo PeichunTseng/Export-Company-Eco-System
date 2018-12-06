@@ -38,11 +38,13 @@ public class SellProductJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for (Product product : enterprise.getDatastore().getProList()){
-            Object[] row = new Object[4];
+            Object[] row = new Object[6];
             row[0] = product;
             row[1] = product.getSupplierName();
             row[2] = product.getOriginPrice();
-            row[3] = product.getNum();
+            row[3] = user.getEmployee().getFlight().getShippingFee()*product.getSize();
+            row[4] = product.getOriginPrice() + user.getEmployee().getFlight().getShippingFee()*product.getSize();
+            row[5] = product.getNum();
             model.addRow(row);
         }
     }
@@ -55,7 +57,7 @@ public class SellProductJPanel extends javax.swing.JPanel {
             Object[] row = new Object[5];
             row[0] = product;
             row[1] = product.getSupplierName();
-            row[2] = product.getOriginPrice();
+            row[2] = product.getOriginPrice() + product.getShippingCost();
             row[3] = product.getSellPrice();
             row[4] = product.getNum();
             model.addRow(row);
@@ -88,11 +90,11 @@ public class SellProductJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Supplier", "Origin Price", "Number"
+                "Name", "Supplier", "Original Price", "Shipping Fee", "Cost", "Number"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -104,7 +106,7 @@ public class SellProductJPanel extends javax.swing.JPanel {
             productTable.getColumnModel().getColumn(0).setResizable(false);
             productTable.getColumnModel().getColumn(1).setResizable(false);
             productTable.getColumnModel().getColumn(2).setResizable(false);
-            productTable.getColumnModel().getColumn(3).setResizable(false);
+            productTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
         employeeProductTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -112,7 +114,7 @@ public class SellProductJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Supplier", "Origin Price", "Sell Price", "Number"
+                "Name", "Supplier", "Cost", "Sell Price", "Number"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -159,30 +161,31 @@ public class SellProductJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jLabel3)
-                        .addGap(22, 22, 22)
-                        .addComponent(returnQuantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(undo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(jLabel3)
+                                .addGap(22, 22, 22)
+                                .addComponent(returnQuantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(57, 57, 57)
+                                .addComponent(undo))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
                                 .addComponent(jLabel2)
                                 .addGap(22, 22, 22)
                                 .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(48, 48, 48)
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addComponent(sellPriceText, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
-                                .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(61, Short.MAX_VALUE))
+                                .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 51, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,8 +233,8 @@ public class SellProductJPanel extends javax.swing.JPanel {
         }
         try{
             double sellPrice = Integer.parseInt(sellPriceText.getText());
-            if(sellPrice <= selectedProduct.getOriginPrice()){
-                JOptionPane.showMessageDialog(null, "The selling price must be larger than the origin price");
+            if(sellPrice <= selectedProduct.getOriginPrice()+user.getEmployee().getFlight().getShippingFee()*selectedProduct.getSize()){
+                JOptionPane.showMessageDialog(null, "The selling price must be larger than the cost");
                 return;
             }
             
@@ -261,6 +264,7 @@ public class SellProductJPanel extends javax.swing.JPanel {
                 Product employeeProduct = new Product(selectedProduct.getName(),selectedProduct.getOriginPrice(),
                 quantity,selectedProduct.getSupplierName());
                 employeeProduct.setSellPrice(sellPrice);
+                employeeProduct.setShippingCost(selectedProduct.getOriginPrice() + user.getEmployee().getFlight().getShippingFee()*selectedProduct.getSize());
                 user.getEmployee().getProducts().add(employeeProduct);
             }
             int leftNumber = selectedProduct.getNum() - quantity;

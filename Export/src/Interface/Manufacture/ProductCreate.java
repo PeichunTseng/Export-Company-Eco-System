@@ -5,23 +5,14 @@
  */
 package Interface.Manufacture;
 
-import Interface.Manufacture.ProductManage;
 import Business.Supplier.Product;
 import Business.Supplier.Supplier;
 import Business.Enterprise.Enterprise;
 import Business.User.User;
-
-//import Business.helper.CtyDetail;
-import Business.EnterpriseDataStore;
-
-//import UserInterface.AdminstrativeRole.ManageSuppliers;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.util.ArrayList;
-import java.util.List;
-import Business.EcoSystem;
 import Business.Network.Network;
 /**
  *
@@ -269,7 +260,7 @@ public class ProductCreate extends javax.swing.JPanel {
 //        }
 
         network.getNetworkDataStore().getProList().add(product);
-        enterprise.getDatastore().getProList().add(new Product(product.getName(),product.getOriginPrice(),product.getNum(),product.getSupplierName()));
+        enterprise.getDatastore().getProList().add(product);
         //enterprise.getDatastore().getProList().add(new Product(product.getName(),product.getOriginPrice(),product.getNum(),product.getSize(),product.getSupplierName()));
 
     }//GEN-LAST:event_createButtonActionPerformed

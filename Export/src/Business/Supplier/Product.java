@@ -16,6 +16,7 @@ public class Product {
     private int id;
     private static int count=1;
     private double originPrice;
+    private double shippingCost;
     private double sellPrice;
     private int num;
     private double size;
@@ -101,6 +102,14 @@ public class Product {
 
     public void setSupplierName(String supplierName) {
         this.supplierName = supplierName;
+    }
+
+    public double getShippingCost() {
+        return shippingCost;
+    }
+
+    public void setShippingCost(double shippingCost) {
+        this.shippingCost = shippingCost;
     }
     
     @Override
