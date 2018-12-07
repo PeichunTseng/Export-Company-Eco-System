@@ -78,6 +78,11 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
         enterpriseLabel.setText("EnterPrise :");
 
         countryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        countryComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                countryComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -129,6 +134,10 @@ public class SellWorkAreaJPanel extends javax.swing.JPanel {
         userProcessContainer.add(new SellProductJPanel(userProcessContainer, user, enterprise));
         layout.next(userProcessContainer);
     }//GEN-LAST:event_requestTestJButtonActionPerformed
+
+    private void countryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_countryComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

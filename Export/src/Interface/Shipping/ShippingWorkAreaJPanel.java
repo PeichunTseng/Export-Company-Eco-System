@@ -56,12 +56,12 @@ public class ShippingWorkAreaJPanel extends javax.swing.JPanel {
         }
         
         for(Flight f : network.getNetworkDataStore().getFliList()) {
-            Object row[] = new Object[5];
+            Object row[] = new Object[4];
             row[0] = f.getFlightnumber();
             row[1] = f.getEnterpriseName();
             row[2] = f;
-            row[3] = f.getPrice();
-            row[4] = f.getShippingFee();
+            row[3] = f.getShippingFee();
+            //row[4] = f.getShippingFee();
             model.addRow(row);
             }
         }
@@ -73,12 +73,12 @@ public class ShippingWorkAreaJPanel extends javax.swing.JPanel {
             model.removeRow(i);
         }
         for(Flight f : flights) {
-            Object row[] = new Object[5];
+            Object row[] = new Object[4];
             row[0] = f.getFlightnumber();
             row[1] = f.getEnterpriseName();
             row[2] = f;
-            row[3] = f.getPrice();
-            row[4] = f.getShippingFee();
+            row[3] = f.getShippingFee();
+            //row[4] = f.getShippingFee();
             model.addRow(row);
             }
         }
@@ -91,12 +91,12 @@ public class ShippingWorkAreaJPanel extends javax.swing.JPanel {
         }
         
         for(Flight f : enterprise.getDatastore().getFliList()) {
-            Object row[] = new Object[5];
+            Object row[] = new Object[4];
             row[0] = f.getFlightnumber();
             row[1] = f.getEnterpriseName();
             row[2] = f;
-            row[3] = f.getPrice();
-            row[4] = f.getShippingFee();
+            row[3] = f.getShippingFee();
+            //row[4] = f.getShippingFee();
             model.addRow(row);
             }
         }
@@ -131,11 +131,11 @@ public class ShippingWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Route Number", "Transport Company", "City", "Price", "Capacity"
+                "Route Number", "Transport Company", "City", "Price (/kg)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -148,7 +148,6 @@ public class ShippingWorkAreaJPanel extends javax.swing.JPanel {
             enterpriseTable.getColumnModel().getColumn(1).setResizable(false);
             enterpriseTable.getColumnModel().getColumn(2).setResizable(false);
             enterpriseTable.getColumnModel().getColumn(3).setResizable(false);
-            enterpriseTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -166,11 +165,11 @@ public class ShippingWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Route Number", "Transport Company", "City", "Price", "Capacity"
+                "Route Number", "Transport Company", "City", "Price (/kg)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -183,7 +182,6 @@ public class ShippingWorkAreaJPanel extends javax.swing.JPanel {
             shippingTable.getColumnModel().getColumn(1).setResizable(false);
             shippingTable.getColumnModel().getColumn(2).setResizable(false);
             shippingTable.getColumnModel().getColumn(3).setResizable(false);
-            shippingTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
         Search.setText("Search");
