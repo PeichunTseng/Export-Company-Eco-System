@@ -14,6 +14,8 @@ import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Business.Network.Network;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author peichun
@@ -208,8 +210,19 @@ public class ProductCreate extends javax.swing.JPanel {
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
 
         Product product =new Product();
+        List<String> L=new ArrayList<>();
+        
+        for(Product p:enterprise.getDatastore().getProList())
+            //L.add(p.getName());
+            if(p.getName().equals(NameField.getText()))
+            {
+               JOptionPane.showMessageDialog(null, "Product already existed");
+               return;
+            }
+        
+        
         try{
-            int price =Integer.parseInt(PriceField.getText());
+            double price =Double.parseDouble(PriceField.getText());
             product.setOriginPrice(price);
         }catch(NumberFormatException e){
 
@@ -238,7 +251,14 @@ public class ProductCreate extends javax.swing.JPanel {
             return;
 
         }
+        
+
+
+                
+        
+        
         product.setName(NameField.getText());
+        
         product.setSupplierName(enterprise.getName());
         
         
