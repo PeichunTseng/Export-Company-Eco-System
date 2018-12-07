@@ -62,8 +62,6 @@ public class CreateNewRoute extends javax.swing.JPanel {
         backButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         FlightnumberField = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        Capacity = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         DestinationField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -98,18 +96,13 @@ public class CreateNewRoute extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Capacity :");
-
-        Capacity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Destination:");
 
         DestinationField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("            Price :");
+        jLabel4.setText("     Price(/kg) :");
 
         PriceField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         PriceField.addActionListener(new java.awt.event.ActionListener() {
@@ -132,19 +125,14 @@ public class CreateNewRoute extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(PriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(DestinationField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addGap(32, 32, 32)
-                                    .addComponent(Capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(PriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DestinationField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(backButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -173,11 +161,7 @@ public class CreateNewRoute extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Capacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(backButton1)
                     .addComponent(createButton))
@@ -189,18 +173,18 @@ public class CreateNewRoute extends javax.swing.JPanel {
 
         Flight flight = new Flight();
         //airline.getFltList().addFlight(flight);
+//        try{
+//            int price =Integer.parseInt(PriceField.getText());
+//            flight.setPrice(price);
+//        }catch(NumberFormatException e){
+//
+//            JOptionPane.showMessageDialog(null, "number only");
+//            return;
+//
+//        }
+
         try{
-            int price =Integer.parseInt(PriceField.getText());
-            flight.setPrice(price);
-        }catch(NumberFormatException e){
-
-            JOptionPane.showMessageDialog(null, "number only");
-            return;
-
-        }
-
-        try{
-            double cap =Double.parseDouble(Capacity.getText());
+            double cap =Double.parseDouble(PriceField.getText());
             flight.setShippingFee(cap);
         }catch(NumberFormatException e){
 
@@ -296,7 +280,6 @@ public class CreateNewRoute extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Capacity;
     private javax.swing.JTextField DestinationField;
     private javax.swing.JTextField FlightnumberField;
     private javax.swing.JTextField PriceField;
@@ -305,7 +288,6 @@ public class CreateNewRoute extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

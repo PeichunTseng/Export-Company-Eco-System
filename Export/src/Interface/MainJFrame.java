@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Interface;
-
+import Business.Configure;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;

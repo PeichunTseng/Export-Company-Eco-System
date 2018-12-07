@@ -225,15 +225,29 @@ public class BuyingDetail extends javax.swing.JPanel {
         boolean alreadyHas = false;
         int num = (Integer)supplierComboBox1.getSelectedItem();
         product.setNum(product.getNum()-num);
-        for(Product p : enterprise.getDatastore().getProList()){
-            if(p.getName().equals(product.getName()) && p.getSupplierName().equals(product.getSupplierName())){
+        for(Product p : enterprise.getDatastore().getProList())
+        {
+            if(p.getName().equals(product.getName()) && p.getSupplierName().equals(product.getSupplierName()))
+            {
                 alreadyHas = true;
                 p.setNum(p.getNum() + num);
                 break;
             }
         }
-        if(!alreadyHas){
+        if(!alreadyHas)
+        {
             enterprise.getDatastore().getProList().add(new Product(product.getName(),product.getOriginPrice(),num,product.getSize(),product.getSupplierName()));
+        }
+        
+        for(Enterprise e:network.getEntList().getEnterpriseList())
+        {
+            if(e.getEntType().getValue()=="Manufacturing"&&e.getName().equals(product.getSupplierName()))
+                for(Product p:e.getDatastore().getProList())
+                    if(product==p)
+                    {
+                        p.setNum(product.getNum());
+                    }
+                //e.getDatastore().getProList().remove(product);             
         }
         JOptionPane.showMessageDialog(null, "Buy Product successfully added", "Warning", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_createButtonActionPerformed

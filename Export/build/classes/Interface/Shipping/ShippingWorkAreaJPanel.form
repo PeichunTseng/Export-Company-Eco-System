@@ -113,21 +113,15 @@
         <Component class="javax.swing.JTable" name="enterpriseTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="0">
+              <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="Route Number" type="java.lang.Object"/>
                 <Column editable="false" title="Transport Company" type="java.lang.Object"/>
                 <Column editable="false" title="City" type="java.lang.Object"/>
-                <Column editable="false" title="Price" type="java.lang.Object"/>
-                <Column editable="false" title="Capacity" type="java.lang.Object"/>
+                <Column editable="false" title="Price (/kg)" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
@@ -193,21 +187,15 @@
         <Component class="javax.swing.JTable" name="shippingTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="0">
+              <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="Route Number" type="java.lang.Object"/>
                 <Column editable="false" title="Transport Company" type="java.lang.Object"/>
                 <Column editable="false" title="City" type="java.lang.Object"/>
-                <Column editable="false" title="Price" type="java.lang.Object"/>
-                <Column editable="false" title="Capacity" type="java.lang.Object"/>
+                <Column editable="false" title="Price (/kg)" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
