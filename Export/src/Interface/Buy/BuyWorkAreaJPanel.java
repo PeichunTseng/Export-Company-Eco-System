@@ -79,10 +79,10 @@ public class BuyWorkAreaJPanel extends javax.swing.JPanel {
         enterpriseLabel = new javax.swing.JLabel();
         requestTestJButton = new javax.swing.JButton();
         valueLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        productCatalog = new javax.swing.JTable();
         enterpriseLabel2 = new javax.swing.JLabel();
         networkLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        productCatalog = new javax.swing.JTable();
 
         enterpriseLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel1.setText("BuyWork");
@@ -99,7 +99,11 @@ public class BuyWorkAreaJPanel extends javax.swing.JPanel {
 
         valueLabel.setText("<value>");
 
-        productCatalog.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel2.setText("Network:");
+
+        networkLabel.setText("<value>");
+
         productCatalog.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -108,17 +112,25 @@ public class BuyWorkAreaJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Supplier", "Product name", "Origin Price", "Quantity", "Size"
+                "Supplier", "Product Name", "Origin Price", "Quantity", "Size"
             }
-        ));
-        productCatalog.setPreferredSize(new java.awt.Dimension(525, 100));
-        productCatalog.setRowHeight(25);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(productCatalog);
-
-        enterpriseLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel2.setText("Network:");
-
-        networkLabel.setText("<value>");
+        if (productCatalog.getColumnModel().getColumnCount() > 0) {
+            productCatalog.getColumnModel().getColumn(0).setResizable(false);
+            productCatalog.getColumnModel().getColumn(1).setResizable(false);
+            productCatalog.getColumnModel().getColumn(2).setResizable(false);
+            productCatalog.getColumnModel().getColumn(3).setResizable(false);
+            productCatalog.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -144,9 +156,9 @@ public class BuyWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(76, 76, 76))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(76, 76, 76)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(77, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,9 +175,9 @@ public class BuyWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(21, 21, 21))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(83, 83, 83)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(83, Short.MAX_VALUE)))
+                    .addGap(76, 76, 76)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(76, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
