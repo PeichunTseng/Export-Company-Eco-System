@@ -61,4 +61,9 @@ public class UserDirectory {
         }
         return true;
     }
+     public void deleteUser(User user){
+        
+        userList.remove(user);
+        
+    }
 }

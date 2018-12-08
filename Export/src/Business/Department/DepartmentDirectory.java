@@ -7,6 +7,7 @@ package Business.Department;
 
 import Business.Department.Department.Type;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 
@@ -25,18 +26,44 @@ public class DepartmentDirectory {
     }
     public Department createDepartment(Type type){
         Department dep=null;
-        if(type.getValue().equals(Type.DataRole.getValue())){
-            dep=new DataDepartment();
-            depList.add(dep);
+        boolean Existed=false;
+        if(depList!=null){
+            for(Department depart:depList){
+//                //System.out.println(depart.getType().getValue());
+//                boolean flag= depart instanceof DataDepartment;
+//               if(depart instanceof DataDepartment){
+//                  
+//                System.out.println("result"+flag);
+//               }else{
+//                   System.out.println("result:no"+flag);
+//               }
+                //depart.Type.valueOf("DataRole");
+            System.out.println(depart.getName());
+                if(depart.getName().equals(type.getValue())){
+                    Existed=true;
+                }               
+            }
         }
-        if(type.getValue().equals(Type.SellRole.getValue())){
-            dep=new SellDepartment();
-            depList.add(dep);
+        
+        if(depList==null||!Existed){
+            if(type.getValue().equals(Type.DataRole.getValue())){
+
+                dep=new DataDepartment();
+                depList.add(dep);
+            }
+            if(type.getValue().equals(Type.SellRole.getValue())){
+                dep=new SellDepartment();
+                depList.add(dep);
+            }
+            else if(type.getValue().equals(Type.BuyRole.getValue())){
+                dep=new BuyDepartment();
+                depList.add(dep);
+            }
         }
-        else if(type.getValue().equals(Type.BuyRole.getValue())){
-            dep=new BuyDepartment();
-            depList.add(dep);
+        if(Existed){
+            JOptionPane.showMessageDialog(null, "You can't create 2 same departments!");
         }
         return dep;
+        
     }
 }

@@ -32,9 +32,9 @@ public class MainJFrame extends javax.swing.JFrame {
 //    private SupplierDirectory supplierDirectory;
 //    private JPanel userProcessContainer;
     public MainJFrame() {
-        system = dB4OUtil.retrieveSystem();
+        //system = dB4OUtil.retrieveSystem();
         initComponents();
-        //system= Configure.configure();
+        system= Configure.configure();
     }
 
     /**

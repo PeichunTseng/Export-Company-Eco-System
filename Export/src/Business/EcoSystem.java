@@ -20,6 +20,7 @@ public class EcoSystem extends Department{
     private static EcoSystem business;
     private ArrayList<Network> networkList;
     private AllDataStore datastore;
+    private UserDataStore userDS;
     public static EcoSystem getInstance(){
         if(business==null){
             business=new EcoSystem();
@@ -48,7 +49,16 @@ public class EcoSystem extends Department{
         super(null);
         networkList=new ArrayList<Network>();
         datastore=new AllDataStore();
+        userDS=new UserDataStore();
         
+    }
+
+    public UserDataStore getUserDS() {
+        return userDS;
+    }
+
+    public void setUserDS(UserDataStore userDS) {
+        this.userDS = userDS;
     }
 
     public AllDataStore getDatastore() {
