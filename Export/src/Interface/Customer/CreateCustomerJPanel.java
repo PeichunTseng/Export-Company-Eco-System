@@ -132,6 +132,22 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(idText.getText().isEmpty() || nameText.getText().isEmpty()||addText.getText().isEmpty()||phoneText.getText().isEmpty()
+                ||accText.getText().isEmpty()||passText.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please fill in the blank");
+            return;
+        }
+        try{
+            String regExwWord = "[0-9]{7,11}";
+            Matcher matcher1 = Pattern.compile(regExwWord).matcher(phoneText.getText());
+            if(!matcher1.matches()){
+                JOptionPane.showMessageDialog(null, "Phone number is 7 - 11 digitals");
+                return;
+            }
+        }catch(NumberFormatException n){
+            JOptionPane.showMessageDialog(null, "Please enter number");
+        }
+        
         try{
             for(User user : system.getUserList().getUserList()){
 //                if(accText.getText().equals(user.getUsername())){
