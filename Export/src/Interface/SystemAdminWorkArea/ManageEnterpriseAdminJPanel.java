@@ -286,12 +286,12 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         if(username.isEmpty()||password.isEmpty()||name.isEmpty()){
              JOptionPane.showMessageDialog(this,"Input area can't be empty");
         }
-//        if(!userNamePatternCorrect()){
-//            return;
-//        }
-//        if(!passwordPatternCorrect()){
-//            return;
-//        }
+        if(!userNamePatternCorrect()){
+            return;
+        }
+        if(!passwordPatternCorrect()){
+            return;
+        }
         //boolean IsUniqueUser=false;
 //        for (Network network : system.getNetworkList()) {
 //            for (Enterprise ent: network.getEntList().getEnterpriseList()) {

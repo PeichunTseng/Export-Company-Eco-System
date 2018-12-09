@@ -274,12 +274,12 @@ public class ManageUserJPanel extends javax.swing.JPanel {
         if(userName.isEmpty()||password.isEmpty()){
              JOptionPane.showMessageDialog(this,"Input area can't be empty");
         }
-//        if(!userNamePatternCorrect()){
-//            return;
-//        }
-//        if(!passwordPatternCorrect()){
-//            return;
-//        }
+        if(!userNamePatternCorrect()){
+            return;
+        }
+        if(!passwordPatternCorrect()){
+            return;
+        }
         boolean IsUniqueUser= business.getUserDS().getUserDirectory().checkUsername(userName);
         if(IsUniqueUser==true){
         organization.getUserList().createUser(userName, password, employee, role);
