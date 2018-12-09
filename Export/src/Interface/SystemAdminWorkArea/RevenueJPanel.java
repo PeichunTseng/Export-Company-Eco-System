@@ -6,9 +6,15 @@
 package Interface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Order.Order;
+import Business.Supplier.Product;
+
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,6 +31,35 @@ public class RevenueJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        populateTable();
+    }
+    
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) revenueTable.getModel();
+        model.setRowCount(0);
+        //double orderRevenue=0;
+        
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEntList().getEnterpriseList()) {
+                
+                if("Export".equals(enterprise.getEntType().getValue())){
+                double Revenue=0;
+                for(Order order:enterprise.getDatastore().getOrderList().getOrders()){
+                    
+                        for(Product product:order.getProducts()){
+                            Revenue+=product.getSellPrice()-product.getSize()*product.getShippingCost()-product.getOriginPrice();
+
+                    }
+                }
+                    Object[] row = new Object[3];
+                    row[0] = network.getName();
+                    row[1] = enterprise;
+                    row[2] = Revenue;
+
+                    model.addRow(row);
+                }
+            }
+        }
     }
 
     /**
@@ -39,7 +74,7 @@ public class RevenueJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        revenueTable = new javax.swing.JTable();
 
         jButton1.setText("<<  Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -51,23 +86,23 @@ public class RevenueJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
         jLabel1.setText("Overall revenue range");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        revenueTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Network", "Enterprise type", "Enterprise name", "Revenue"
+                "Network", "Enterprise name", "Revenue"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(revenueTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -110,6 +145,6 @@ public class RevenueJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable revenueTable;
     // End of variables declaration//GEN-END:variables
 }

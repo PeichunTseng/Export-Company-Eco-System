@@ -8,6 +8,7 @@ package Interface.Customer;
 import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.Role.CustomerRole;
+import Business.Role.SysAdmRole;
 import Business.User.User;
 import javax.swing.JOptionPane;
 
@@ -137,10 +138,19 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
             }
         }
         try{
+             boolean IsUniqueUser= system.getUserDS().getUserDirectory().checkUsername(accText.getText());
+        if(IsUniqueUser==true){
             Customer customer = new Customer(Integer.parseInt(idText.getText()),nameText.getText(),
-                addText.getText(),Integer.parseInt(phoneText.getText()) );
+            addText.getText(),Integer.parseInt(phoneText.getText()) );
             system.getUserList().createUser(accText.getText(), passText.getText(),new CustomerRole(), customer);
+            system.getUserDS().getUserDirectory().createUser(accText.getText(), passText.getText(),new CustomerRole(), customer);
+        
+            //system.getUserDS().getUserDirectory().createUser(accText.getText(), passText.getText(),new CustomerRole(),customer);
             JOptionPane.showMessageDialog(null, "Create Successfully");
+             }
+        else{
+            JOptionPane.showMessageDialog(this,"Username has existed");
+        }
         }catch(NumberFormatException n){
             JOptionPane.showMessageDialog(null, "Please enter number");
         }

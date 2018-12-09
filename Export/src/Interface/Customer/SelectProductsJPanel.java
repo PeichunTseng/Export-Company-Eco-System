@@ -291,15 +291,28 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
 
     private void orderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderActionPerformed
         // TODO add your handling code here:
-        Order order = new Order(products);
+        if(products.size() == 0){
+            JOptionPane.showMessageDialog(null, "Please select products");
+            return;
+        }
+        List<Product> orderProducts = new ArrayList<>();
+        orderProducts.addAll(products);
+        Order order = new Order(orderProducts);
         order.setCustomer(customer);
         order.setEmployee(user.getEmployee());
         customer.getOrderList().getOrders().add(order);
         user.getEmployee().getOrderList().getOrders().add(order);
         enterprise.getDatastore().getOrderList().getOrders().add(order);
         products.clear();
+        System.out.println(products.size());
         populateTable();
         populateSelectedTable();
+        System.out.println(enterprise.getName());
+        for(Order order1 : enterprise.getDatastore().getOrderList().getOrders()){
+            for(Product p : order1.getProducts()){
+                System.out.println(p.getName());
+            }
+        }
     }//GEN-LAST:event_orderActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed

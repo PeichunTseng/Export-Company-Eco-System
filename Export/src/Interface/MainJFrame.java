@@ -32,9 +32,9 @@ public class MainJFrame extends javax.swing.JFrame {
 //    private SupplierDirectory supplierDirectory;
 //    private JPanel userProcessContainer;
     public MainJFrame() {
-        //system = dB4OUtil.retrieveSystem();
+        system = dB4OUtil.retrieveSystem();
         initComponents();
-        system= Configure.configure();
+        //system= Configure.configure();
     }
 
     /**
@@ -151,7 +151,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
-        // Get user name
+         // Get user name
         String userName = userNameJTextField.getText();
         // Get Password
         char[] passwordCharArray = passwordField.getPassword();

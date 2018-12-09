@@ -6,6 +6,7 @@
 package Interface.AdminRole;
 
 import Business.Department.Department;
+import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Role.Role;
@@ -30,10 +31,12 @@ public class ManageUserJPanel extends javax.swing.JPanel {
      */
     private JPanel container;
     private Enterprise enterprise;
-    public ManageUserJPanel(JPanel container, Enterprise enterprise) {
+    private EcoSystem business;
+    public ManageUserJPanel(JPanel container, Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.container=container;
         this.enterprise=enterprise;
+        this.business=business;
          popOrganizationComboBox();
        // employeeJComboBox.removeAllItems();
         popData();
@@ -277,8 +280,15 @@ public class ManageUserJPanel extends javax.swing.JPanel {
 //        if(!passwordPatternCorrect()){
 //            return;
 //        }
+        boolean IsUniqueUser= business.getUserDS().getUserDirectory().checkUsername(userName);
+        if(IsUniqueUser==true){
         organization.getUserList().createUser(userName, password, employee, role);
+        business.getUserDS().getUserDirectory().createUser(userName, password, employee, role);
         JOptionPane.showMessageDialog(this,"User created successfully");
+    }
+        else{
+            JOptionPane.showMessageDialog(this,"Username has existed");
+        }
         popData();
     }//GEN-LAST:event_createUserJButtonActionPerformed
 

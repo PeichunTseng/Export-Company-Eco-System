@@ -6,9 +6,25 @@
 package Interface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Order.Order;
+import Business.Supplier.Product;
+import Business.Supplier.ProductDirectory;
+import Interface.Manufacture.SortProList;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +33,8 @@ import javax.swing.JPanel;
 public class SummaryJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
+    private ProductDirectory revenueProList;
+    private ProductDirectory uniqueProList;
     /**
      * Creates new form SummaryJPanel
      */
@@ -24,7 +42,116 @@ public class SummaryJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        revenueProList=new ProductDirectory();
+        uniqueProList=new ProductDirectory();
+        populateTable();
     }
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) productTbl.getModel();
+
+        model.setRowCount(0);
+        //Get the newlist contains unrepeated product and its total revenue
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEntList().getEnterpriseList()) {
+                if("Export".equals(enterprise.getEntType().getValue())){
+                for (Order order : enterprise.getDatastore().getOrderList().getOrders()) {
+                    for(Product p:order.getProducts()){
+                        System.out.println("productName:"+p.getName()+"  ");
+                        System.out.print("SName:"+p.getSupplierName()+"  ");
+                        System.out.print("net:"+network+"  ");
+                        System.out.print("enter"+enterprise+"  ");
+                        double proRevenue=p.getSellPrice()-p.getShippingCost()*p.getSize()-p.getOriginPrice();
+                        if(uniqueProList.getProList().isEmpty()){
+                            double sumReveue=proRevenue;
+                            Product tmpProduct =new Product();
+                            tmpProduct.setName(p.getName());
+                            tmpProduct.setSellPrice(sumReveue);
+                            tmpProduct.setSupplierName(p.getSupplierName());
+                            revenueProList.addProduct(tmpProduct);
+                            
+                        }
+                        
+                        else{
+                            for(Product pro:uniqueProList.getProList()){
+                                if(pro.getName().equals(p.getName())&&pro.getSupplierName().equals(p.getSupplierName())){
+                                     
+                                    double sumReveue=pro.getSellPrice()+proRevenue;
+                                    pro.setSellPrice(sumReveue);
+                                }
+                                else{
+                                    double sumReveue=proRevenue;
+                                    Product tmpProduct =new Product();
+                                    tmpProduct.setName(p.getName());
+                                    tmpProduct.setSellPrice(sumReveue);
+                                    tmpProduct.setSupplierName(p.getSupplierName());
+                                    revenueProList.addProduct(tmpProduct);
+                                }
+                            }
+                        }
+                             
+                    }
+                }
+            
+            }
+        }
+        }
+//        SortProList sortResult=new SortProList();
+//        Collections.sort(revenueProList,sortResult);
+//        System.out.println("Before");
+//        for(Product p : revenueProList.getProList()){
+//            System.out.println(p.getName());
+//        }
+//        Collections.sort(revenueProList.getProList(), new Comparator<Product>(){
+//            @Override
+//            public int compare(Product o1, Product o2) {
+//                return Double.compare(o1.getSellPrice(), o2.getSellPrice());
+//            }
+//        });
+//        System.out.println("After");
+//        for(Product p : revenueProList.getProList()){
+//            System.out.println(p.getName());
+//        }
+        int i=0;
+        for(Product prod:revenueProList.getProList()){
+            if(i>=5){
+                break;
+            }
+            else{
+            Object[] row = new Object[4];
+                row[0] = prod.getId();
+                row[1] = prod.getName();
+                row[2] = prod.getSupplierName();
+                row[3] = prod.getSellPrice();
+                model.addRow(row);
+                i++;
+            }
+            
+            
+        }
+    }
+    
+//    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValueDescending(Map<K, V> map)
+//    {
+//        List<Map.Entry<K, V>> list = new LinkedList<Map.Entry<K, V>>(map.entrySet());
+//        Collections.sort(list, new Comparator<Map.Entry<K, V>>()
+//        {
+//            @Override
+//            public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2)
+//            {
+//                int compare = (o1.getValue()).compareTo(o2.getValue());
+//                return -compare;
+//            }
+//        });
+//
+//        Map<K, V> result = new LinkedHashMap<K, V>();
+//        for (Map.Entry<K, V> entry : list) {
+//            result.put(entry.getKey(), entry.getValue());
+//        }
+//        return result;
+//    }
+
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,13 +164,13 @@ public class SummaryJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        productTbl = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
         jLabel1.setText("Overall Top 5 Profitable Products");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        productTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -59,7 +186,7 @@ public class SummaryJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(productTbl);
 
         jButton1.setText("<<  Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -79,12 +206,12 @@ public class SummaryJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(jLabel1)))
-                .addContainerGap(90, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,6 +238,6 @@ public class SummaryJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable productTbl;
     // End of variables declaration//GEN-END:variables
 }

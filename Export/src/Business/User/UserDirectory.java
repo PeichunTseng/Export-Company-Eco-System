@@ -53,6 +53,12 @@ public class UserDirectory {
         userList.add(user);
         return user;
     }
+//    public User createUser(String username){
+//        User user=new User();
+//        user.setUsername(username); 
+//        userList.add(user);
+//        return user;
+//    }
     //check if name is unique
     public boolean checkUsername(String username){
         for(User u:userList){

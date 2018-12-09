@@ -5,9 +5,7 @@
  */
 package Business;
 
-import Business.User.User;
 import Business.User.UserDirectory;
-import java.util.ArrayList;
 
 
 
@@ -16,46 +14,67 @@ import java.util.ArrayList;
  * @author raoyuhuizi
  */
 public class UserDataStore {
-    private ArrayList<User> userList;
-    private UserDataStore datastore;
+    private UserDirectory userDirectory;
+    //private static UserDataStore datastore;
     public UserDataStore(){
         
-        userList = new ArrayList<>();
+        userDirectory = new UserDirectory();
         
     }
+//    public static UserDataStore getInstance(){
+//        if(datastore==null){
+//            datastore=new UserDataStore();
+//        }
+//        return datastore;
+//    }
 
-    public ArrayList<User> getUserList() {
-        return userList;
-    }
-
-    public void setUserList(ArrayList<User> userList) {
-        this.userList = userList;
-    }
-
-    public User createUser(String username){
-        User user=new User();
-        user.setUsername(username); 
-        userList.add(user);
-        return user;
+    public UserDirectory getUserDirectory() {
+        return userDirectory;
     }
 
-    public UserDataStore getDatastore() {
-        return datastore;
-    }
+    
 
-    public void setDatastore(UserDataStore datastore) {
-        this.datastore = datastore;
-    }
-    public boolean checkUsername(String username){
-        for(User u:userList){
-            if(u.getUsername().equals(username))
-                return false;
-        }
-        return true;
-    }
-     public void deleteUser(User user){
-        
-        userList.remove(user);
-        
-    }
+    
+   
+
+   
+
+//     public User createUser(String username,String password,Employee employee,Role role){
+//        User user=new User();
+//        user.setUsername(username);
+//        user.setPassword(password);
+//        user.setEmployee(employee);
+//        user.setRole(role);
+//        userDirectory.getUserList().add(user);
+//        return user;
+//    }
+//    
+//    public User createUser(String username,String password,Role role, Customer customer){
+//        User user=new User();
+//        user.setUsername(username);
+//        user.setPassword(password);
+//        user.setRole(role);
+//        user.setCustomer(customer);
+//        userDirectory.getUserList().add(user);
+//        return user;
+//    }
+//
+////    public UserDataStore getDatastore() {
+////        return datastore;
+////    }
+////
+////    public void setDatastore(UserDataStore datastore) {
+////        this.datastore = datastore;
+////    }
+//    public boolean IsUniqUsername(String username){
+//        for(User u:userDirectory.getUserList()){
+//            if(u.getUsername().equals(username))
+//                return false;
+//        }
+//        return true;
+//    }
+//     public void deleteUser(User user){       
+//        userDirectory.getUserList().remove(user);
+//        
+//    }
 }

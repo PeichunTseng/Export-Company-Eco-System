@@ -174,7 +174,7 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
         upc.add("CreateNewFlightJPanel",spjp);
         CardLayout layout = (CardLayout)upc.getLayout();
         layout.next(upc);
-
+        System.out.println(enterprise.getName());
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

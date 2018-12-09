@@ -9,6 +9,7 @@ import Business.Department.Department;
 import Business.Department.DepartmentDirectory;
 import Business.Network.Network;
 import Business.EnterpriseDataStore;
+import Business.User.User;
 
 //import Business.Role.Role;
 
@@ -59,6 +60,15 @@ public abstract class Enterprise extends Department{
 
     public EnterpriseDataStore getDatastore() {
         return datastore;
+    }
+    public boolean existAdmin(String typeValue){
+        if(this.getUserList().getUserList().isEmpty()){
+            return false;
+        }
+        else{
+
+        return true;
+        }
     }
     
 //    public FlightDirectory getFltList() {

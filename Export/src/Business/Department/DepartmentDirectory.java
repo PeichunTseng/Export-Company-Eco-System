@@ -29,16 +29,6 @@ public class DepartmentDirectory {
         boolean Existed=false;
         if(depList!=null){
             for(Department depart:depList){
-//                //System.out.println(depart.getType().getValue());
-//                boolean flag= depart instanceof DataDepartment;
-//               if(depart instanceof DataDepartment){
-//                  
-//                System.out.println("result"+flag);
-//               }else{
-//                   System.out.println("result:no"+flag);
-//               }
-                //depart.Type.valueOf("DataRole");
-            System.out.println(depart.getName());
                 if(depart.getName().equals(type.getValue())){
                     Existed=true;
                 }               

@@ -136,6 +136,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel3.setText("Enterprise");
 
         enterpriseJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        enterpriseJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterpriseJComboBoxActionPerformed(evt);
+            }
+        });
 
         submitJButton.setText("Submit");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -232,16 +237,16 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delButton))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(delButton))
-                .addGap(8, 8, 8)
+                    .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -287,30 +292,41 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 //        if(!passwordPatternCorrect()){
 //            return;
 //        }
-        boolean IsUniqueUser=false;
-        for (Network network : system.getNetworkList()) {
-            for (Enterprise ent: network.getEntList().getEnterpriseList()) {
-                IsUniqueUser=ent.getUserList().checkUsername(username);
-            }
-        }
+        //boolean IsUniqueUser=false;
+//        for (Network network : system.getNetworkList()) {
+//            for (Enterprise ent: network.getEntList().getEnterpriseList()) {
+//                IsUniqueUser=ent.getUserList().checkUsername(username);
+//            }
+//        }
+    if(enterprise.getUserList().getUserList().isEmpty()){
+        boolean IsUniqueUser= system.getUserDS().getUserDirectory().checkUsername(username);
         if(IsUniqueUser==true){
-            if (enterprise.getEntType().getValue()=="Manufacturing"){
+            
+            if (enterprise.getEntType().getValue().equals("Manufacturing")){
+                system.getUserDS().getUserDirectory().createUser(username, password, null, new ManufacturingRole());
                 enterprise.getUserList().createUser(username, password, null, new ManufacturingRole());
                 JOptionPane.showMessageDialog(this,"Manufacture created successfully");
             }
-            if (enterprise.getEntType().getValue()=="Transport"){
+            if (enterprise.getEntType().getValue().equals("Transport")){
+                system.getUserDS().getUserDirectory().createUser(username, password, null, new TransportRole());
                 enterprise.getUserList().createUser(username, password, null, new TransportRole());
                 JOptionPane.showMessageDialog(this,"Transport created successfully");
             }
-            if (enterprise.getEntType().getValue()=="Export"){
+            if (enterprise.getEntType().getValue().equals("Export")){
+                system.getUserDS().getUserDirectory().createUser(username, password, null, new AdminRole());
                 enterprise.getUserList().createUser(username, password, null, new AdminRole());
                 JOptionPane.showMessageDialog(this,"Export created successfully");
             }
             populateTable();
+            
             }
         else{
             JOptionPane.showMessageDialog(this,"Username has existed");
         }
+    }
+    else{
+        JOptionPane.showMessageDialog(this,"This enterprise already has admin");
+    }
         
     }//GEN-LAST:event_submitJButtonActionPerformed
 
@@ -353,13 +369,17 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         User user = (User)enterpriseJTable.getValueAt(row, 2);
 
         en.getUserList().deleteUser(user);
-        //userDS.deleteUser(user);
+       //system.getUserDS().getUserDirectory().deleteUser(user);
 
         populateTable();
         JOptionPane.showMessageDialog(null, "User has been deleted");
         // TODO add your handling code here:
 
     }//GEN-LAST:event_delButtonActionPerformed
+
+    private void enterpriseJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterpriseJComboBoxActionPerformed
  private boolean userNamePatternCorrect(){
         Pattern p = Pattern.compile("^[a-zA-Z0-9_]+@([a-zA-z0-9]{1,}\\.){1,}[a-zA-z]{1,}$");
         Matcher m = p.matcher(txtUser.getText());

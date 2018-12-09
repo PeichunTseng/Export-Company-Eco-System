@@ -5,6 +5,7 @@
  */
 package Interface.AdminRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -22,10 +23,12 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Enterprise enterprise;
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    EcoSystem business;
+    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
+        this.business=business;
     }
 
     /**
@@ -124,7 +127,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
         // TODO add your handling code here:
-        ManageUserJPanel muajp = new ManageUserJPanel(userProcessContainer, enterprise);
+        ManageUserJPanel muajp = new ManageUserJPanel(userProcessContainer, enterprise,business);
         userProcessContainer.add("ManageUserAccountJPanel", muajp);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();

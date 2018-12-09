@@ -52,6 +52,14 @@ public class Product {
         this.size=size;
         this.supplierName = supplierName;
      }
+     
+     public Product(String name, double sellPrice,String supplierName){
+        this.name = name;
+        this.sellPrice = sellPrice;
+        this.supplierName = supplierName;
+     }
+     
+     
     public int getId() {
         return id;
     }

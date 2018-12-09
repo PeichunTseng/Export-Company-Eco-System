@@ -8,12 +8,22 @@ package Interface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Order.Order;
+import Business.Supplier.Product;
+import Business.User.User;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,7 +40,47 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         populateNetworkComboBox();
-        enterpriseComboBox.removeAllItems();
+        exportComboBox.removeAllItems();
+    }
+    
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) enterProductTable.getModel();
+
+        model.setRowCount(0);
+        
+       // List<Product> revenueList=new ArrayList<>();
+        Map<Double, Product> revenueMap = new TreeMap<>(
+                new Comparator<Double>() {
+                    public int compare(Double obj1, Double obj2) {
+                        // Sort from low to high
+                        return obj2.compareTo(obj1);
+                    }
+                }
+        );
+        Enterprise enterprise = (Enterprise) exportComboBox.getSelectedItem();
+//        for (Network network : system.getNetworkList()) {
+//            for (Enterprise enterprise : network.getEntList().getEnterpriseList()) {
+               
+                for (Order order : enterprise.getDatastore().getOrderList().getOrders()) {
+                    for(Product p:order.getProducts()){
+                      double proRevenue=p.getSellPrice()-p.getShippingCost()*p.getSize()-p.getOriginPrice();
+                        revenueMap.put(proRevenue,p);
+      
+                    }
+                }
+        
+            for(Double revenue:revenueMap.keySet()){
+                    Object[] row = new Object[4];
+                    row[0] = revenueMap.get(revenue).getId();
+                    row[1] = revenueMap.get(revenue).getName();
+                    row[2] = revenueMap.get(revenue).getSupplierName();
+                    row[3] = revenue;
+
+                    model.addRow(row);
+                }
+            revenueMap.clear();
+       //     }
+     //   }
     }
     
     public void populateNetworkComboBox(){
@@ -41,10 +91,11 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
     }
     
     public void populateEnterpriseComboBox(){
-        enterpriseComboBox.removeAllItems();
+        exportComboBox.removeAllItems();
         Network network = (Network)networkComboBox.getSelectedItem();
         for(Enterprise enterprise : network.getEntList().getEnterpriseList()){
-            enterpriseComboBox.addItem(enterprise);
+            if("Export".equals(enterprise.getEntType().getValue()))
+            exportComboBox.addItem(enterprise);
         }
     }
     /**
@@ -62,15 +113,15 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        enterProductTable = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         selectEnterprise = new javax.swing.JButton();
-        enterpriseComboBox = new javax.swing.JComboBox();
+        exportComboBox = new javax.swing.JComboBox();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
-        jLabel1.setText("Enterprises' Top 5 Profitable Products");
+        jLabel1.setText("Exports' Top 5 Profitable Products");
 
         networkComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -78,7 +129,7 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
         jLabel2.setText("NetWork");
 
         jLabel3.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
-        jLabel3.setText("Enterprise");
+        jLabel3.setText("Export");
 
         jButton1.setText("Search");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +138,7 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        enterProductTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -103,12 +154,12 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(enterProductTable);
+        if (enterProductTable.getColumnModel().getColumnCount() > 0) {
+            enterProductTable.getColumnModel().getColumn(0).setResizable(false);
+            enterProductTable.getColumnModel().getColumn(1).setResizable(false);
+            enterProductTable.getColumnModel().getColumn(2).setResizable(false);
+            enterProductTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jButton2.setText("Product Summary");
@@ -125,7 +176,7 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
             }
         });
 
-        enterpriseComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        exportComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton3.setText("<<  Back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +216,7 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
                                         .addGap(57, 57, 57)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(networkComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(enterpriseComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(exportComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(46, 46, 46)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(selectEnterprise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -177,7 +228,7 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
                         .addComponent(jButton2)
                         .addGap(67, 67, 67)
                         .addComponent(jButton4)))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +246,7 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jButton1)
-                    .addComponent(enterpriseComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(exportComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -208,6 +259,7 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        populateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void selectEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectEnterpriseActionPerformed
@@ -245,7 +297,8 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox enterpriseComboBox;
+    private javax.swing.JTable enterProductTable;
+    private javax.swing.JComboBox exportComboBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -254,7 +307,6 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JComboBox networkComboBox;
     private javax.swing.JButton selectEnterprise;
     // End of variables declaration//GEN-END:variables

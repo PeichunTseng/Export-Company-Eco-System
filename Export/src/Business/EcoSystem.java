@@ -19,7 +19,6 @@ import Business.Role.SysAdmRole;
 public class EcoSystem extends Department{
     private static EcoSystem business;
     private ArrayList<Network> networkList;
-    private AllDataStore datastore;
     private UserDataStore userDS;
     public static EcoSystem getInstance(){
         if(business==null){
@@ -27,6 +26,10 @@ public class EcoSystem extends Department{
         }
         return business;
     }
+//    public static UserDataStore userStoreConfig(){
+//        UserDataStore userDataStore=UserDataStore.getInstance();
+//        return userDataStore;
+//    }
     public Network createNetwork(){
         Network network=new Network();
         networkList.add(network);
@@ -48,8 +51,8 @@ public class EcoSystem extends Department{
     private EcoSystem(){
         super(null);
         networkList=new ArrayList<Network>();
-        datastore=new AllDataStore();
         userDS=new UserDataStore();
+       // userStoreConfig();
         
     }
 
@@ -59,16 +62,7 @@ public class EcoSystem extends Department{
 
     public void setUserDS(UserDataStore userDS) {
         this.userDS = userDS;
-    }
-
-    public AllDataStore getDatastore() {
-        return datastore;
-    }
-
-    public void setDatastore(AllDataStore datastore) {
-        this.datastore = datastore;
-    }
-    
+    } 
 
     public ArrayList<Network> getNetworkList() {
         return networkList;
