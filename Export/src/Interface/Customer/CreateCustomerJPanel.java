@@ -9,6 +9,8 @@ import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.Role.CustomerRole;
 import Business.User.User;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -130,6 +132,22 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(idText.getText().isEmpty() || nameText.getText().isEmpty()||addText.getText().isEmpty()||phoneText.getText().isEmpty()
+                ||accText.getText().isEmpty()||passText.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please fill in the blank");
+            return;
+        }
+        try{
+            String regExwWord = "[0-9]{7,11}";
+            Matcher matcher1 = Pattern.compile(regExwWord).matcher(phoneText.getText());
+            if(!matcher1.matches()){
+                JOptionPane.showMessageDialog(null, "Phone number is 7 - 11 digitals");
+                return;
+            }
+        }catch(NumberFormatException n){
+            JOptionPane.showMessageDialog(null, "Please enter number");
+        }
+        
         try{
             for(User user : system.getUserList().getUserList()){
 //                if(accText.getText().equals(user.getUsername())){
@@ -141,10 +159,17 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
                     return;
                 }
             }   
+            
+        if(!userNamePatternCorrect()){
+            return;
+        }
+        if(!passwordPatternCorrect()){
+            return;
+        }
             boolean IsUniqueUser= system.getUserDS().getUserDirectory().checkUsername(accText.getText());
             if(IsUniqueUser==true){
                 Customer customer = new Customer(Integer.parseInt(idText.getText()),nameText.getText(),
-                addText.getText(),Integer.parseInt(phoneText.getText()) );
+                addText.getText(),Float.parseFloat(phoneText.getText()) );
                 system.getUserList().createUser(accText.getText(), passText.getText(),new CustomerRole(), customer);
                 system.getUserDS().getUserDirectory().createUser(accText.getText(), passText.getText(),new CustomerRole(), customer);
                 JOptionPane.showMessageDialog(null, "Create successfully");
@@ -155,7 +180,56 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter number");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
+    private boolean userNamePatternCorrect(){
+        Pattern p = Pattern.compile("^[a-zA-Z0-9_]+@([a-zA-z0-9]{1,}\\.){1,}[a-zA-z]{1,}$");
+        Matcher m = p.matcher(accText.getText());
+        boolean b = m.matches();
+        Pattern p1 = Pattern.compile("^[_][a-zA-Z0-9_]+@([a-zA-z0-9]{1,}\\.){1,}[a-zA-z]{1,}$");
+        Matcher m1 = p1.matcher(accText.getText());
+        boolean b1 = m1.matches();
+        if(b == true){
+            if (b1 == false){
+                return true;
+            }else{
+                JOptionPane.showMessageDialog(this,"Username should not start with _");
+                return false;
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Username should be a valid email-ID with _ and @ as the only allowed special characters");
+            return false;
+        }  
+    }
+ 
+ private boolean passwordPatternCorrect(){
+        
+        Pattern p = Pattern.compile("^[A-Za-z0-9+_$]+$");
+        Matcher m = p.matcher(passText.getText());
+        Pattern p1 = Pattern.compile(".*[+_$].*");
+        Matcher m1 = p1.matcher(passText.getText());
+        Pattern p2 = Pattern.compile(".*[A-Za-z0-9].*");
+        Matcher m2 = p2.matcher(passText.getText());
+        boolean b = m.matches();
+        boolean b1 = m1.matches();
+        boolean b2 = m2.matches();
+        
+        if(b == true){
+            if(b1 == true){
+                if (b2 == true){
+                    return true;
+                }else{
+                    JOptionPane.showMessageDialog(this,"Password must contain alphanumeric values");
+                    return false;
+                }
+            }else{
+                JOptionPane.showMessageDialog(this,"Password must contain   + _ or $");
+                return false;
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Password must contain alphanumeric values and   + _ or $ only");
+             return false;           
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField accText;

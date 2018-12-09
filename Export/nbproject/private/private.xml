@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Pei_Chun-final_project_rzz666-237140ee5e47/Export/src/Interface/Customer/CreateCustomerJPanel.java</file>
-            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Pei_Chun-final_project_rzz666-237140ee5e47/Export/src/Interface/SystemAdminWorkArea/SummaryJPanel.java</file>
-            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Pei_Chun-final_project_rzz666-237140ee5e47/Export/src/Interface/SystemAdminWorkArea/ManageStatisticsJPanel.java</file>
-            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Pei_Chun-final_project_rzz666-237140ee5e47/Export/src/Business/Supplier/Product.java</file>
+            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Export/src/Interface/Manufacture/ProductManage.java</file>
+            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Export/src/Business/Customer/Customer.java</file>
+            <file>file:/C:/Users/Administrator/fianl_project/final_project_rzz666/Export/src/Interface/Customer/CreateCustomerJPanel.java</file>
         </group>
     </open-files>
 </project-private>

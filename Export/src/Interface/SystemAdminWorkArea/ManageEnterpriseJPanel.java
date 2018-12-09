@@ -223,7 +223,9 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         boolean IsUniqueName = network.getEntList().checkEntName(name);
         if(IsUniqueName){
              network.getEntList().createEnterprise(name, type, network.getName());
+             JOptionPane.showMessageDialog(null, "Create success");
              populateTable();
+             
         }
         else{
             JOptionPane.showMessageDialog(null, "Name has existed");
