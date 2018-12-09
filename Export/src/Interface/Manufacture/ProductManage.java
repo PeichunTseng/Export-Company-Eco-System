@@ -147,11 +147,11 @@ public class ProductManage extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Product Name", "Origin Price", "Quantity", "Size"
+                "Product Name", "Origin Price", "Quantity", "Weight"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

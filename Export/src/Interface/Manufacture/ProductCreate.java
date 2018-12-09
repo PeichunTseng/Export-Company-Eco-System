@@ -110,7 +110,7 @@ public class ProductCreate extends javax.swing.JPanel {
         jLabel1.setText("Create New Product");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Size :");
+        jLabel5.setText("Weight :");
 
         QuantityField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
