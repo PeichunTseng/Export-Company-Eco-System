@@ -20,13 +20,13 @@ public class Customer {
     private String name;
     private int id;
     private String address;
-    private int phoneNumber;
+    private float phoneNumber;
     private OrderList orderList;
     
     public Customer(){
         orderList = new OrderList();
     }
-    public Customer(int id, String name, String address, int phoneNumber){
+    public Customer(int id, String name, String address, float phoneNumber){
         this.id = id;
         this.name = name;
         this.address = address;
@@ -54,11 +54,11 @@ public class Customer {
         this.address = address;
     }
 
-    public int getPhoneNumber() {
+    public float getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(float phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

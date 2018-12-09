@@ -169,7 +169,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
             boolean IsUniqueUser= system.getUserDS().getUserDirectory().checkUsername(accText.getText());
             if(IsUniqueUser==true){
                 Customer customer = new Customer(Integer.parseInt(idText.getText()),nameText.getText(),
-                addText.getText(),Integer.parseInt(phoneText.getText()) );
+                addText.getText(),Float.parseFloat(phoneText.getText()) );
                 system.getUserList().createUser(accText.getText(), passText.getText(),new CustomerRole(), customer);
                 system.getUserDS().getUserDirectory().createUser(accText.getText(), passText.getText(),new CustomerRole(), customer);
                 JOptionPane.showMessageDialog(null, "Create successfully");
