@@ -112,7 +112,7 @@ public class BuyWorkAreaJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Supplier", "Product Name", "Origin Price", "Quantity", "Size"
+                "Supplier", "Product Name", "Origin Price", "Quantity", "Weight"
             }
         ) {
             boolean[] canEdit = new boolean [] {

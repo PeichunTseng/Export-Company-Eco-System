@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Department.Department;
+import Business.Employee.Employee;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -63,11 +64,20 @@ public class SysAdmWorkAreaJPanel extends javax.swing.JPanel {
                 enterpriseNode=new DefaultMutableTreeNode(enterprise.getName());
                 networkNode.insert(enterpriseNode, j);
                 
-                organizationList=enterprise.getDepartmentList().getDepList();
+//                organizationList=enterprise.getDepartmentList().getDepList();
+//                for(int k=0;k<organizationList.size();k++){
+//                    organization=organizationList.get(i);
+//                    organizationNode=new DefaultMutableTreeNode(organization.getName());
+//                    enterpriseNode.insert(organizationNode, k);
+//                }
+                
+                                 organizationList=enterprise.getDepartmentList().getDepList();
                 for(int k=0;k<organizationList.size();k++){
-                    organization=organizationList.get(i);
-                    organizationNode=new DefaultMutableTreeNode(organization.getName());
+                    organization=organizationList.get(k);
+                    for(Employee e:organization.getEmpList().getEmpList() ){
+                    organizationNode=new DefaultMutableTreeNode(e.getName());
                     enterpriseNode.insert(organizationNode, k);
+                    }
                 }
             }
         }
