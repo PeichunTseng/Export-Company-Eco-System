@@ -13,6 +13,7 @@ import Business.Supplier.Product;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -76,17 +77,23 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
                     sum.add(p);
                 }
             }
-            int revenue = 0;
+            double revenue = 0;
             String name = "";
             String supplier = "";
             for(Product p : sum){
                 name = p.getName();
                 supplier = p.getSupplierName();
-                revenue += p.getSellPrice()-p.getOriginPrice()-p.getShippingCost();
+                revenue += (p.getSellPrice()-p.getOriginPrice()-p.getShippingCost())*p.getNum();
             }
             Product pro = new Product(name,supplier,revenue);
             mergedProduct.add(pro);
         }
+        Collections.sort(mergedProduct, new Comparator<Product>(){
+            @Override
+            public int compare(Product t, Product t1) {
+                return Double.compare(t1.getRevenue(), t.getRevenue());
+            }
+        });
         for(Product p : mergedProduct){
             Object[] row = new Object[3];
             row[0] = p;
@@ -184,16 +191,12 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
         });
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
-        jLabel1.setText("Exports' Top 5 Profitable Products");
+        jLabel1.setText("Exports' Product Revenue Ranking");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(back)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +205,6 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
                         .addGap(18, 18, 18)
                         .addComponent(revenueSummary))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -213,7 +215,16 @@ public class ManageStatisticsJPanel extends javax.swing.JPanel{
                             .addComponent(exportComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(46, 46, 46)
                         .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 88, Short.MAX_VALUE))
+                .addGap(0, 79, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(back))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
