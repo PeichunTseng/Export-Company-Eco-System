@@ -62,26 +62,25 @@ public class UpdateProduct extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        backButton1 = new javax.swing.JButton();
-        saveButton = new javax.swing.JButton();
-        createButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        QuantityField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        SizeField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        NameField = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         PriceField = new javax.swing.JTextField();
+        saveButton = new javax.swing.JButton();
+        backButton1 = new javax.swing.JButton();
+        NameField = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        createButton = new javax.swing.JButton();
+        SizeField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        QuantityField = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("View Product Detail");
 
-        backButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        backButton1.setText("<< Back");
-        backButton1.addActionListener(new java.awt.event.ActionListener() {
+        PriceField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        PriceField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButton1ActionPerformed(evt);
+                PriceFieldActionPerformed(evt);
             }
         });
 
@@ -94,26 +93,13 @@ public class UpdateProduct extends javax.swing.JPanel {
             }
         });
 
-        createButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        createButton.setText("Update Product");
-        createButton.addActionListener(new java.awt.event.ActionListener() {
+        backButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        backButton1.setText("<< Back");
+        backButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createButtonActionPerformed(evt);
+                backButton1ActionPerformed(evt);
             }
         });
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Weight :");
-
-        QuantityField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Quantity :");
-
-        SizeField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Original Price :");
 
         NameField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         NameField.addActionListener(new java.awt.event.ActionListener() {
@@ -122,15 +108,29 @@ public class UpdateProduct extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("Weight :");
+
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Product Name:");
 
-        PriceField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        PriceField.addActionListener(new java.awt.event.ActionListener() {
+        createButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        createButton.setText("Update Product");
+        createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PriceFieldActionPerformed(evt);
+                createButtonActionPerformed(evt);
             }
         });
+
+        SizeField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Quantity :");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Original Price :");
+
+        QuantityField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -168,7 +168,7 @@ public class UpdateProduct extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addComponent(SizeField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,37 +196,13 @@ public class UpdateProduct extends javax.swing.JPanel {
                     .addComponent(backButton1)
                     .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(createButton))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+    private void PriceFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PriceFieldActionPerformed
         // TODO add your handling code here:
-        NameField.setEditable(true);
-        PriceField.setEditable(true);
-        QuantityField.setEditable(true);
-        SizeField.setEditable(true);
-        saveButton.setEnabled(true);
-        JOptionPane.showMessageDialog(null, "You can modify Product now", "Warning", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_createButtonActionPerformed
-
-    private void backAction() {
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        ProductManage manageProductCatalogJPanel = (ProductManage) component;
-        manageProductCatalogJPanel.refreshTable();
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }
-    private void backButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1ActionPerformed
-        // TODO add your handling code here:
-        backAction();
-        
-        //        userProcessContainer.remove(this);
-        //        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        //        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_backButton1ActionPerformed
+    }//GEN-LAST:event_PriceFieldActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
@@ -249,7 +225,6 @@ public class UpdateProduct extends javax.swing.JPanel {
             return;
 
         }
-        
 
         try{
             double cap =Double.parseDouble(SizeField.getText());
@@ -266,14 +241,38 @@ public class UpdateProduct extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Product successfully updated", "Warning", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_saveButtonActionPerformed
 
+    private void backButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1ActionPerformed
+        // TODO add your handling code here:
+        backAction();
+
+        //        userProcessContainer.remove(this);
+        //        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        //        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backButton1ActionPerformed
+
     private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NameFieldActionPerformed
 
-    private void PriceFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PriceFieldActionPerformed
+    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PriceFieldActionPerformed
+        NameField.setEditable(true);
+        PriceField.setEditable(true);
+        QuantityField.setEditable(true);
+        SizeField.setEditable(true);
+        saveButton.setEnabled(true);
+        JOptionPane.showMessageDialog(null, "You can modify Product now", "Warning", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_createButtonActionPerformed
 
+    private void backAction() {
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ProductManage manageProductCatalogJPanel = (ProductManage) component;
+        manageProductCatalogJPanel.refreshTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField NameField;

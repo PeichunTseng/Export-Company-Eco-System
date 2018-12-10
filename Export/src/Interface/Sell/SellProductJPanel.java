@@ -72,12 +72,12 @@ public class SellProductJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane3 = new javax.swing.JScrollPane();
-        productTable = new javax.swing.JTable();
+        add = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         employeeProductTable = new javax.swing.JTable();
-        add = new javax.swing.JButton();
         quantitySpinner = new javax.swing.JSpinner();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        productTable = new javax.swing.JTable();
         sellPriceText = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -85,29 +85,13 @@ public class SellProductJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         returnQuantitySpinner = new javax.swing.JSpinner();
 
-        productTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Name", "Supplier", "Original Price", "Shipping Fee", "Cost", "Number"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, true, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        add.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        add.setText("Add");
+        add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionPerformed(evt);
             }
         });
-        jScrollPane3.setViewportView(productTable);
-        if (productTable.getColumnModel().getColumnCount() > 0) {
-            productTable.getColumnModel().getColumn(0).setResizable(false);
-            productTable.getColumnModel().getColumn(1).setResizable(false);
-            productTable.getColumnModel().getColumn(2).setResizable(false);
-            productTable.getColumnModel().getColumn(5).setResizable(false);
-        }
 
         employeeProductTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -126,25 +110,36 @@ public class SellProductJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(employeeProductTable);
-        if (employeeProductTable.getColumnModel().getColumnCount() > 0) {
-            employeeProductTable.getColumnModel().getColumn(0).setResizable(false);
-            employeeProductTable.getColumnModel().getColumn(1).setResizable(false);
-            employeeProductTable.getColumnModel().getColumn(2).setResizable(false);
-            employeeProductTable.getColumnModel().getColumn(3).setResizable(false);
-            employeeProductTable.getColumnModel().getColumn(4).setResizable(false);
-        }
 
-        add.setText("Add");
-        add.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addActionPerformed(evt);
+        quantitySpinner.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+
+        productTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Supplier", "Original Price", "Shipping Fee", "Cost", "Number"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        jScrollPane3.setViewportView(productTable);
 
+        sellPriceText.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Sell Price");
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel2.setText("Quantity");
 
+        undo.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         undo.setText("Undo");
         undo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,7 +147,10 @@ public class SellProductJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel3.setText("Quantity");
+
+        returnQuantitySpinner.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -161,38 +159,36 @@ public class SellProductJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabel3)
+                        .addGap(22, 22, 22)
+                        .addComponent(returnQuantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(undo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel2)
+                        .addGap(22, 22, 22)
+                        .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(sellPriceText, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(jLabel3)
-                                .addGap(22, 22, 22)
-                                .addComponent(returnQuantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(57, 57, 57)
-                                .addComponent(undo))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(jLabel2)
-                                .addGap(22, 22, 22)
-                                .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(sellPriceText, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 51, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(47, 47, 47)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -206,7 +202,7 @@ public class SellProductJPanel extends javax.swing.JPanel {
                     .addComponent(undo)
                     .addComponent(returnQuantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -237,20 +233,20 @@ public class SellProductJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "The selling price must be larger than the cost");
                 return;
             }
-            
+
             //同一种产品可以有不用的sell price
-//            for(Product pro : user.getEmployee().getProducts()){
-//                if(pro.getName().equals(selectedProduct.getName()) && 
-//                        pro.getSupplierName().equals(selectedProduct.getSupplierName()) &&
-//                        pro.getSellPrice() == sellPrice ){
-//                    pro.setNum(pro.getNum()+quantity);
-//                    alreadyHas = true;
-//                }
-//            }
+            //            for(Product pro : user.getEmployee().getProducts()){
+                //                if(pro.getName().equals(selectedProduct.getName()) &&
+                    //                        pro.getSupplierName().equals(selectedProduct.getSupplierName()) &&
+                    //                        pro.getSellPrice() == sellPrice ){
+                    //                    pro.setNum(pro.getNum()+quantity);
+                    //                    alreadyHas = true;
+                    //                }
+                //            }
             //同一种产品只有一个sell price
-             for(Product pro : user.getEmployee().getProducts()){
-                if(pro.getName().equals(selectedProduct.getName()) && 
-                        pro.getSupplierName().equals(selectedProduct.getSupplierName())){
+            for(Product pro : user.getEmployee().getProducts()){
+                if(pro.getName().equals(selectedProduct.getName()) &&
+                    pro.getSupplierName().equals(selectedProduct.getSupplierName())){
                     if(pro.getSellPrice() == sellPrice){
                         pro.setNum(pro.getNum()+quantity);
                         alreadyHas = true;
@@ -262,9 +258,9 @@ public class SellProductJPanel extends javax.swing.JPanel {
             }
             if(!alreadyHas){
                 Product employeeProduct = new Product(selectedProduct.getName(),selectedProduct.getOriginPrice(),
-                quantity,selectedProduct.getSupplierName());
+                    quantity,selectedProduct.getSupplierName());
                 employeeProduct.setSellPrice(sellPrice);
-                employeeProduct.setShippingCost(user.getEmployee().getFlight().getShippingFee()*selectedProduct.getSize());
+                employeeProduct.setShippingCost(selectedProduct.getOriginPrice() + user.getEmployee().getFlight().getShippingFee()*selectedProduct.getSize());
                 user.getEmployee().getProducts().add(employeeProduct);
             }
             int leftNumber = selectedProduct.getNum() - quantity;
@@ -298,15 +294,15 @@ public class SellProductJPanel extends javax.swing.JPanel {
             return;
         }
         for(Product pro : enterprise.getDatastore().getProList()){
-            if(pro.getName().equals(selectedProduct.getName()) && 
-                    pro.getSupplierName().equals(selectedProduct.getSupplierName())){
-                    pro.setNum(pro.getNum()+quantity);
-                    alreadyHas = true;
+            if(pro.getName().equals(selectedProduct.getName()) &&
+                pro.getSupplierName().equals(selectedProduct.getSupplierName())){
+                pro.setNum(pro.getNum()+quantity);
+                alreadyHas = true;
             }
         }
         if(!alreadyHas){
             Product employeeProduct = new Product(selectedProduct.getName(),selectedProduct.getOriginPrice(),
-            quantity,selectedProduct.getSupplierName());
+                quantity,selectedProduct.getSupplierName());
             enterprise.getDatastore().getProList().add(employeeProduct);
         }
         int leftNumber = selectedProduct.getNum() - quantity;
@@ -315,7 +311,7 @@ public class SellProductJPanel extends javax.swing.JPanel {
         }else{
             selectedProduct.setNum(leftNumber);
         }
-        
+
         populateTable();
         populateSelectedTable();
     }//GEN-LAST:event_undoActionPerformed

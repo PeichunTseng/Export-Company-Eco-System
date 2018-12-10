@@ -85,21 +85,39 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         add = new javax.swing.JButton();
+        order = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         customerProductTable = new javax.swing.JTable();
-        undo = new javax.swing.JButton();
         quantitySpinner = new javax.swing.JSpinner();
-        order = new javax.swing.JButton();
-        back = new javax.swing.JButton();
+        undo = new javax.swing.JButton();
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel2.setText("Quantity");
 
+        add.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         add.setText("Add");
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addActionPerformed(evt);
+            }
+        });
+
+        order.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        order.setText("Order");
+        order.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderActionPerformed(evt);
+            }
+        });
+
+        back.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        back.setText("<<  Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
             }
         });
 
@@ -139,24 +157,13 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(customerProductTable);
 
+        quantitySpinner.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+
+        undo.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         undo.setText("Undo");
         undo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 undoActionPerformed(evt);
-            }
-        });
-
-        order.setText("Order");
-        order.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderActionPerformed(evt);
-            }
-        });
-
-        back.setText("<<  Back");
-        back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backActionPerformed(evt);
             }
         });
 
@@ -167,33 +174,31 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jLabel2)
-                        .addGap(22, 22, 22)
-                        .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(undo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(add))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(213, 213, 213)
                         .addComponent(order))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(back)))
-                .addContainerGap(109, Short.MAX_VALUE))
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(back)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(22, 22, 22)
+                                    .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(43, 43, 43)
+                                    .addComponent(undo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(add))
+                                .addComponent(jScrollPane2)))))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(back)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -234,8 +239,8 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
             }
         }
         if(!alreadyHas){
-            Product customerProduct = new Product(selectedProduct.getName(),selectedProduct.getOriginPrice(), selectedProduct.getSellPrice(), 
-                    quantity,selectedProduct.getSize(),selectedProduct.getSupplierName());
+            Product customerProduct = new Product(selectedProduct.getName(),selectedProduct.getOriginPrice(), selectedProduct.getSellPrice(),
+                quantity,selectedProduct.getSize(),selectedProduct.getSupplierName());
             products.add(customerProduct);
         }
         int leftNumber = selectedProduct.getNum() - quantity;
@@ -244,50 +249,10 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
         }else{
             selectedProduct.setNum(leftNumber);
         }
-        
+
         populateTable();
         populateSelectedTable();
     }//GEN-LAST:event_addActionPerformed
-
-    private void undoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoActionPerformed
-        // TODO add your handling code here:
-        boolean alreadyHas = false;
-        int selectedRow = customerProductTable.getSelectedRow();
-        if(selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please Select a Row");
-            return;
-        }
-        Product selectedProduct = (Product)customerProductTable.getValueAt(selectedRow, 0);
-        int quantity = (Integer) quantitySpinner.getValue();
-        if(quantity <= 0){
-            JOptionPane.showMessageDialog(null, "Quantity can not be less than 1");
-            return;
-        }else if(quantity > selectedProduct.getNum()){
-            JOptionPane.showMessageDialog(null, "There are not enough products");
-            return;
-        }
-        for(Product pro : user.getEmployee().getProducts()){
-            if(pro.getName().equals(selectedProduct.getName()) &&
-                pro.getSupplierName().equals(selectedProduct.getSupplierName())){
-                pro.setNum(pro.getNum()+quantity);
-                alreadyHas = true;
-            }
-        }
-        if(!alreadyHas){
-            Product employeeProduct = new Product(selectedProduct.getName(),selectedProduct.getOriginPrice(), selectedProduct.getSellPrice(), 
-                    quantity,selectedProduct.getSize(),selectedProduct.getSupplierName());
-            user.getEmployee().getProducts().add(employeeProduct);
-        }
-        int leftNumber = selectedProduct.getNum() - quantity;
-        if(leftNumber == 0 ){
-            products.remove(selectedProduct);
-        }else{
-            selectedProduct.setNum(leftNumber);
-        }
-
-        populateTable();
-        populateSelectedTable();
-    }//GEN-LAST:event_undoActionPerformed
 
     private void orderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderActionPerformed
         // TODO add your handling code here:
@@ -321,15 +286,15 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
             boolean alreadyHas = false;
             for(Product pro : user.getEmployee().getProducts()){
                 if(pro.getName().equals(selectedPro.getName()) &&
-                pro.getSupplierName().equals(selectedPro.getSupplierName())){
+                    pro.getSupplierName().equals(selectedPro.getSupplierName())){
                     pro.setNum(pro.getNum()+selectedPro.getNum());
                     alreadyHas = true;
                 }
             }
             if(!alreadyHas){
-                Product employeeProduct = new Product(selectedPro.getName(),selectedPro.getOriginPrice(), selectedPro.getSellPrice(), 
+                Product employeeProduct = new Product(selectedPro.getName(),selectedPro.getOriginPrice(), selectedPro.getSellPrice(),
                     selectedPro.getNum(),selectedPro.getSize(),selectedPro.getSupplierName());
-            user.getEmployee().getProducts().add(employeeProduct);
+                user.getEmployee().getProducts().add(employeeProduct);
             }
         }
         products.clear();
@@ -341,6 +306,46 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) upc.getLayout();
         layout.previous(upc);
     }//GEN-LAST:event_backActionPerformed
+
+    private void undoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoActionPerformed
+        // TODO add your handling code here:
+        boolean alreadyHas = false;
+        int selectedRow = customerProductTable.getSelectedRow();
+        if(selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please Select a Row");
+            return;
+        }
+        Product selectedProduct = (Product)customerProductTable.getValueAt(selectedRow, 0);
+        int quantity = (Integer) quantitySpinner.getValue();
+        if(quantity <= 0){
+            JOptionPane.showMessageDialog(null, "Quantity can not be less than 1");
+            return;
+        }else if(quantity > selectedProduct.getNum()){
+            JOptionPane.showMessageDialog(null, "There are not enough products");
+            return;
+        }
+        for(Product pro : user.getEmployee().getProducts()){
+            if(pro.getName().equals(selectedProduct.getName()) &&
+                pro.getSupplierName().equals(selectedProduct.getSupplierName())){
+                pro.setNum(pro.getNum()+quantity);
+                alreadyHas = true;
+            }
+        }
+        if(!alreadyHas){
+            Product employeeProduct = new Product(selectedProduct.getName(),selectedProduct.getOriginPrice(), selectedProduct.getSellPrice(),
+                quantity,selectedProduct.getSize(),selectedProduct.getSupplierName());
+            user.getEmployee().getProducts().add(employeeProduct);
+        }
+        int leftNumber = selectedProduct.getNum() - quantity;
+        if(leftNumber == 0 ){
+            products.remove(selectedProduct);
+        }else{
+            selectedProduct.setNum(leftNumber);
+        }
+
+        populateTable();
+        populateSelectedTable();
+    }//GEN-LAST:event_undoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -12,9 +12,19 @@ import Business.Order.Order;
 import Business.Supplier.Product;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+
+import org.jfree.chart.ChartFactory;  
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;  
+import org.jfree.chart.JFreeChart;  
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;  
+import org.jfree.data.category.CategoryDataset;  
+import org.jfree.data.category.DefaultCategoryDataset;  
 
 /**
  *
@@ -71,20 +81,19 @@ public class RevenueJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         revenueTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
-        jButton1.setText("<<  Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jButton2.setText("View chart");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
-        jLabel1.setText("Overall revenue range");
 
         revenueTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,6 +113,17 @@ public class RevenueJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(revenueTable);
 
+        jLabel1.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
+        jLabel1.setText("Overall revenue range");
+
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jButton1.setText("<<  Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,27 +131,74 @@ public class RevenueJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(jButton1))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
+                        .addGap(88, 88, 88)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(146, 146, 146)
+                        .addComponent(jButton2)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(20, 20, 20)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(28, 28, 28)
+                .addGap(13, 13, 13)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        //        RevenueChart rc = new RevenueChart(userProcessContainer, system);
+        //        userProcessContainer.add("RevenueChart",rc);
+        //        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        //        layout.next(userProcessContainer);
+        DefaultCategoryDataset dataset=new DefaultCategoryDataset();
+
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEntList().getEnterpriseList()) {
+
+                if("Export".equals(enterprise.getEntType().getValue())){
+                    double Revenue=0;
+                    for(Order order:enterprise.getDatastore().getOrderList().getOrders()){
+
+                        for(Product product:order.getProducts()){
+                            Revenue+=product.getSellPrice()-product.getSize()*product.getShippingCost()-product.getOriginPrice();
+
+                        }
+                    }
+                    dataset.addValue(Revenue, "Revenue", enterprise.getName()+enterprise.getNetworkName());
+
+                }
+            }
+        }
+
+        JFreeChart chart=ChartFactory.createBarChart(
+            "Overall Revenue Bar Chart", //Chart Title
+            "export company", // Category axis
+            "Overall Revenue", // Value axis
+            dataset,
+            PlotOrientation.VERTICAL,
+            false,true,false
+        );
+        CategoryPlot p=chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.black);
+        ChartFrame frame= new ChartFrame( "Overall Revenue Bar Chart",chart);
+        frame.setVisible(true);
+        frame.setSize(800,600);
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -143,6 +210,7 @@ public class RevenueJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable revenueTable;

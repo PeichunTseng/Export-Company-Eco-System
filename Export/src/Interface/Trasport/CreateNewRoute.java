@@ -57,18 +57,15 @@ public class CreateNewRoute extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         createButton = new javax.swing.JButton();
         backButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         FlightnumberField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         DestinationField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         PriceField = new javax.swing.JTextField();
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Create New Shipping");
+        jLabel4 = new javax.swing.JLabel();
 
         createButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         createButton.setText("Add ");
@@ -96,13 +93,13 @@ public class CreateNewRoute extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Destination:");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Create New Shipping");
 
         DestinationField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("     Price(/kg) :");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Destination:");
 
         PriceField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         PriceField.addActionListener(new java.awt.event.ActionListener() {
@@ -111,44 +108,43 @@ public class CreateNewRoute extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("     Price(/kg) :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jLabel1)
-                .addGap(0, 100, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(FlightnumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(backButton1)
-                                .addGap(98, 98, 98)
-                                .addComponent(createButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(PriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DestinationField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(backButton1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(createButton))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(PriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(DestinationField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(FlightnumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
+                        .addGap(53, 53, 53)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addGap(26, 26, 26)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(FlightnumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -160,11 +156,11 @@ public class CreateNewRoute extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton1)
                     .addComponent(createButton))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(75, 75, 75))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -172,15 +168,15 @@ public class CreateNewRoute extends javax.swing.JPanel {
 
         Flight flight = new Flight();
         //airline.getFltList().addFlight(flight);
-//        try{
-//            int price =Integer.parseInt(PriceField.getText());
-//            flight.setPrice(price);
-//        }catch(NumberFormatException e){
-//
-//            JOptionPane.showMessageDialog(null, "number only");
-//            return;
-//
-//        }
+        //        try{
+            //            int price =Integer.parseInt(PriceField.getText());
+            //            flight.setPrice(price);
+            //        }catch(NumberFormatException e){
+            //
+            //            JOptionPane.showMessageDialog(null, "number only");
+            //            return;
+            //
+            //        }
 
         try{
             double cap =Double.parseDouble(PriceField.getText());
@@ -196,74 +192,58 @@ public class CreateNewRoute extends javax.swing.JPanel {
         flight.setCty(DestinationField.getText());
         //flight.setTime(DepartureTimeField.getText());
         flight.setEnterpriseName(enterprise.getName());
-        
+
         //enterprise.getFltList().addFlight(flight);
         enterprise.getDatastore().getFliList().add(flight);
         network.getNetworkDataStore().getFliList().add(flight);
 
         JOptionPane.showMessageDialog(null, "New Shipping successfully added", "Warning", JOptionPane.INFORMATION_MESSAGE);
-        
+
         List<String> ctyname = new ArrayList<>();
-        
-        
-//        if(!ctyname.contains(DestinationField.getText()))
-//        {
-//            ctyname.add(DestinationField.getText());
-//            enterprise.getDatastore().getCountryList().add(new CtyDetail(DestinationField.getText()));
-//        }
+
+        //        if(!ctyname.contains(DestinationField.getText()))
+        //        {
+            //            ctyname.add(DestinationField.getText());
+            //            enterprise.getDatastore().getCountryList().add(new CtyDetail(DestinationField.getText()));
+            //        }
         /*先注掉
-         for(CtyDetail cty:enterprise.getDatastore().getCountryList()){
+        for(CtyDetail cty:enterprise.getDatastore().getCountryList()){
             if(!ctyname.contains(cty.getCtyName()))
-                ctyname.add(cty.getCtyName());
-         }
-         
+            ctyname.add(cty.getCtyName());
+        }
+
         if(!ctyname.contains(DestinationField.getText())){
             enterprise.getDatastore().getCountryList().add(new CtyDetail(DestinationField.getText()));
             network.getNetworkDataStore().getCountryList().add(new CtyDetail(DestinationField.getText()));
         }
         */
-        
-        
-//        List<String> airlineName = new ArrayList<>();
-//        
-//        for(Airline cty:enterprise.getDatastore().getAirList()){
-//            if(!airlineName.contains(cty.getAlName()))
-//                airlineName.add(cty.getAlName());
-//         }
-//         
-//        if(!airlineName.contains(airline.getAlName())){
-//            enterprise.getDatastore().getAirList().add(airline);
-//        }
-        
-        //enterprise.getDatastore().getAirList().add(airline);
-        
 
-        
-        
-//        for(CtyDetail cty:enterprise.getDatastore().getCountryList())
-//        {
-//            if(!ctyname.contains(cty.getCtyName()))
-//            {
-//                ctyname.add(cty.getCtyName());
-//                enterprise.getDatastore().getCountryList().add(new CtyDetail(DestinationField.getText()));
-//            }
-//        
-//        }
-         
-       // enterprise.getDatastore().getCountryList().add(new CtyDetail(DestinationField.getText()));
+        //        List<String> airlineName = new ArrayList<>();
+        //
+        //        for(Airline cty:enterprise.getDatastore().getAirList()){
+            //            if(!airlineName.contains(cty.getAlName()))
+            //                airlineName.add(cty.getAlName());
+            //         }
+        //
+        //        if(!airlineName.contains(airline.getAlName())){
+            //            enterprise.getDatastore().getAirList().add(airline);
+            //        }
+
+        //enterprise.getDatastore().getAirList().add(airline);
+
+        //        for(CtyDetail cty:enterprise.getDatastore().getCountryList())
+        //        {
+            //            if(!ctyname.contains(cty.getCtyName()))
+            //            {
+                //                ctyname.add(cty.getCtyName());
+                //                enterprise.getDatastore().getCountryList().add(new CtyDetail(DestinationField.getText()));
+                //            }
+            //
+            //        }
+
+        // enterprise.getDatastore().getCountryList().add(new CtyDetail(DestinationField.getText()));
     }//GEN-LAST:event_createButtonActionPerformed
 
-    private void backAction() {
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        ManageRoute chooseAirplaneModelToSchedule = (ManageRoute) component;
-        chooseAirplaneModelToSchedule.refreshTable();
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-        
-  
-    }
     private void backButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1ActionPerformed
         // TODO add your handling code here:
         backAction();
@@ -277,6 +257,17 @@ public class CreateNewRoute extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_PriceFieldActionPerformed
 
+    private void backAction() {
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageRoute chooseAirplaneModelToSchedule = (ManageRoute) component;
+        chooseAirplaneModelToSchedule.refreshTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        
+  
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField DestinationField;

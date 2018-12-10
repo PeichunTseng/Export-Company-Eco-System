@@ -36,20 +36,48 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        nameText = new javax.swing.JTextField();
-        idText = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         addText = new javax.swing.JTextField();
         phoneText = new javax.swing.JTextField();
+        nameText = new javax.swing.JTextField();
+        idText = new javax.swing.JTextField();
         accText = new javax.swing.JTextField();
         passText = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel5.setText("User Name:");
+
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel6.setText("Password:");
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel3.setText("Address:");
+
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel4.setText("Phone Number:");
+
+        addText.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+
+        phoneText.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+
+        nameText.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+
+        idText.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+
+        accText.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+
+        passText.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel2.setText("Name:");
+
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton2.setText("Create");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,17 +85,8 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Customer ID:");
-
-        jLabel2.setText("Name:");
-
-        jLabel3.setText("Address:");
-
-        jLabel4.setText("Phone Number:");
-
-        jLabel5.setText("User Name:");
-
-        jLabel6.setText("Password:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -93,9 +112,9 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
                             .addComponent(accText, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
+                        .addGap(199, 199, 199)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,16 +143,16 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addGap(29, 29, 29))
+                .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if(idText.getText().isEmpty() || nameText.getText().isEmpty()||addText.getText().isEmpty()||phoneText.getText().isEmpty()
-                ||accText.getText().isEmpty()||passText.getText().isEmpty()){
+            ||accText.getText().isEmpty()||passText.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please fill in the blank");
             return;
         }
@@ -147,29 +166,29 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         }catch(NumberFormatException n){
             JOptionPane.showMessageDialog(null, "Please enter number");
         }
-        
+
         try{
             for(User user : system.getUserList().getUserList()){
-//                if(accText.getText().equals(user.getUsername())){
-//                    JOptionPane.showMessageDialog(null, "This user name has been registered");
-//                    return;
-//                }
+                //                if(accText.getText().equals(user.getUsername())){
+                    //                    JOptionPane.showMessageDialog(null, "This user name has been registered");
+                    //                    return;
+                    //                }
                 if(user.getCustomer() != null && Integer.parseInt(idText.getText()) == user.getCustomer().getId()){
                     JOptionPane.showMessageDialog(null, "One customer Id can only create one account");
                     return;
                 }
-            }   
-            
-        if(!userNamePatternCorrect()){
-            return;
-        }
-        if(!passwordPatternCorrect()){
-            return;
-        }
+            }
+
+            if(!userNamePatternCorrect()){
+                return;
+            }
+            if(!passwordPatternCorrect()){
+                return;
+            }
             boolean IsUniqueUser= system.getUserDS().getUserDirectory().checkUsername(accText.getText());
             if(IsUniqueUser==true){
                 Customer customer = new Customer(Integer.parseInt(idText.getText()),nameText.getText(),
-                addText.getText(),Float.parseFloat(phoneText.getText()) );
+                    addText.getText(),Float.parseFloat(phoneText.getText()) );
                 system.getUserList().createUser(accText.getText(), passText.getText(),new CustomerRole(), customer);
                 system.getUserDS().getUserDirectory().createUser(accText.getText(), passText.getText(),new CustomerRole(), customer);
                 JOptionPane.showMessageDialog(null, "Create successfully");
