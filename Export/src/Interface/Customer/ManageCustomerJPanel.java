@@ -51,16 +51,27 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 }
             }
         }
+//        for(Enterprise enterprise : exports){
+//            for(Department department : enterprise.getDepartmentList().getDepList()){
+//                for(User user : department.getUserList().getUserList()){
+//                    if(user.getEmployee().getFlight() != null){
+//                        countryComboBox.addItem(user.getEmployee().getFlight());
+//                        users.add(user);
+        List<String> countryList = new ArrayList<>();
         for(Enterprise enterprise : exports){
             for(Department department : enterprise.getDepartmentList().getDepList()){
                 for(User user : department.getUserList().getUserList()){
                     if(user.getEmployee().getFlight() != null){
-                        countryComboBox.addItem(user.getEmployee().getFlight());
-                        users.add(user);
+                        if(!countryList.contains(user.getEmployee().getFlight().getCty())){
+                          countryList.add(user.getEmployee().getFlight().getCty());
                     }
                 }
             }
         }
+      }
+          for(String s : countryList){
+            countryComboBox.addItem(s);
+          }
 
     }
     /**
@@ -80,6 +91,11 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         jLabel1.setText("Select Country");
 
         countryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        countryComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                countryComboBoxActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Next  >>");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -120,12 +136,17 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Flight flight = (Flight)countryComboBox.getSelectedItem();
-        SelectEnterpriseJPanel sejp = new SelectEnterpriseJPanel(upc, flight, customer, business);
+        //Flight flight = (Flight)countryComboBox.getSelectedItem();
+        String country = (String)countryComboBox.getSelectedItem();
+        SelectEnterpriseJPanel sejp = new SelectEnterpriseJPanel(upc, country, customer, business);
         upc.add("manageOrganizationJPanel", sejp);
         CardLayout layout = (CardLayout) upc.getLayout();
         layout.next(upc);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void countryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_countryComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
