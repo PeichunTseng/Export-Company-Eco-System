@@ -27,17 +27,19 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
     private JPanel upc;
     private Customer customer;
     private EcoSystem business;
-    private Flight flight;
+    private String country;
+    //private Flight flight;
     /**
      * Creates new form SelectEnterpriseJPanel
      */
-    public SelectEnterpriseJPanel(JPanel upc, Flight flight, Customer customer, EcoSystem business) {
+    public SelectEnterpriseJPanel(JPanel upc, String country, Customer customer, EcoSystem business) {
         initComponents();
         this.upc = upc;
         this.customer = customer;
         this.business = business;
-        this.flight = flight;
-        countryLabel.setText(flight.getCty());
+        this.country = country;
+//this.flight = flight;
+        countryLabel.setText(country);
         populate();
     }
     
@@ -54,7 +56,7 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
         for(Enterprise enterprise : exports){
             for(Department department : enterprise.getDepartmentList().getDepList()){
                 for(User user : department.getUserList().getUserList()){
-                    if(user.getEmployee().getFlight() !=  null && user.getEmployee().getFlight().getCty().equals(flight.getCty())){
+                    if(user.getEmployee().getFlight() !=  null && user.getEmployee().getFlight().getCty().equals(country)){
                         selectedExports.add(enterprise);
                     }
                 }
@@ -164,7 +166,7 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
         User selectedUser = null;
         for(Department department : enterprise.getDepartmentList().getDepList()){
             for(User user : department.getUserList().getUserList()){
-                if(user != null && user.getEmployee().getFlight()!= null && user.getEmployee().getFlight().equals(flight)){
+                if(user != null && user.getEmployee().getFlight()!= null && user.getEmployee().getFlight().getCty().equals(country)){
                     selectedUser = user;
                 }
             }
