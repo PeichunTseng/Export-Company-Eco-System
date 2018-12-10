@@ -264,7 +264,7 @@ public class SellProductJPanel extends javax.swing.JPanel {
                 Product employeeProduct = new Product(selectedProduct.getName(),selectedProduct.getOriginPrice(),
                 quantity,selectedProduct.getSupplierName());
                 employeeProduct.setSellPrice(sellPrice);
-                employeeProduct.setShippingCost(selectedProduct.getOriginPrice() + user.getEmployee().getFlight().getShippingFee()*selectedProduct.getSize());
+                employeeProduct.setShippingCost(user.getEmployee().getFlight().getShippingFee()*selectedProduct.getSize());
                 user.getEmployee().getProducts().add(employeeProduct);
             }
             int leftNumber = selectedProduct.getNum() - quantity;
