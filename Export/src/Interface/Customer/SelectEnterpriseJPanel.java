@@ -13,6 +13,7 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.User.User;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -85,6 +86,7 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         countryLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         enterpriseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -122,6 +124,14 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
 
+        back.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        back.setText("<<  Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,26 +144,30 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
                         .addGap(70, 70, 70)
                         .addComponent(countryLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(106, 106, 106)
-                                .addComponent(jButton1)))))
-                .addContainerGap(105, Short.MAX_VALUE))
+                        .addGap(56, 56, 56)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(back)))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addContainerGap()
+                .addComponent(back)
+                .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(countryLabel))
-                .addGap(41, 41, 41)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(38, 38, 38)
                 .addComponent(jButton1)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -181,8 +195,20 @@ public class SelectEnterpriseJPanel extends javax.swing.JPanel {
         System.out.println(enterprise.getName());
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        upc.remove(this);
+        Component[] componentArray = upc.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageCustomerJPanel manageCustomerJPanel = (ManageCustomerJPanel) component;
+        manageCustomerJPanel.populate();
+        CardLayout layout = (CardLayout) upc.getLayout();
+        layout.previous(upc);
+    }//GEN-LAST:event_backActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JLabel countryLabel;
     private javax.swing.JTable enterpriseTable;
     private javax.swing.JButton jButton1;

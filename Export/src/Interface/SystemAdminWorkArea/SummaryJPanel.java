@@ -14,6 +14,8 @@ import Business.Supplier.ProductDirectory;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -71,11 +73,17 @@ public class SummaryJPanel extends javax.swing.JPanel {
             for(Product p : sum){
                 name = p.getName();
                 supplier = p.getSupplierName();
-                revenue += p.getSellPrice()-p.getOriginPrice()-p.getShippingCost();
+                revenue += (p.getSellPrice()-p.getOriginPrice()-p.getShippingCost())*p.getNum();
             }
             Product pro = new Product(name,supplier,revenue);
             mergedProduct.add(pro);
         }
+         Collections.sort(mergedProduct, new Comparator<Product>(){
+            @Override
+            public int compare(Product t, Product t1) {
+                return Double.compare(t1.getRevenue(), t.getRevenue());
+            }
+        });
         for(Product p : mergedProduct){
             Object[] row = new Object[3];
             row[0] = p;
@@ -108,7 +116,7 @@ public class SummaryJPanel extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
-        jLabel1.setText("Overall Top 5 Profitable Products");
+        jLabel1.setText("Overall Product Revenue Ranking");
 
         productTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

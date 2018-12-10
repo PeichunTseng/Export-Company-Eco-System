@@ -241,6 +241,7 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
         if(!alreadyHas){
             Product customerProduct = new Product(selectedProduct.getName(),selectedProduct.getOriginPrice(), selectedProduct.getSellPrice(),
                 quantity,selectedProduct.getSize(),selectedProduct.getSupplierName());
+            customerProduct.setShippingCost(selectedProduct.getShippingCost());
             products.add(customerProduct);
         }
         int leftNumber = selectedProduct.getNum() - quantity;
@@ -334,6 +335,7 @@ public class SelectProductsJPanel extends javax.swing.JPanel {
         if(!alreadyHas){
             Product employeeProduct = new Product(selectedProduct.getName(),selectedProduct.getOriginPrice(), selectedProduct.getSellPrice(),
                 quantity,selectedProduct.getSize(),selectedProduct.getSupplierName());
+            employeeProduct.setShippingCost(selectedProduct.getShippingCost());
             user.getEmployee().getProducts().add(employeeProduct);
         }
         int leftNumber = selectedProduct.getNum() - quantity;

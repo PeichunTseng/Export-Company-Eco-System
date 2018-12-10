@@ -57,7 +57,7 @@ public class RevenueJPanel extends javax.swing.JPanel {
                 for(Order order:enterprise.getDatastore().getOrderList().getOrders()){
                     
                         for(Product product:order.getProducts()){
-                            Revenue+=product.getSellPrice()-product.getSize()*product.getShippingCost()-product.getOriginPrice();
+                            Revenue+=(product.getSellPrice()-product.getShippingCost()-product.getOriginPrice())*product.getNum();
 
                     }
                 }
@@ -114,7 +114,7 @@ public class RevenueJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(revenueTable);
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
-        jLabel1.setText("Overall revenue range");
+        jLabel1.setText("Overall Revenue Ranking");
 
         jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton1.setText("<<  Back");
